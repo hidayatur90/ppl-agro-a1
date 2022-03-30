@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
   
 use App\Http\Controllers\HomeController;
-  
+use App\Http\Controllers\ProduksiController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,3 +52,5 @@ Route::middleware(['auth', 'user-access:kedai'])->group(function () {
   
     Route::get('/kedai/home', [HomeController::class, 'kedaiHome'])->name('kedai.home');
 });
+
+Route::resource('/karyawanProduksi', ProduksiController::class);

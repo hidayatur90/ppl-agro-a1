@@ -59,4 +59,5 @@ class User extends Authenticatable
             get: fn ($value) =>  ["owner", "produksi", "kedai"][$value],
         );
     }
+
 }
