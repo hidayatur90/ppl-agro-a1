@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
+
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KaryawanController extends Controller
 {
@@ -12,12 +13,21 @@ class KaryawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexKedai()
     {
     //     $query = "SELECT * FROM karyawan WHERE type_id=3";
     //     $karyawan = Karyawan::getCastType()();
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 3]);
     	return view('karyawanKedai', [
+            'karyawan'=>$karyawan
+        ]);
+    }
+    public function indexProduksi()
+    {
+    //     $query = "SELECT * FROM karyawan WHERE type_id=3";
+    //     $karyawan = Karyawan::getCastType()();
+        $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 2]);
+    	return view('karyawanproduksi', [
             'karyawan'=>$karyawan
         ]);
     }
@@ -27,9 +37,13 @@ class KaryawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createKedai()
     {
         return view('karyawanKedaiTambah');
+    }
+    public function createProduksi()
+    {
+        return view('karyawanProduksiTambah');
     }
 
     /**
@@ -38,7 +52,7 @@ class KaryawanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeKedai(Request $request)
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
@@ -55,6 +69,24 @@ class KaryawanController extends Controller
     	]);
  
     	return redirect('/karyawanKedai ');
+    }
+    public function storeProduksi(Request $request)
+    {
+        $this->validate($request,[
+    		'namaKaryawan' => 'required',
+    		'noTelepon' => 'required',
+    		'alamat' => 'required',
+    		'status' => 'required'
+    	]);
+ 
+        Karyawan::create([
+    		'namaKaryawan' => $request->namaKaryawan,
+    		'noTelepon' => $request->noTelepon,
+    		'alamat' => $request->alamat,
+    		'status' => $request->status
+    	]);
+ 
+    	return redirect('/karyawanProduksi ');
     }
 
     /**
@@ -74,10 +106,15 @@ class KaryawanController extends Controller
      * @param  \App\Models\Karyawan  $karyawan
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editKedai($id)
     {
         $karyawan = Karyawan::find($id);
         return view('karyawanKedaiEdit', ['karyawan' => $karyawan]);
+    }
+    public function editProduksi($id)
+    {
+        $karyawan = Karyawan::find($id);
+        return view('karyawanProduksiEdit', ['karyawan' => $karyawan]);
     }
 
     /**
@@ -87,7 +124,7 @@ class KaryawanController extends Controller
      * @param  \App\Models\Karyawan  $karyawan
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function updateKedai($id, Request $request)
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
@@ -105,6 +142,25 @@ class KaryawanController extends Controller
          $karyawan->status = $request->status;
          $karyawan->save();
          return redirect('/karyawanKedai');
+    }
+    public function updateProduksi($id, Request $request)
+    {
+        $this->validate($request,[
+    		'namaKaryawan' => 'required',
+    		// 'user_id' => 'required',
+    		'noTelepon' => 'required',
+    		'alamat' => 'required',
+    		'status' => 'required'
+         ]);
+      
+         $karyawan = Karyawan::find($id);
+         $karyawan->namaKaryawan = $request->namaKaryawan;
+        //  $karyawan->user_id = $request->user_id;
+         $karyawan->noTelepon = $request->noTelepon;
+         $karyawan->alamat = $request->alamat;
+         $karyawan->status = $request->status;
+         $karyawan->save();
+         return redirect('/karyawanProduksi');
     }
 
     /**

@@ -62,12 +62,17 @@ Route::get('/editOwner', function () {
     return view('editOwner');
 });
 
-Route::get('/karyawanKedai', [KaryawanController::class, 'index']);
-Route::get('/karyawanKedai/tambah', [KaryawanController::class, 'create']);
-Route::post('/karyawanKedai/store', [KaryawanController::class, 'store']);
-Route::get('/karyawanKedai/edit/{id}', [KaryawanController::class, 'edit']);
-Route::put('/karyawanKedai/update/{id}', [KaryawanController::class, 'update']);
+Route::get('/karyawanKedai', [KaryawanController::class, 'indexKedai']);
+Route::get('/karyawanKedai/tambah', [KaryawanController::class, 'createKedai']);
+Route::post('/karyawanKedai/store', [KaryawanController::class, 'storeKedai']);
+Route::get('/karyawanKedai/edit/{id}', [KaryawanController::class, 'editKedai']);
+Route::put('/karyawanKedai/update/{id}', [KaryawanController::class, 'updateKedai']);
 // Route::get('/karyawanKedai/delete/{id}', [KaryawanController::class, 'destroy']);
+Route::get('/karyawanProduksi', [KaryawanController::class, 'indexProduksi']);
+Route::get('/karyawanProduksi/tambah', [KaryawanController::class, 'createProduksi']);
+Route::post('/karyawanProduksi/store', [KaryawanController::class, 'storeProduksi']);
+Route::get('/karyawanProduksi/edit/{id}', [KaryawanController::class, 'editProduksi']);
+Route::put('/karyawanProduksi/update/{id}', [KaryawanController::class, 'updateProduksi']);
 
 Route::get('/ownerMitra', [OwnerController::class, 'index']);
 
