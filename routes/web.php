@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
   
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\OwnerController;
   
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +53,18 @@ Route::middleware(['auth', 'user-access:kedai'])->group(function () {
   
     Route::get('/kedai/home', [HomeController::class, 'kedaiHome'])->name('kedai.home');
 });
+
+Route::get('/ownerMitra', function () {
+    return view('ownerMitra');
+});
+
+Route::get('/editOwner', function () {
+    return view('editOwner');
+});
+
+Route::get('/karyawanKedai', [KaryawanController::class, 'index']);
+Route::get('/karyawanKedai/tambah', [KaryawanController::class, 'create']);
+Route::post('/karyawanKedai/store', [KaryawanController::class, 'store']);
+Route::get('/karyawanKedai/edit/{id}', [KaryawanController::class, 'edit']);
+Route::put('/karyawanKedai/update/{id}', [KaryawanController::class, 'update']);
+// Route::get('/karyawanKedai/delete/{id}', [KaryawanController::class, 'destroy']);

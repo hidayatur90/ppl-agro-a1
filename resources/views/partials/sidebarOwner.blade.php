@@ -8,7 +8,7 @@
                         Dashboard
                     </a>
                     <div class="sb-sidenav-menu-heading">Data Akun</div>
-                    <a class="nav-link" href="/profil">
+                    <a class="nav-link" href="/ownerMitra">
                         <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
                         Akun
                     </a>
@@ -19,10 +19,10 @@
                     </a>
                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                            <a class="nav-link" href="/#">
+                            <a class="nav-link" href="/karyawanKedai">
                                 Karyawan Kedai
                             </a>
-                            <a class="nav-link" href="/#">
+                            <a class="nav-link" href="#">
                                 Karyawan Produksi
                             </a>
                         </nav>
