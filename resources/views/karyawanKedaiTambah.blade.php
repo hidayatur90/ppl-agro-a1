@@ -7,7 +7,7 @@
         <div class="container-fluid px-4">
             <div class="card mt-5">
                 <div class="card-header text-center">
-                    <strong>TAMBAH DATA KARYAWAN</strong>
+                    <strong>TAMBAH DATA KARYAWAN KEDAI</strong>
                 </div>
                 <div class="card-body">    
                     <form method="post" action="/karyawanKedai/store">

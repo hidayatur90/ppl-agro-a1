@@ -7,7 +7,7 @@
         <div class="container-fluid px-4">
             <div class="card mt-5">
                 <div class="card-header text-center">
-                    <strong>EDIT DATA</strong>
+                    <strong>EDIT DATA KARYAWAN PRODUKSI</strong>
                 </div>
                 <div class="card-body">
                     <form method="post" action="/karyawanKedai/update/{{$karyawan->id}}">
