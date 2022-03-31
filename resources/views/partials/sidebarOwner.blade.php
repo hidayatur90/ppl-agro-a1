@@ -1,6 +1,14 @@
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
+        <style>
+            nav {
+                font-family: 'Poppins', sans-serif;
+            }
+        </style>
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            {{-- <div class="sb-nav-link-icon mx-2 justify-content-end">
+                <img src="assets/img/Rodicord-logo.png" height="30" alt="RODICORD">
+            </div> --}}
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <a class="nav-link" href="/home">
