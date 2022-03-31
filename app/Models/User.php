@@ -60,6 +60,7 @@ class User extends Authenticatable
         );
     }
 
+<<<<<<< HEAD
     // public function owner()
     // {
     //     return $this->hasMany(Owner::class);
@@ -70,4 +71,6 @@ class User extends Authenticatable
     //     return $this->hasMany(Karyawan::class);
     // }
 
+=======
+>>>>>>> f292cea0fd4cd4b29ef9cd5d04e5e2c43f9c17db
 }

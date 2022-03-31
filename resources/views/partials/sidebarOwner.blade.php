@@ -19,10 +19,17 @@
                     </a>
                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+<<<<<<< HEAD
                             <a class="nav-link" href="/karyawanKedai">
                                 Karyawan Kedai
                             </a>
                             <a class="nav-link" href="#">
+=======
+                            <a class="nav-link" href="#">
+                                Karyawan Kedai
+                            </a>
+                            <a class="nav-link" href="/karyawanProduksi">
+>>>>>>> f292cea0fd4cd4b29ef9cd5d04e5e2c43f9c17db
                                 Karyawan Produksi
                             </a>
                         </nav>
