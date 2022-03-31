@@ -10,10 +10,6 @@
                     <strong>TAMBAH DATA KARYAWAN PRODUKSI</strong>
                 </div>
                 <div class="card-body">
-                    <a href="/karyawanProduksi" class="btn btn-primary">Kembali</a>
-                    <br/>
-                    <br/>
-                    
                     <form method="post" action="/karyawanProduksi/store">
  
                         {{ csrf_field() }}
@@ -60,8 +56,21 @@
                                 </div>
                             @endif
                         </div>
- 
+
                         <div class="form-group">
+                            <label>Karyawan Produksi</label>
+                            <select name="type_id" class="form-control">
+                                <option value="2">2</option>
+                            </select>
+                             @if($errors->has('type_id'))
+                                <div class="text-danger">
+                                    {{ $errors->first('type_id')}}
+                                </div>
+                            @endif
+                        </div>
+ 
+                        <div class="form-group my-3">
+                            <a href="/karyawanProduksi" class="btn btn-primary">Kembali</a>
                             <input type="submit" class="btn btn-success" value="Simpan">
                         </div>
  

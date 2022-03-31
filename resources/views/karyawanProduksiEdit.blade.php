@@ -58,7 +58,19 @@
                             @endif
                         </div>
 
-                        <div class="form-group my-2 text-align-end">
+                        <div class="form-group">
+                            <label>Karyawan Produksi</label>
+                            <select name="type_id" class="form-control" value="{{$karyawan->type_id}}">
+                                <option value="2">2</option>
+                            </select>
+                             @if($errors->has('type_id'))
+                                <div class="text-danger">
+                                    {{ $errors->first('type_id')}}
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="form-group my-3 text-align-end">
                             <a href="/karyawanProduksi" class="btn btn-danger">Kembali</a>
                             <input type="submit" class="btn btn-success" value="Simpan">
                         </div>

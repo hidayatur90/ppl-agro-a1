@@ -58,14 +58,16 @@ class KaryawanController extends Controller
     		'namaKaryawan' => 'required',
     		'noTelepon' => 'required',
     		'alamat' => 'required',
-    		'status' => 'required'
+    		'status' => 'required',
+    		'type_id' => 'required'
     	]);
  
         Karyawan::create([
     		'namaKaryawan' => $request->namaKaryawan,
     		'noTelepon' => $request->noTelepon,
     		'alamat' => $request->alamat,
-    		'status' => $request->status
+    		'status' => $request->status,
+            'type_id' => $request->type_id
     	]);
  
     	return redirect('/karyawanKedai ');
@@ -76,14 +78,16 @@ class KaryawanController extends Controller
     		'namaKaryawan' => 'required',
     		'noTelepon' => 'required',
     		'alamat' => 'required',
-    		'status' => 'required'
+    		'status' => 'required',
+            'type_id' => 'required'
     	]);
  
         Karyawan::create([
     		'namaKaryawan' => $request->namaKaryawan,
     		'noTelepon' => $request->noTelepon,
     		'alamat' => $request->alamat,
-    		'status' => $request->status
+    		'status' => $request->status,
+            'type_id' => $request->type_id
     	]);
  
     	return redirect('/karyawanProduksi ');
@@ -131,7 +135,8 @@ class KaryawanController extends Controller
     		// 'user_id' => 'required',
     		'noTelepon' => 'required',
     		'alamat' => 'required',
-    		'status' => 'required'
+    		'status' => 'required',
+    		'type_id' => 'required'
          ]);
       
          $karyawan = Karyawan::find($id);
@@ -140,6 +145,7 @@ class KaryawanController extends Controller
          $karyawan->noTelepon = $request->noTelepon;
          $karyawan->alamat = $request->alamat;
          $karyawan->status = $request->status;
+         $karyawan->type_id = $request->type_id;
          $karyawan->save();
          return redirect('/karyawanKedai');
     }
@@ -150,7 +156,8 @@ class KaryawanController extends Controller
     		// 'user_id' => 'required',
     		'noTelepon' => 'required',
     		'alamat' => 'required',
-    		'status' => 'required'
+    		'status' => 'required',
+            'type_id' => 'required'
          ]);
       
          $karyawan = Karyawan::find($id);
@@ -159,6 +166,7 @@ class KaryawanController extends Controller
          $karyawan->noTelepon = $request->noTelepon;
          $karyawan->alamat = $request->alamat;
          $karyawan->status = $request->status;
+         $karyawan->type_id = $request->type_id;
          $karyawan->save();
          return redirect('/karyawanProduksi');
     }

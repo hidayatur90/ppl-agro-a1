@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Owner extends Model
 {
     protected $table = "owner";
-    protected $fillable = ['namaKaryawan','noTelepon','alamat'];
+    // protected $fillable = ['namaKaryawan','noTelepon','alamat'];
+    protected $guarded = ['id'];
 
     public function user()
     {

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Karyawan extends Model
 {   
     protected $table = "karyawan";
-
-    protected $fillable = ['namaKaryawan','noTelepon','alamat', 'status'];
+    protected $guarded = ['id'];
+    // protected $fillable = ['namaKaryawan','noTelepon','alamat', 'status', 'type_id'];
 
     public function user()
     {
