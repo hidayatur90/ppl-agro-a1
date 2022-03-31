@@ -59,4 +59,15 @@ class User extends Authenticatable
             get: fn ($value) =>  ["owner", "produksi", "kedai"][$value],
         );
     }
+
+    // public function owner()
+    // {
+    //     return $this->hasMany(Owner::class);
+    // }
+
+    // public function karyawan()
+    // {
+    //     return $this->hasMany(Karyawan::class);
+    // }
+
 }
