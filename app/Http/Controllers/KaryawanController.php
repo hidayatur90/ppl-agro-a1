@@ -15,8 +15,6 @@ class KaryawanController extends Controller
      */
     public function indexKedai()
     {
-    //     $query = "SELECT * FROM karyawan WHERE type_id=3";
-    //     $karyawan = Karyawan::getCastType()();
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 3]);
     	return view('karyawanKedai', [
             'karyawan'=>$karyawan
@@ -24,8 +22,6 @@ class KaryawanController extends Controller
     }
     public function indexProduksi()
     {
-    //     $query = "SELECT * FROM karyawan WHERE type_id=3";
-    //     $karyawan = Karyawan::getCastType()();
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 2]);
     	return view('karyawanproduksi', [
             'karyawan'=>$karyawan
@@ -34,8 +30,6 @@ class KaryawanController extends Controller
 
     public function indexKedaiHome()
     {
-    //     $query = "SELECT * FROM karyawan WHERE type_id=3";
-    //     $karyawan = Karyawan::getCastType()();
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 3]);
     	return view('karyawanKedaiHome', [
             'karyawan'=>$karyawan
@@ -43,8 +37,6 @@ class KaryawanController extends Controller
     }
     public function indexProduksiHome()
     {
-    //     $query = "SELECT * FROM karyawan WHERE type_id=3";
-    //     $karyawan = Karyawan::getCastType()();
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 2]);
     	return view('karyawanProduksiHome', [
             'karyawan'=>$karyawan
