@@ -57,10 +57,6 @@ Route::middleware(['auth', 'user-access:kedai'])->group(function () {
     Route::get('/kedai/home', [HomeController::class, 'kedaiHome'])->name('kedai.home');
 });
 
-<<<<<<< HEAD
-=======
-// <<<<<<< HEAD
->>>>>>> 69eeb489c59e6a0a74caa0c81397ddc722cb1351
 Route::get('/ownerMitra', function () {
     return view('ownerMitra');
 });
@@ -74,11 +70,6 @@ Route::get('/karyawanKedai/tambah', [KaryawanController::class, 'create']);
 Route::post('/karyawanKedai/store', [KaryawanController::class, 'store']);
 Route::get('/karyawanKedai/edit/{id}', [KaryawanController::class, 'edit']);
 Route::put('/karyawanKedai/update/{id}', [KaryawanController::class, 'update']);
-<<<<<<< HEAD
+
 // Route::get('/karyawanKedai/delete/{id}', [KaryawanController::class, 'destroy']);
-=======
-Route::get('/karyawanKedai/delete/{id}', [KaryawanController::class, 'destroy']);
-// =======
-Route::resource('/karyawanProduksi', ProduksiController::class);
-// >>>>>>> f292cea0fd4cd4b29ef9cd5d04e5e2c43f9c17db
->>>>>>> 69eeb489c59e6a0a74caa0c81397ddc722cb1351
+

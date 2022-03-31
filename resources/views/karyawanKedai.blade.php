@@ -37,11 +37,7 @@
                             <td>{{ $k->status }}</td>
                             <td>
                                 <a href="/karyawanKedai/edit/{{ $k->id }}" class="btn btn-warning">Edit</a>
-<<<<<<< HEAD
                                 {{-- <a href="/karyawanKedai/delete/{{ $k->id }}" class="btn btn-danger">Hapus</a> --}}
-=======
-                                <a href="/karyawanKedai/delete/{{ $k->id }}" class="btn btn-danger">Hapus</a>
->>>>>>> 69eeb489c59e6a0a74caa0c81397ddc722cb1351
                             </td>
                         </tr>
                         @endforeach
