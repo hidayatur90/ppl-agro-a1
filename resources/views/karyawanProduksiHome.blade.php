@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('partials.navbar')
-@include('partials.sidebarOwner')
+@include('partials.sidebarProduksi')
 <div id="layoutSidenav_content">
     <style>
         strong, thead{
@@ -12,12 +12,9 @@
     <div class="container-fluid px-4">
         <div class="card mt-5">
             <div class="card-header text-start">
-                <strong>Data Karyawan Kedai</strong> 
+                <strong>Data Karyawan Produksi</strong> 
             </div>
             <div class="card-body">
-                <a href="/karyawanKedai/tambah" class="btn btn-success">Input Karyawan Baru</a>
-                <br/>
-                <br/>
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
@@ -25,7 +22,6 @@
                             <th>No Telepon</th>
                             <th>Alamat</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,10 +31,6 @@
                             <td>{{ $k->noTelepon }}</td>
                             <td>{{ $k->alamat }}</td>
                             <td>{{ $k->status }}</td>
-                            <td>
-                                <a href="/karyawanKedai/edit/{{ $k->id }}" class="btn btn-warning">Edit</a>
-                                {{-- <a href="/karyawanKedai/delete/{{ $k->id }}" class="btn btn-danger">Hapus</a> --}}
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>

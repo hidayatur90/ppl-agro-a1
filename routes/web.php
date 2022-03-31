@@ -74,5 +74,8 @@ Route::post('/karyawanProduksi/store', [KaryawanController::class, 'storeProduks
 Route::get('/karyawanProduksi/edit/{id}', [KaryawanController::class, 'editProduksi']);
 Route::put('/karyawanProduksi/update/{id}', [KaryawanController::class, 'updateProduksi']);
 
+Route::get('/profilKaryawanKedai', [KaryawanController::class, 'indexKedaiHome']);
+Route::get('/profilKaryawanProduksi', [KaryawanController::class, 'indexProduksiHome']);
+
 Route::get('/ownerMitra', [OwnerController::class, 'index']);
 
