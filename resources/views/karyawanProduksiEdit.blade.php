@@ -48,8 +48,12 @@
                         <div class="form-group">
                             <label>Status</label>
                             <select name="status" class="form-control" placeholder="Status Karyawan" value="{{$karyawan->status}}">
-                                <option value="1">Aktif</option>
-                                <option value="2">Tidak Aktif</option>
+                                <option selected>{{$karyawan->status}}</option>
+                                @if ($karyawan->status == 'Tidak Aktif')
+                                    <option value="1">Aktif</option>
+                                @else
+                                    <option value="2">Tidak Aktif</option>
+                                @endif
                             </select>
                              @if($errors->has('status'))
                                 <div class="text-danger">
@@ -58,7 +62,7 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group d-none">
                             <label>Karyawan Produksi</label>
                             <select name="type_id" class="form-control" value="{{$karyawan->type_id}}">
                                 <option value="2">2</option>
@@ -70,9 +74,13 @@
                             @endif
                         </div>
 
-                        <div class="form-group my-3 text-align-end">
-                            <a href="/karyawanProduksi" class="btn btn-danger">Kembali</a>
-                            <input type="submit" class="btn btn-success" value="Simpan">
+                        <div class="row mb-3 justify-content-end mx-3 my-4">
+                            <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
+                                <input type="submit" class="btn btn-success mx-3" value="Simpan">
+                                <a type="button" class="btn btn-light border" href="/karyawanProduksi">
+                                    Batal
+                                </a>
+                            </div>
                         </div>
 
                     </form>

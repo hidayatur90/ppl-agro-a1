@@ -58,9 +58,10 @@ class OwnerController extends Controller
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Owner $owner)
+    public function edit($id)
     {
-        //
+        $owner = Owner::find($id);
+        return view('ownerMitraEdit', ['owner' => $owner]);
     }
 
     /**
@@ -70,9 +71,24 @@ class OwnerController extends Controller
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Owner $owner)
+    public function update($id, Request $request)
     {
-        //
+        $this->validate($request,[
+    		'namaMitra' => 'required',
+    		// 'user_id' => 'required',
+    		'noTelepon' => 'required',
+    		'alamat' => 'required',
+    		'type_id' => 'required'
+         ]);
+      
+         $owner = Owner::find($id);
+         $owner->namaMitra = $request->namaMitra;
+        //  $owner->user_id = $request->user_id;
+         $owner->noTelepon = $request->noTelepon;
+         $owner->alamat = $request->alamat;
+         $owner->type_id = $request->type_id;
+         $owner->save();
+         return redirect('/ownerMitra');
     }
 
     /**

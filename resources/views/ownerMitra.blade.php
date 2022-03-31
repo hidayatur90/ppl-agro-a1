@@ -24,9 +24,10 @@
             }    */
         </style>
         <main>
+            @foreach($owner as $o)
             <div class="container-fluid px-4">
                 <div class="btn-edit">
-                    <a type="button" href="/editOwner" class="edit-icon" role="button" aria-pressed="true">
+                    <a type="button" href="/ownerMitra/edit/{{ $o->id }}" class="edit-icon" role="button" aria-pressed="true">
                         <i class="bi bi-pencil-square"></i>
                     </a>
                 </div>
@@ -34,15 +35,12 @@
                     <h1 class="h2">
                         <i class="fa fa-user-circle mb-2" aria-hidden="true" style="font-size: 150px;"></i>
                     </h1>
-                    @foreach($owner as $o)
                     <h2><strong>{{ $o->namaMitra}}</strong></h2>
                     <div style="color: rgb(148, 148, 148)">
                         {{-- <h5>{{ $o->email}}</h5> --}}
                         <h5>{{ $o->noTelepon }}</h5>
                     </div>
-                    @endforeach
                 </div>
-                @foreach($owner as $o)
                 <div class="address py-3 px-3 mb-5" style="background-color: rgb(231, 240, 245); border-radius:10px;">
                     <h4><strong>Alamat</strong></h4>
                     <h6 style="color: rgb(148, 148, 148)">{{ $o->alamat }}</h6>

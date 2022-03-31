@@ -57,7 +57,7 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group d-none">
                             <label>Karyawan Produksi</label>
                             <select name="type_id" class="form-control">
                                 <option value="2">2</option>
@@ -68,12 +68,15 @@
                                 </div>
                             @endif
                         </div>
- 
-                        <div class="form-group my-3">
-                            <a href="/karyawanProduksi" class="btn btn-primary">Kembali</a>
-                            <input type="submit" class="btn btn-success" value="Simpan">
+
+                        <div class="row mb-3 justify-content-end mx-3 my-4">
+                            <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
+                                <input type="submit" class="btn btn-success mx-3" value="Tambah">
+                                <a type="button" class="btn btn-light border" href="/karyawanProduksi">
+                                    Batal
+                                </a>
+                            </div>
                         </div>
- 
                     </form>
  
                 </div>
