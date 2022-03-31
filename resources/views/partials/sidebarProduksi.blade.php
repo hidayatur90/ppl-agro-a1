@@ -8,7 +8,7 @@
                         Dashboard
                     </a>
                     <div class="sb-sidenav-menu-heading">Data Akun</div>
-                    <a class="nav-link" href="/profil">
+                    <a class="nav-link" href="/profilKaryawanProduksi">
                         <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
                         Akun
                     </a>
