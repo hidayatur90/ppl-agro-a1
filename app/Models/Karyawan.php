@@ -17,4 +17,8 @@ class Karyawan extends Model
     //     return $this->belongsTo(User::class);
     // }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 69eeb489c59e6a0a74caa0c81397ddc722cb1351
 }

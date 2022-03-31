@@ -113,8 +113,14 @@ class KaryawanController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
         // $karyawan = Karyawan::find($id);
         // $karyawan->delete();
         // return redirect('/karyawanKedai');
+=======
+        $karyawan = Karyawan::find($id);
+        $karyawan->delete();
+        return redirect('/karyawanKedai');
+>>>>>>> 69eeb489c59e6a0a74caa0c81397ddc722cb1351
     }
 }
