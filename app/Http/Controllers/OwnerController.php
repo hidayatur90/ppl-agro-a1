@@ -14,7 +14,10 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        //
+        $owner = Owner::all();
+    	return view('ownerMitra', [
+            'owner'=>$owner
+        ]);
     }
 
     /**

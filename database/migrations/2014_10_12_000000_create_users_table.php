@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->tinyInteger('type')->default(0);
+            $table->bigInteger('type')->unique();
             /* Users: 0=>Owner, 1=>Produksi, 2=>Kedai*/
             $table->rememberToken();
             $table->timestamps();

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,9 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::all();
+    //     $query = "SELECT * FROM karyawan WHERE type_id=3";
+    //     $karyawan = Karyawan::getCastType()();
+        $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 3]);
     	return view('karyawanKedai', [
             'karyawan'=>$karyawan
         ]);

@@ -10,10 +10,6 @@
                     <strong>EDIT DATA</strong>
                 </div>
                 <div class="card-body">
-                    <a href="/karyawanKedai" class="btn btn-danger">Kembali</a>
-                    <br/>
-                    <br/>
-
                     <form method="post" action="/karyawanKedai/update/{{$karyawan->id}}">
 
                         {{ csrf_field() }}
@@ -63,6 +59,7 @@
                         </div>
 
                         <div class="form-group my-2 text-align-end">
+                            <a href="/karyawanKedai" class="btn btn-danger">Kembali</a>
                             <input type="submit" class="btn btn-success" value="Simpan">
                         </div>
 

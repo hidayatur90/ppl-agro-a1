@@ -6,10 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\OwnerController;
-  
-use App\Http\Controllers\ProduksiController;
 
-// >>>>>>> f292cea0fd4cd4b29ef9cd5d04e5e2c43f9c17db
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,6 +67,7 @@ Route::get('/karyawanKedai/tambah', [KaryawanController::class, 'create']);
 Route::post('/karyawanKedai/store', [KaryawanController::class, 'store']);
 Route::get('/karyawanKedai/edit/{id}', [KaryawanController::class, 'edit']);
 Route::put('/karyawanKedai/update/{id}', [KaryawanController::class, 'update']);
-
 // Route::get('/karyawanKedai/delete/{id}', [KaryawanController::class, 'destroy']);
+
+Route::get('/ownerMitra', [OwnerController::class, 'index']);
 

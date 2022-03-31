@@ -22,8 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
-        'type'
+        'password'
     ];
   
     /**
@@ -56,18 +55,18 @@ class User extends Authenticatable
     protected function type(): Attribute
     {
         return new Attribute(
-            get: fn ($value) =>  ["owner", "produksi", "kedai"][$value],
+            get: fn ($value) =>  ["","owner", "produksi", "kedai"][$value],
         );
     }
 
-    // public function owner()
-    // {
-    //     return $this->hasMany(Owner::class);
-    // }
+    public function owner()
+    {
+        return $this->hasMany(['App\Owner','type_id','type']);
+    }
 
-    // public function karyawan()
-    // {
-    //     return $this->hasMany(Karyawan::class);
-    // }
+    public function karyawan()
+    {
+        return $this->hasMany(['App\Karyawan','type_id','type']);
+    }
 
 }

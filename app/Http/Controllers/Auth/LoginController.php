@@ -50,12 +50,12 @@ class LoginController extends Controller
      
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            if (auth()->user()->type == 'produksi') {
-                return redirect()->route('produksi.home');
-            }else if (auth()->user()->type == 'kedai') {
-                return redirect()->route('kedai.home');
-            }else{
+            if (auth()->user()->type == 'owner') {
                 return redirect()->route('home');
+            }else if (auth()->user()->type == 'produksi') {
+                return redirect()->route('produksi.home');
+            }else if (auth()->user()->type == 'kedai'){
+                return redirect()->route('kedai.home');
             }
         }else{
             return redirect()->route('login')

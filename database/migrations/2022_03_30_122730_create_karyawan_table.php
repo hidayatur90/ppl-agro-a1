@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id');
+            $table->bigInteger('type_id');
             $table->string('namaKaryawan');
             $table->string('noTelepon')->unique();;
             $table->string('alamat');

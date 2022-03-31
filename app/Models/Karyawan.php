@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Karyawan extends Model
 {   
-    // use HasFactory;
     protected $table = "karyawan";
 
     protected $fillable = ['namaKaryawan','noTelepon','alamat', 'status'];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user()
+    {
+        return $this->belongsTo(['App\User','type_id','type']);
+    }
 }
