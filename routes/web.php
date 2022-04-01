@@ -23,37 +23,23 @@ Route::get('/', function () {
 });
   
 Auth::routes();
-  
-/*------------------------------------------
---------------------------------------------
-All Normal Users Routes List
---------------------------------------------
---------------------------------------------*/
+
+// Auth Owner
 Route::middleware(['auth', 'user-access:owner'])->group(function () {
-  
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
   
-/*------------------------------------------
---------------------------------------------
-All Admin Routes List
---------------------------------------------
---------------------------------------------*/
+// Auth Produksi
 Route::middleware(['auth', 'user-access:produksi'])->group(function () {
-  
     Route::get('/produksi/home', [HomeController::class, 'produksiHome'])->name('produksi.home');
 });
   
-/*------------------------------------------
---------------------------------------------
-All Admin Routes List
---------------------------------------------
---------------------------------------------*/
+// Auth Kedai
 Route::middleware(['auth', 'user-access:kedai'])->group(function () {
-  
     Route::get('/kedai/home', [HomeController::class, 'kedaiHome'])->name('kedai.home');
 });
 
+// Owner Home 
 Route::get('/ownerMitra', function () {
     return view('ownerMitra');
 });
@@ -61,6 +47,7 @@ Route::get('/ownerMitra', function () {
 Route::get('/editOwner', function () {
     return view('editOwner');
 });
+
 // CRU KARYAWAN KEDAI
 Route::get('/karyawanKedai', [KaryawanController::class, 'indexKedai']);
 Route::get('/karyawanKedai/tambah', [KaryawanController::class, 'createKedai']);
@@ -76,14 +63,17 @@ Route::post('/karyawanProduksi/store', [KaryawanController::class, 'storeProduks
 Route::get('/karyawanProduksi/edit/{id}', [KaryawanController::class, 'editProduksi']);
 Route::put('/karyawanProduksi/update/{id}', [KaryawanController::class, 'updateProduksi']);
 
-
 // RU OWNER
 Route::get('/ownerMitra', [OwnerController::class, 'index']);
 Route::get('/ownerMitra/edit/{id}', [OwnerController::class, 'edit']);
 Route::put('/ownerMitra/update/{id}', [OwnerController::class, 'update']);
 
-// Karyawan
+// Kedai Home
 Route::get('/profilKaryawanKedai', [KaryawanController::class, 'indexKedaiHome']);
+Route::get('/karyawanProduksi/detail/{id}', [KaryawanController::class, 'indexProduksiDetail']);
+
+// Produksi Home
+Route::get('/karyawanKedai/detail/{id}', [KaryawanController::class, 'indexKedaiDetail']);
 Route::get('/profilKaryawanProduksi', [KaryawanController::class, 'indexProduksiHome']);
 
 

@@ -22,7 +22,7 @@
                     <thead>
                         <tr>
                             <th>Nama</th>
-                            <th>No Telepon</th>
+                            <th>No HP</th>
                             <th>Alamat</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -35,9 +35,9 @@
                             <td>{{ $k->noTelepon }}</td>
                             <td>{{ $k->alamat }}</td>
                             <td>{{ $k->status }}</td>
-                            <td>
-                                <a href="/karyawanKedai/edit/{{ $k->id }}" class="btn btn-warning">Edit</a>
-                                {{-- <a href="/karyawanKedai/delete/{{ $k->id }}" class="btn btn-danger">Hapus</a> --}}
+                            <td class="text-center">
+                                <a href="/karyawanKedai/edit/{{ $k->id }}" class="btn btn-warning my-2 mx-1">Edit</a>
+                                <a href="/karyawanKedai/detail/{{ $k->id }}" class="btn btn-success">Detail</a>
                             </td>
                         </tr>
                         @endforeach

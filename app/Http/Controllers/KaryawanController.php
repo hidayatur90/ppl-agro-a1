@@ -43,6 +43,22 @@ class KaryawanController extends Controller
         ]);
     }
 
+    public function indexProduksiDetail($id)
+    {
+        $karyawan = DB::select('select * from karyawan where id = :id', ['id' => $id]);
+    	return view('produksiDetail', [
+            'karyawan'=>$karyawan
+        ]);
+    }
+
+    public function indexKedaiDetail($id)
+    {
+        $karyawan = DB::select('select * from karyawan where id = :id', ['id' => $id]);
+    	return view('kedaiDetail', [
+            'karyawan'=>$karyawan
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

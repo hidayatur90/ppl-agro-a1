@@ -35,9 +35,9 @@
                             <td>{{ $k->noTelepon }}</td>
                             <td>{{ $k->alamat }}</td>
                             <td>{{ $k->status }}</td>
-                            <td>
-                                <a href="/karyawanProduksi/edit/{{ $k->id }}" class="btn btn-warning">Edit</a>
-                                {{-- <a href="/karyawanKedai/delete/{{ $k->id }}" class="btn btn-danger">Hapus</a> --}}
+                            <td class="text-center">
+                                <a href="/karyawanProduksi/edit/{{ $k->id }}" class="btn btn-warning my-2 mx-1">Edit</a>
+                                <a href="/karyawanProduksi/detail/{{ $k->id }}" class="btn btn-success">Detail</a>
                             </td>
                         </tr>
                         @endforeach
