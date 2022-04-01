@@ -34,7 +34,11 @@
                             <td>{{ $k->namaKaryawan }}</td>
                             <td>{{ $k->noTelepon }}</td>
                             <td>{{ $k->alamat }}</td>
-                            <td>{{ $k->status }}</td>
+                            @if($k->status == 'Aktif')
+                                <td style="color: green">{{ $k->status }}</td>
+                            @else
+                                <td style="color: red">{{ $k->status }}</td>
+                            @endif
                             <td class="text-center">
                                 <a href="/karyawanKedai/edit/{{ $k->id }}" class="btn btn-warning my-2 mx-1">Edit</a>
                                 <a href="/karyawanKedai/detail/{{ $k->id }}" class="btn btn-success">Detail</a>

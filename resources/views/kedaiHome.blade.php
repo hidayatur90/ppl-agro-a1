@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
                 <div class="card-body mt-4">
-                    <h2>Dashboard Produksi</h2>
+                    <h2>Dashboard Kedai</h2>
                     <h4>Coming soon...</h4>
                 </div>
             </div>

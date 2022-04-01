@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-  
+use RealRashid\SweetAlert\SweetAlertServiceProvider;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class LoginController extends Controller
 {
     /*
@@ -51,15 +53,18 @@ class LoginController extends Controller
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->type == 'owner') {
+                Alert::success('Login Berhasil!', 'Sebagai Owner')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
                 return redirect()->route('home');
             }else if (auth()->user()->type == 'produksi') {
+                Alert::success('Login Berhasil!', 'Sebagai Karyawan Produksi')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
                 return redirect()->route('produksi.home');
             }else if (auth()->user()->type == 'kedai'){
+                Alert::success('Login Berhasil!', 'Sebagai Karyawan Kedai')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
                 return redirect()->route('kedai.home');
             }
         }else{
-            return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
+            Alert::warning('Login Gagal!', 'Email atau Password Salah!')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+            return redirect()->route('login');
         }
           
     }

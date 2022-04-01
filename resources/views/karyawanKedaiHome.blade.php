@@ -30,7 +30,11 @@
                             <td>{{ $k->namaKaryawan }}</td>
                             <td>{{ $k->noTelepon }}</td>
                             <td>{{ $k->alamat }}</td>
-                            <td>{{ $k->status }}</td>
+                            @if($k->status == 'Aktif')
+                                <td style="color: green">{{ $k->status }}</td>
+                            @else
+                                <td style="color: red">{{ $k->status }}</td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>

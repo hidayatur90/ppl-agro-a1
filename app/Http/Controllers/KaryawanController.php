@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\SweetAlertServiceProvider;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KaryawanController extends Controller
 {
@@ -96,7 +98,8 @@ class KaryawanController extends Controller
     		'status' => $request->status,
             'type_id' => $request->type_id
     	]);
- 
+
+        Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
     	return redirect('/karyawanKedai ');
     }
     public function storeProduksi(Request $request)
@@ -116,7 +119,8 @@ class KaryawanController extends Controller
     		'status' => $request->status,
             'type_id' => $request->type_id
     	]);
- 
+        
+        Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
     	return redirect('/karyawanProduksi ');
     }
 
@@ -159,7 +163,6 @@ class KaryawanController extends Controller
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
-    		// 'user_id' => 'required',
     		'noTelepon' => 'required',
     		'alamat' => 'required',
     		'status' => 'required',
@@ -168,19 +171,19 @@ class KaryawanController extends Controller
       
          $karyawan = Karyawan::find($id);
          $karyawan->namaKaryawan = $request->namaKaryawan;
-        //  $karyawan->user_id = $request->user_id;
          $karyawan->noTelepon = $request->noTelepon;
          $karyawan->alamat = $request->alamat;
          $karyawan->status = $request->status;
          $karyawan->type_id = $request->type_id;
          $karyawan->save();
+         
+         Alert::success('Sukses!', 'Data berhasil di edit')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
          return redirect('/karyawanKedai');
     }
     public function updateProduksi($id, Request $request)
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
-    		// 'user_id' => 'required',
     		'noTelepon' => 'required',
     		'alamat' => 'required',
     		'status' => 'required',
@@ -189,12 +192,13 @@ class KaryawanController extends Controller
       
          $karyawan = Karyawan::find($id);
          $karyawan->namaKaryawan = $request->namaKaryawan;
-        //  $karyawan->user_id = $request->user_id;
          $karyawan->noTelepon = $request->noTelepon;
          $karyawan->alamat = $request->alamat;
          $karyawan->status = $request->status;
          $karyawan->type_id = $request->type_id;
          $karyawan->save();
+
+         Alert::success('Sukses!', 'Data berhasil di edit')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
          return redirect('/karyawanProduksi');
     }
 
@@ -210,4 +214,5 @@ class KaryawanController extends Controller
         // $karyawan->delete();
         // return redirect('/karyawanKedai');
     }
+    
 }

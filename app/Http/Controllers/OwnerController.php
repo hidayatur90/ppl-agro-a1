@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\SweetAlertServiceProvider;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OwnerController extends Controller
 {
@@ -88,7 +90,11 @@ class OwnerController extends Controller
          $owner->alamat = $request->alamat;
          $owner->type_id = $request->type_id;
          $owner->save();
-         return redirect('/ownerMitra');
+         
+         Alert::success('Sukses!', 'Data berhasil di edit')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+         
+         return redirect('/ownerMitra'); 
+
     }
 
     /**
