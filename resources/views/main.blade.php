@@ -19,7 +19,7 @@
                 <div class="row gx-4 gx-lg-5 h-100">
                     <div class="content lg-6">
                         <div class="col-lg-6 align-self-end">
-                            <h1 class="text-white">Bronk Coffee</h1>
+                            <h1 class="text-white">BronkCoffee</h1>
                         </div>
                         <div class="col-lg-6 align-self-baseline">
                             <p class="text-white mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>

@@ -19,19 +19,19 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         User::create([
             'type'=>1,
-            'name'=>'Pemilik Usaha',
+            'name'=>'Owner Mitra',
             'email'=>'owner@gmail.com',
             'password'=> bcrypt('123456')
         ]);
         User::create([
             'type'=>2,
-            'name'=>'Karyawan produksi',
+            'name'=>'Karyawan Produksi Kopi',
             'email'=>'produksi@gmail.com',
             'password'=> bcrypt('123456')
         ]);
         User::create([
             'type'=> 3,
-            'name'=>'Karyawan Kedai',
+            'name'=>'Karyawan Kedai Kopi',
             'email'=>'kedai@gmail.com',
             'password'=> bcrypt('123456')
         ]);

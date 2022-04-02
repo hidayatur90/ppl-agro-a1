@@ -56,10 +56,10 @@ class LoginController extends Controller
                 Alert::success('Login Berhasil!', 'Sebagai Owner')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
                 return redirect()->route('home');
             }else if (auth()->user()->type == 'produksi') {
-                Alert::success('Login Berhasil!', 'Sebagai Karyawan Produksi')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+                Alert::success('Login Berhasil!', 'Sebagai Karyawan Produksi Kopi')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
                 return redirect()->route('produksi.home');
             }else if (auth()->user()->type == 'kedai'){
-                Alert::success('Login Berhasil!', 'Sebagai Karyawan Kedai')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+                Alert::success('Login Berhasil!', 'Sebagai Karyawan Kedai Kopi')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
                 return redirect()->route('kedai.home');
             }
         }else{

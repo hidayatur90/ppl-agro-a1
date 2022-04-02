@@ -12,7 +12,7 @@
     <div class="container-fluid px-4">
         <div class="card mt-5">
             <div class="card-header text-start">
-                <strong>Data Karyawan Produksi</strong> 
+                <strong>Data Karyawan Produksi Kopi</strong> 
             </div>
             <div class="card-body">
                 <a href="/karyawanProduksi/tambah" class="btn btn-success">Input Karyawan Baru</a>

@@ -5,7 +5,7 @@
 @include('partials.sidebarOwner')
     <div id="layoutSidenav_content">    
         <style>
-            main {
+            strong, ::placeholder {
                 font-family: 'Poppins', sans-serif;
             }
         </style>
