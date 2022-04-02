@@ -21,6 +21,7 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nama</th>
                             <th>No HP</th>
                             <th>Alamat</th>
@@ -31,6 +32,7 @@
                     <tbody>
                         @foreach($karyawan as $k)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $k->namaKaryawan }}</td>
                             <td>{{ $k->noTelepon }}</td>
                             <td>{{ $k->alamat }}</td>

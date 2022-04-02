@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('type_id');
             $table->string('namaKaryawan');
-            $table->string('noTelepon')->unique();;
+            $table->string('noTelepon')->unique();
             $table->string('alamat');
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif');
             $table->timestamps();
