@@ -77,15 +77,13 @@ class OwnerController extends Controller
     {
         $this->validate($request,[
     		'namaMitra' => 'required',
-    		// 'user_id' => 'required',
-    		'noTelepon' => 'required',
+    		'noTelepon' => 'required|string|unique:owner,noTelepon, ' . $id,
     		'alamat' => 'required',
     		'type_id' => 'required'
          ]);
       
          $owner = Owner::find($id);
          $owner->namaMitra = $request->namaMitra;
-        //  $owner->user_id = $request->user_id;
          $owner->noTelepon = $request->noTelepon;
          $owner->alamat = $request->alamat;
          $owner->type_id = $request->type_id;

@@ -17,6 +17,7 @@
                 <div class="form-edit">
                     <form method="post" action="/karyawanProduksi/store">
                         {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
                         {{-- Nama Karyawan --}}
                         <div class="row mb-3">
                             <label for="nama" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama</strong></label>
@@ -34,7 +35,7 @@
                         <div class="row mb-3">
                             <label for="phone" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nomor Handphone</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <input type="tel" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" class="form-control" name="noTelepon" id="noTelepon" placeholder="Nomor Telepon" required />
+                                <input type="tel" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" class="form-control" name="noTelepon" id="noTelepon" placeholder="Nomor Telepon" required/>
                                 @if($errors->has('noTelepon'))
                                 <div class="text-danger">
                                     {{ $errors->first('noTelepon')}}
@@ -92,6 +93,17 @@
                                 </a>
                             </div>
                         </div>
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        
                     </form>
                 </div>
             </div>

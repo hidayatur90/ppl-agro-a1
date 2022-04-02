@@ -15,6 +15,12 @@ class KaryawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function indexKedai()
     {
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 3]);
@@ -85,7 +91,7 @@ class KaryawanController extends Controller
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
-    		'noTelepon' => 'required',
+    		'noTelepon' => 'required|string|unique:karyawan,noTelepon',
     		'alamat' => 'required',
     		'status' => 'required',
     		'type_id' => 'required'
@@ -106,7 +112,7 @@ class KaryawanController extends Controller
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
-    		'noTelepon' => 'required',
+    		'noTelepon' => 'required|string|unique:karyawan,noTelepon',
     		'alamat' => 'required',
     		'status' => 'required',
             'type_id' => 'required'
@@ -162,13 +168,13 @@ class KaryawanController extends Controller
     public function updateKedai($id, Request $request)
     {
         $this->validate($request,[
-    		'namaKaryawan' => 'required',
-    		'noTelepon' => 'required',
+            'namaKaryawan' => 'required',
+    		'noTelepon' => 'required|string|unique:karyawan,noTelepon, ' . $id,
     		'alamat' => 'required',
     		'status' => 'required',
     		'type_id' => 'required'
-         ]);
-      
+        ]);
+        
          $karyawan = Karyawan::find($id);
          $karyawan->namaKaryawan = $request->namaKaryawan;
          $karyawan->noTelepon = $request->noTelepon;
@@ -180,11 +186,12 @@ class KaryawanController extends Controller
          Alert::success('Sukses!', 'Data berhasil di edit')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
          return redirect('/karyawanKedai');
     }
+
     public function updateProduksi($id, Request $request)
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
-    		'noTelepon' => 'required',
+    		'noTelepon' => 'required|string|unique:karyawan,noTelepon, ' . $id,
     		'alamat' => 'required',
     		'status' => 'required',
             'type_id' => 'required'

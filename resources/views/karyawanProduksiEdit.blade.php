@@ -17,7 +17,7 @@
                 <div class="form-edit">
                     <form method="post" action="/karyawanProduksi/update/{{$karyawan->id}}">
                         {{ csrf_field() }}
-                        {{ method_field('PUT') }}
+                        {{ method_field('PATCH') }}
 
                         {{-- Nama Karyawan --}}
                         <div class="row mb-3">
@@ -99,6 +99,17 @@
                                 </a>
                             </div>
                         </div>
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                     </form>
                 </div>
             </div>

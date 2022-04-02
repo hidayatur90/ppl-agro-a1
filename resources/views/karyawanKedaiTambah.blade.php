@@ -17,6 +17,7 @@
                 <div class="form-edit">
                     <form method="post" action="/karyawanKedai/store">
                         {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
                         {{-- Nama Karyawan --}}
                         <div class="row mb-3">
                             <label for="nama" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama</strong></label>
@@ -92,6 +93,17 @@
                                 </a>
                             </div>
                         </div>
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                     </form>
                 </div>
             </div>

@@ -17,13 +17,13 @@
                 <div class="form-edit">
                     <form method="post" action="/karyawanKedai/update/{{$karyawan->id}}">
                         {{ csrf_field() }}
-                        {{ method_field('PUT') }}
+                        {{ method_field('PATCH') }}
 
                         {{-- Nama Karyawan --}}
                         <div class="row mb-3">
                             <label for="nama" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <input type="text" class="form-control" name="namaKaryawan" id="namaKaryawan" placeholder="Nama Karyawan" required value="{{$karyawan->namaKaryawan}}"/>
+                                <input type="text" class="form-control" name="namaKaryawan" id="namaKaryawan" placeholder="Nama Karyawan" value="{{$karyawan->namaKaryawan}}"/>
                                 @if($errors->has('namaKaryawan'))
                                 <div class="text-danger">
                                     {{ $errors->first('namaKaryawan')}}
@@ -99,6 +99,17 @@
                                 </a>
                             </div>
                         </div>
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                     </form>
                 </div>
             </div>
