@@ -40,8 +40,8 @@
             <div class="modal-footer justify-content-center">
                 <form id="logout-form" action="{{ route('logout') }}" method="post">
                     @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">YA</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">TIDAK</button>
                 </form>
             </div>
       </div>

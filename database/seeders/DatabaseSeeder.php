@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         Owner::create([
             'namaMitra'=>'Ferdian Fernanda Syahputra',
             'type_id'=>1,
-            'noTelepon'=>'0821-2123-2384',
+            'noTelepon'=>'082121232384',
             'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.'
         ]);
 
@@ -47,42 +47,42 @@ class DatabaseSeeder extends Seeder
         Karyawan::create([
             'namaKaryawan'=>'Lilik Dwi Wulandari',
             'type_id'=>2,
-            'noTelepon'=>'081-1111-2222',
+            'noTelepon'=>'08111112222',
             'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
             'status'=>'Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Rio Adistya',
             'type_id'=>2,
-            'noTelepon'=>'0871-2123-2384',
+            'noTelepon'=>'087121232384',
             'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
             'status'=>'Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Muhammad Hidayatur Rahman',
             'type_id'=>2,
-            'noTelepon'=>'0821-2345-1234',
+            'noTelepon'=>'082123451234',
             'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
             'status'=>'Tidak Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Azimatul Hanafiyah',
             'type_id'=>3,
-            'noTelepon'=>'0811-1234-4321',
+            'noTelepon'=>'081112344321',
             'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
             'status'=>'Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Naadiyatushofia',
             'type_id'=>3,
-            'noTelepon'=>'0821-3232-1235',
+            'noTelepon'=>'082132321235',
             'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
             'status'=>'Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Tiara Dwi Melinda',
             'type_id'=>3,
-            'noTelepon'=>'0813-678-0009',
+            'noTelepon'=>'08136780009',
             'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
             'status'=>'Aktif'
         ]);

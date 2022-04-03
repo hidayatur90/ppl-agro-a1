@@ -91,7 +91,7 @@ class KaryawanController extends Controller
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
-    		'noTelepon' => 'required|string|unique:karyawan,noTelepon',
+    		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon',
     		'alamat' => 'required',
     		'status' => 'required',
     		'type_id' => 'required'
@@ -112,7 +112,7 @@ class KaryawanController extends Controller
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
-    		'noTelepon' => 'required|string|unique:karyawan,noTelepon',
+    		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon',
     		'alamat' => 'required',
     		'status' => 'required',
             'type_id' => 'required'
@@ -169,7 +169,7 @@ class KaryawanController extends Controller
     {
         $this->validate($request,[
             'namaKaryawan' => 'required',
-    		'noTelepon' => 'required|string|unique:karyawan,noTelepon, ' . $id,
+    		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon, ' . $id,
     		'alamat' => 'required',
     		'status' => 'required',
     		'type_id' => 'required'
@@ -191,7 +191,7 @@ class KaryawanController extends Controller
     {
         $this->validate($request,[
     		'namaKaryawan' => 'required',
-    		'noTelepon' => 'required|string|unique:karyawan,noTelepon, ' . $id,
+    		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon, ' . $id,
     		'alamat' => 'required',
     		'status' => 'required',
             'type_id' => 'required'
