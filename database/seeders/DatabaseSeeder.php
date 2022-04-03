@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'namaMitra'=>'Ferdian Fernanda Syahputra',
             'type_id'=>1,
             'noTelepon'=>'082121232384',
-            'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.'
+            'alamat'=>'Jalan Ahmad Sukun, Jombang, Jawa Timur, Indonesia'
         ]);
 
 
@@ -48,42 +48,42 @@ class DatabaseSeeder extends Seeder
             'namaKaryawan'=>'Lilik Dwi Wulandari',
             'type_id'=>2,
             'noTelepon'=>'08111112222',
-            'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+            'alamat'=>'Desa Kabuh, Jombang, Jawa Timur, Indonesia',
             'status'=>'Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Rio Adistya',
             'type_id'=>2,
             'noTelepon'=>'087121232384',
-            'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+            'alamat'=>'Jalan Sukaharja No 12, Kalipuro Banyuwangi, Indonesia',
             'status'=>'Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Muhammad Hidayatur Rahman',
             'type_id'=>2,
             'noTelepon'=>'082123451234',
-            'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+            'alamat'=>'Desa Jurang Sapi, Tapen Bondoowoso, Indonesia',
             'status'=>'Tidak Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Azimatul Hanafiyah',
             'type_id'=>3,
             'noTelepon'=>'081112344321',
-            'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+            'alamat'=>'Desa Cermee, Bondowoso, Indonesia',
             'status'=>'Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Naadiyatushofia',
             'type_id'=>3,
             'noTelepon'=>'082132321235',
-            'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+            'alamat'=>'Jalan Jaksa Agung, Blitar, Indonesia',
             'status'=>'Aktif'
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Tiara Dwi Melinda',
             'type_id'=>3,
             'noTelepon'=>'08136780009',
-            'alamat'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+            'alamat'=>'Panjii, Kabupaten Situbondo, Indonesia',
             'status'=>'Aktif'
         ]);
 
