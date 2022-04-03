@@ -23,7 +23,7 @@
                         <div class="row mb-3">
                             <label for="nama" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <input type="text" class="form-control" name="namaMitra" id="namaMitra" placeholder="Nama" required value="{{$owner->namaMitra}}"/>
+                                <input type="text" class="form-control" name="namaMitra" id="namaMitra" placeholder="Nama" required value="{{$owner->namaMitra}}" oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
                                 @if($errors->has('namaMitra'))
                                 <div class="text-danger">
                                     {{ $errors->first('namaMitra')}}
@@ -31,18 +31,12 @@
                             @endif
                             </div>
                         </div>
-                        {{-- Email
-                        <div class="row mb-3">
-                            <label for="email" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Email</strong></label>
-                            <div class="col-sm-8 col-md-9 col-xl-10">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="email" required value="owner@gmail.com" />
-                            </div>
-                        </div> --}}
+
                         {{-- No Telepon --}}
                         <div class="row mb-3">
                             <label for="phone" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nomor Handphone</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <input type="tel" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" class="form-control" name="noTelepon" id="noTelepon" placeholder="Phone Number" required value="{{$owner->noTelepon}}"/>
+                                <input type="tel" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" class="form-control" name="noTelepon" id="noTelepon" placeholder="08xx-xxxx-xxxx" required value="{{$owner->noTelepon}}" oninvalid="this.setCustomValidity('No Telepon tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
                                 @if($errors->has('noTelepon'))
                                 <div class="text-danger">
                                     {{ $errors->first('noTelepon')}}
@@ -54,7 +48,7 @@
                         <div class="row mb-3">
                             <label for="address" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Alamat</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <textarea type="textarea" class="form-control" name="alamat" id="alamat" rows="4" placeholder="Alamat">{{$owner->alamat}}</textarea>
+                                <textarea type="textarea" class="form-control" name="alamat" id="alamat" rows="4" placeholder="Alamat" required oninvalid="this.setCustomValidity('Alamat tidak boleh Kosong')" oninput="this.setCustomValidity('')">{{$owner->alamat}}</textarea>
                                 @if($errors->has('alamat'))
                                 <div class="text-danger">
                                     {{ $errors->first('alamat')}}

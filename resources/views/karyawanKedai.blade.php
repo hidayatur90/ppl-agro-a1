@@ -23,7 +23,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nama</th>
-                            <th>No HP</th>
+                            <th>No Telepon</th>
                             <th>Alamat</th>
                             <th>Status</th>
                             <th>Aksi</th>

@@ -56,6 +56,20 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Prediksi
                     </a>
+                    {{-- <a class="nav-link" href="{{ route('logout') }}" 
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        {{ __('Logout') }}
+                    </a>
+                    <?php
+                        // alert()->question('Are you sure?','You won\'t be able to revert this!')
+                        // ->showConfirmButton('Yes! Delete it', '#3085d6')
+                        // ->showCancelButton('Cancel', '#aaa')->reverseButtons();
+                    ?>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form> --}}
 
                 </div>
             </div>

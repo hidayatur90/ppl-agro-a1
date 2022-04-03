@@ -36,10 +36,10 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest')->except('logout');
+    // }
  
     public function login(Request $request)
     {   
@@ -63,9 +63,14 @@ class LoginController extends Controller
                 return redirect()->route('kedai.home');
             }
         }else{
-            Alert::warning('Login Gagal!', 'Email atau Password Salah!')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+            Alert::warning('Login Gagal!', 'Email atau Password Salah! Harap ulangi kembali')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
             return redirect()->route('login');
         }
-          
+    }
+
+    public function logout()
+    {   
+        auth()->logout();
+        return redirect('/');
     }
 }

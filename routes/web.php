@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ Route::get('/', function () {
 });
   
 Auth::routes();
+
+Route::middleware('auth')->group(function () {
+    Route::get('/logout','Auth\LoginController@logout')->name('logout');
+});
 
 // Auth Owner
 Route::middleware(['auth', 'user-access:owner'])->group(function () {

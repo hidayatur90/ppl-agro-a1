@@ -1,3 +1,6 @@
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <nav class="sb-topnav navbar navbar-expand-lg navbar-dark bg-dark">
     <!-- Navbar Brand-->
     <button class="btn btn-link btn-lg order-1 order-lg-0 me-4 me-lg-0 mx-2" id="sidebarToggle"><i class="fas fa-bars"></i></button>
@@ -13,18 +16,34 @@
                     {{-- <li><a class="dropdown-item" href="#!">Settings</a></li>
                     <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li> --}}
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
+                    <div class="">
+                        <li>
+                            <a class="dropdown-item" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="('#exampleModal, #logout-form').attr('action','{{ route('logout') }}')">{{ __('Logout') }}</a>
+                        </li>
+                    </div>
                 </ul>
             </li>
         </ul>
     </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+            <h1 class="h2">
+                <i class="fa fa-exclamation-circle mt-5" aria-hidden="true" style="font-size: 120px; color: #e62929;"></i>
+            </h1>
+            <div class="modal-body my-2" style="text-align: center">
+                <h4>Apakah Anda yakin ingin Logout?</h4>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <form id="logout-form" action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                </form>
+            </div>
+      </div>
+    </div>
+</div>

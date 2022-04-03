@@ -22,7 +22,7 @@
                         <div class="row mb-3">
                             <label for="nama" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <input type="text" class="form-control" name="namaKaryawan" id="namaKaryawan" placeholder="Nama Karyawan" required/>
+                                <input type="text" class="form-control" name="namaKaryawan" id="namaKaryawan" placeholder="Nama Karyawan" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
                                 @if($errors->has('namaKaryawan'))
                                 <div class="text-danger">
                                     {{ $errors->first('namaKaryawan')}}
@@ -35,7 +35,7 @@
                         <div class="row mb-3">
                             <label for="phone" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nomor Handphone</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <input type="tel" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" class="form-control" name="noTelepon" id="noTelepon" placeholder="Nomor Telepon" required />
+                                <input type="tel" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" class="form-control" name="noTelepon" id="noTelepon" placeholder="08xx-xxxx-xxxx" required oninvalid="this.setCustomValidity('No Telepon tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
                                 @if($errors->has('noTelepon'))
                                 <div class="text-danger">
                                     {{ $errors->first('noTelepon')}}
@@ -48,7 +48,7 @@
                         <div class="row mb-3">
                             <label for="address" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Alamat</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <textarea type="textarea" class="form-control" name="alamat" id="alamat" rows="4" placeholder="Alamat"></textarea>
+                                <textarea type="textarea" class="form-control" name="alamat" id="alamat" rows="4" placeholder="Alamat" required oninvalid="this.setCustomValidity('Alamat tidak boleh Kosong')" oninput="this.setCustomValidity('')"></textarea>
                                 @if($errors->has('alamat'))
                                 <div class="text-danger">
                                     {{ $errors->first('alamat')}}

@@ -183,7 +183,7 @@ class KaryawanController extends Controller
          $karyawan->type_id = $request->type_id;
          $karyawan->save();
          
-         Alert::success('Sukses!', 'Data berhasil di edit')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+         Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
          return redirect('/karyawanKedai');
     }
 
@@ -205,7 +205,7 @@ class KaryawanController extends Controller
          $karyawan->type_id = $request->type_id;
          $karyawan->save();
 
-         Alert::success('Sukses!', 'Data berhasil di edit')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+         Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
          return redirect('/karyawanProduksi');
     }
 
