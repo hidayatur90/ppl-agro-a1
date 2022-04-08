@@ -27,6 +27,7 @@
                             <div class="form-outline mb-2">
                                 <label for="password" class="form-label" >{{ __('Password') }}</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                                <input class="me-2 ms-2 mx-2" type="checkbox" onclick="showPassword()">Show Password
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -65,4 +66,14 @@
         @include('partials.footer')
     </div>
 </section>
+<script>
+    function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 @endsection

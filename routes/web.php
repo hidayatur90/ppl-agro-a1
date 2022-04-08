@@ -80,5 +80,6 @@ Route::get('/karyawanProduksi/detail/{id}', [KaryawanController::class, 'indexPr
 // Produksi Home
 Route::get('/karyawanKedai/detail/{id}', [KaryawanController::class, 'indexKedaiDetail']);
 Route::get('/profilKaryawanProduksi', [KaryawanController::class, 'indexProduksiHome']);
+// Route::get('/karyawanKedai/tambah', [KaryawanController::class, 'indexStatus']);
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('partials.navbar')
-@include('partials.sidebarOwner')
+@include('partials.sidebarOwner') 
     <div id="layoutSidenav_content">
         <style>
             strong, ::placeholder {
@@ -61,6 +61,12 @@
                         <div class="row mb-3">
                             <label for="status" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Status</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
+                                {{-- <input type="text" list="status" class="form-control" name="status" placeholder="Status Karyawan"/>
+                                <datalist id="status" >
+                                    @foreach ($karyawan as $k)
+                                        <option>{{ $k->status }}</option>
+                                    @endforeach
+                                </datalist> --}}
                                 <select name="status" class="form-control" placeholder="Status Karyawan">
                                     <option value="1">Aktif</option>
                                     <option value="2">Tidak Aktif</option>

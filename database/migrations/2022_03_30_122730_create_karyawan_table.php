@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('namaKaryawan');
             $table->string('noTelepon')->unique();
             $table->string('alamat');
+            // $table->string('status');
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif');
             $table->timestamps();
         });

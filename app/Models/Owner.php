@@ -13,7 +13,7 @@ class Owner extends Model
 
     public function user()
     {
-        return $this->belongsTo(['App\User','type_id','type']);
+        return $this->belongsTo(['../App\User','type_id','type']);
     }
 
 }

@@ -4,9 +4,9 @@
 <nav class="sb-topnav navbar navbar-expand-lg navbar-dark bg-dark">
     <!-- Navbar Brand-->
     <button class="btn btn-link btn-lg order-1 order-lg-0 me-4 me-lg-0 mx-2" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-    {{-- <div class="sb-nav-link-icon mx-2">
-        <img src="assets/img/Rodicord-logo.png" height="40" alt="RODICORD">
-    </div> --}}
+    <div class="sb-nav-link-icon mx-2">
+        <img src="../assets/img/Rodicord-logo.png" height="40" alt="RODICORD">
+    </div>
     <!-- Navbar-->
     <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <ul class="navbar-nav">
