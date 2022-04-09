@@ -94,7 +94,7 @@
                         <div class="row mb-3 justify-content-end mx-3 my-4">
                             <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
                                 <input type="submit" class="btn btn-success mx-3" value="Tambah">
-                                <a type="button" class="btn btn-light border" href="/karyawanKedai">
+                                <a type="button" class="btn btn-secondary border" href="/karyawanKedai">
                                     Batal
                                 </a>
                             </div>

@@ -15,9 +15,7 @@
                 <strong>Data Karyawan Produksi Kopi</strong> 
             </div>
             <div class="card-body">
-                <a href="/karyawanProduksi/tambah" class="btn btn-success">Input Karyawan Baru</a>
-                <br/>
-                <br/>
+                <a href="/karyawanProduksi/tambah" class="btn btn-success mb-3">Input Karyawan Baru</a>
                 <table id="datatablesSimple">
                     <thead>
                         <tr>

@@ -1,11 +1,12 @@
 <?php
   
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
   
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -80,6 +81,9 @@ Route::get('/karyawanProduksi/detail/{id}', [KaryawanController::class, 'indexPr
 // Produksi Home
 Route::get('/karyawanKedai/detail/{id}', [KaryawanController::class, 'indexKedaiDetail']);
 Route::get('/profilKaryawanProduksi', [KaryawanController::class, 'indexProduksiHome']);
-// Route::get('/karyawanKedai/tambah', [KaryawanController::class, 'indexStatus']);
 
-
+// Produksi Produk
+Route::get('/produkProduksi', [ProdukController::class, 'indexProduk']);
+Route::get('/produkProduksi/tambah', [ProdukController::class, 'createProduk']);
+Route::patch('/produkProduksi/store', [ProdukController::class, 'storeProduk']);
+Route::get('/produkProduksi/detail/{namaProduk}', [ProdukController::class, 'indexProdukDetail']);
