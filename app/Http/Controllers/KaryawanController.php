@@ -24,14 +24,14 @@ class KaryawanController extends Controller
     public function indexKedai()
     {
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 3]);
-    	return view('karyawanKedai', [
+    	return view('owner.karyawanKedai', [
             'karyawan'=>$karyawan
         ]);
     }
     public function indexProduksi()
     {
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 2]);
-    	return view('karyawanproduksi', [
+    	return view('owner.karyawanproduksi', [
             'karyawan'=>$karyawan
         ]);
     }
@@ -39,14 +39,14 @@ class KaryawanController extends Controller
     public function indexKedaiHome()
     {
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 3]);
-    	return view('karyawanKedaiHome', [
+    	return view('kedai.karyawanKedaiHome', [
             'karyawan'=>$karyawan
         ]);
     }
     public function indexProduksiHome()
     {
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 2]);
-    	return view('karyawanProduksiHome', [
+    	return view('produksi.karyawanProduksiHome', [
             'karyawan'=>$karyawan
         ]);
     }
@@ -54,7 +54,7 @@ class KaryawanController extends Controller
     public function indexProduksiDetail($id)
     {
         $karyawan = DB::select('select * from karyawan where id = :id', ['id' => $id]);
-    	return view('produksiDetail', [
+    	return view('owner.produksiDetail', [
             'karyawan'=>$karyawan
         ]);
     }
@@ -62,7 +62,7 @@ class KaryawanController extends Controller
     public function indexKedaiDetail($id)
     {
         $karyawan = DB::select('select * from karyawan where id = :id', ['id' => $id]);
-    	return view('kedaiDetail', [
+    	return view('owner.kedaiDetail', [
             'karyawan'=>$karyawan
         ]);
     }
@@ -83,11 +83,11 @@ class KaryawanController extends Controller
      */
     public function createKedai()
     {
-        return view('karyawanKedaiTambah');
+        return view('owner.karyawanKedaiTambah');
     }
     public function createProduksi()
     {
-        return view('karyawanProduksiTambah');
+        return view('owner.karyawanProduksiTambah');
     }
 
     /**
@@ -159,12 +159,12 @@ class KaryawanController extends Controller
     public function editKedai($id)
     {
         $karyawan = Karyawan::find($id);
-        return view('karyawanKedaiEdit', ['karyawan' => $karyawan]);
+        return view('owner.karyawanKedaiEdit', ['karyawan' => $karyawan]);
     }
     public function editProduksi($id)
     {
         $karyawan = Karyawan::find($id);
-        return view('karyawanProduksiEdit', ['karyawan' => $karyawan]);
+        return view('owner.karyawanProduksiEdit', ['karyawan' => $karyawan]);
     }
 
     /**

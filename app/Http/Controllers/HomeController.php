@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('Home');
+        return view('owner.Home');
     } 
   
     /**
@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function produksiHome()
     {
-        return view('produksiHome');
+        return view('produksi.produksiHome');
     }
   
     /**
@@ -43,6 +43,6 @@ class HomeController extends Controller
      */
     public function kedaiHome()
     {
-        return view('kedaiHome');
+        return view('kedai.kedaiHome');
     }
 }

@@ -17,7 +17,7 @@ class OwnerController extends Controller
     public function index()
     {
         $owner = Owner::all();
-    	return view('ownerMitra', [
+    	return view('owner.ownerMitra', [
             'owner'=>$owner
         ]);
     }
@@ -63,7 +63,7 @@ class OwnerController extends Controller
     public function edit($id)
     {
         $owner = Owner::find($id);
-        return view('ownerMitraEdit', ['owner' => $owner]);
+        return view('owner.ownerMitraEdit', ['owner' => $owner]);
     }
 
     /**
