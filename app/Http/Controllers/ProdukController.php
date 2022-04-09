@@ -29,8 +29,15 @@ class ProdukController extends Controller
 
     public function indexProdukDetail($namaProduk)
     {
-        $produk = DB::select('select * from produk where namaProduk = :namaProduk', ['namaProduk' => $namaProduk]);
-    	return view('produksi.produkDetail', [
+        // $produk = DB::select('select * from produk where namaProduk = :namaProduk', ['namaProduk' => $namaProduk]);
+    	
+        $produk = DB::table('produk')
+             ->select('*', DB::raw('SUM(stok) as total_stok'))
+             ->where('namaProduk', '=',  ['namaProduk' => $namaProduk])
+             ->groupBy('kategori')
+             ->get();
+        
+        return view('produksi.produkDetail', [
             'produk'=>$produk
         ]);
     }
