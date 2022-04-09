@@ -8,7 +8,7 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card shadow-2-strong" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-start">
-                        <img src="assets/img/Rodicord.png" alt="" style="margin-top: -40px; margin-left: -25px;">
+                        <img src="assets/img/Rodicord.png" alt="RODICORD" style="margin-top: -40px; margin-left: -25px;">
                         <h3><strong>Login</strong></h3>
                         {{-- <div class="card-header">{{ __('Login') }}</div> --}}
                         <p class="mb-3" style="font-size: 14px"><strong>Harap masukkan Username dan Password Anda</strong></p>
