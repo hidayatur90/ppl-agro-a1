@@ -49,7 +49,7 @@ class ProdukController extends Controller
         ]);
     }
 
-    public function indexStockKopiDetail($namaProduk)
+    public function indexProduksiStockKopiDetail($namaProduk)
     {
         // $produk = DB::select('select * from produk where namaProduk = :namaProduk', ['namaProduk' => $namaProduk]);
     	
@@ -59,7 +59,35 @@ class ProdukController extends Controller
              ->groupBy('kategori')
              ->get();
         
-        return view('produksi.stockKopiDetail', [
+        return view('produksi.produksiStockKopiDetail', [
+            'produk'=>$produk
+        ]);
+    }
+    public function indexOwnerStockKopiDetail($namaProduk)
+    {
+        // $produk = DB::select('select * from produk where namaProduk = :namaProduk', ['namaProduk' => $namaProduk]);
+    	
+        $produk = DB::table('produk')
+             ->select('*', DB::raw('SUM(stok) as total_stok'))
+             ->where('namaProduk', '=',  ['namaProduk' => $namaProduk])
+             ->groupBy('kategori')
+             ->get();
+        
+        return view('owner.ownerStockKopiDetail', [
+            'produk'=>$produk
+        ]);
+    }
+    public function indexKedaiStockKopiDetail($namaProduk)
+    {
+        // $produk = DB::select('select * from produk where namaProduk = :namaProduk', ['namaProduk' => $namaProduk]);
+    	
+        $produk = DB::table('produk')
+             ->select('*', DB::raw('SUM(stok) as total_stok'))
+             ->where('namaProduk', '=',  ['namaProduk' => $namaProduk])
+             ->groupBy('kategori')
+             ->get();
+        
+        return view('kedai.KedaiStockKopiDetail', [
             'produk'=>$produk
         ]);
     }

@@ -9,35 +9,48 @@
         }
     </style>
     <main>
-        <div class="container-fluid px-4 py-4">
-            <div class="header">
-                <h4><strong>Tambah Data Produk</strong></h4>
-            </div>
-            <hr>
+        @php $i = 0; @endphp
+        @foreach($produk as $p)
+            @if ($i > 0 )
+                @php break; @endphp
+            @else
+                <div class="header text-center">
+                    <h2 class="pt-3 px-4"><strong>Data Stok Coffee</strong></h2>
+                    <h3 class="px-4" style="color: brown;"><strong>~{{ $p->namaProduk }}</strong></h3>
+                    @php $i++; @endphp
+                </div>
+            @endif
+        @endforeach
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div class="card-body">
+                    <table id="datatablesSimple" style="font-size: 20px">
+                        <thead>
+                            <tr>
+                                <th><strong>Kategori</strong></th>
+                                <th><strong>Stok (Kg)</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($produk as $p)
+                            <tr>
+                                <td>{{ $p->kategori }}</td>
+                                @if($p->stok >= 15)
+                                    <td style="color: green">{{ $p->total_stok }}</td>
+                                @else
+                                    <td style="color: red">{{ $p->total_stok }}</td>
+                                @endif
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
             <div class="form-edit">
                 <form method="post" action="/stockKopi/store">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
-                    {{-- Nama Produk --}}
-                    <div class="row mb-3">
-                        <label for="nama" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama Produk</strong></label>
-                        <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="text" id="namaProduk" list="listNama" class="form-control" name="namaProduk" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
-                            <datalist id="listNama" >
-                                @foreach ($produk as $p)
-                                    <option>{{ $p->namaProduk }}</option>
-                                @endforeach
-                            </datalist>
-                            @if($errors->has('namaProduk'))
-                            <div class="text-danger">
-                                {{ $errors->first('namaProduk')}}
-                            </div>
-                        @endif
-                        </div>
-                    </div>
 
                     {{-- Stok --}}
-                    <div class="row mb-3">
+                    {{-- <div class="row mb-3">
                         <label for="phone" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
                             <input type="number" class="form-control" name="stok" id="stok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
@@ -47,27 +60,12 @@
                             </div>
                         @endif
                         </div>
-                    </div>
+                    </div> --}}
 
-                    {{-- Kategori --}}
-                    <div class="row mb-3">
-                        <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kategori</strong></label>
-                        <div class="col-sm-8 col-md-9 col-xl-10">
-                            <select name="kategori" class="form-control" placeholder="Kategori Kopi">
-                                <option value="Biji Kopi">Biji Kopi</option>
-                                <option value="Kopi Bubuk">Kopi Bubuk</option>
-                            </select>
-                                @if($errors->has('kategori'))
-                                <div class="text-danger">
-                                    {{ $errors->first('kategori')}}
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-
+   
                     <div class="row mb-3 justify-content-end mx-3 my-4">
                         <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
-                            <input type="submit" class="btn btn-success mx-3" value="Tambah">
+                            <input type="submit" class="btn btn-success mx-3" value="Simpan">
                             <a type="button" class="btn btn-secondary border" href="/produksiStockKopi">
                                 Batal
                             </a>

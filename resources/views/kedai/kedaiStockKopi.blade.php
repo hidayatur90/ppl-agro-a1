@@ -23,6 +23,7 @@
                             <th>Total Stok (Kg)</th>
                             <th>Tanggal Input</th>
                             <th>Terakhir Update</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,10 @@
                             @endif
                             <td>{{ $p->created_at }}</td>
                             <td>{{ $p->updated_at }}</td>
+                            <td class="text-center">
+                                
+                                <a href="/kedaiStockKopi/detail/{{ $p->namaProduk }}" class="btn btn-success">Detail</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
