@@ -117,13 +117,13 @@ class ProdukController extends Controller
         $this->validate($request,[
     		'namaProduk' => 'required',
     		'stok' => 'required|integer',
-    		'kategori' => 'required',
+    		'kategori' => 'required'
     	]);
  
         Produk::create([
     		'namaProduk' => $request->namaProduk,
     		'stok' => $request->stok,
-    		'kategori' => $request->kategori,
+    		'kategori' => $request->kategori
     	]);
 
         Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
@@ -168,21 +168,33 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function updateStockKopi($namaProduk, Request $request)
+    public function updateStockKopi($namaProduk, $kategori, Request $request)
     {
         $this->validate($request,[
-    		'kategori' => 'required',
+    		'namaProduk' => 'required',
     		'stok' => 'required|integer',
             'kategori'=> 'required'
     	]);
- 
-        $produk = Produk::find($namaProduk);
-        $produk->kategori = $request->kategori;
-        $produk->stok = $request->stok;
-        $produk->kategori = $request->kategori;
-
-        Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
-    	return redirect('/produksiStockKopi');
+        
+        $produk = DB::table('produk')
+            ->select('*', DB::raw('SUM(stok) as total_stok'))
+            ->where([
+                ['namaProduk', '=',  ['namaProduk' => $namaProduk]],
+                ['kategori', '=',  ['kategori' => $kategori]]
+            ])
+            ->groupBy('kategori')
+            ->get();
+        
+        foreach ($produk as $p){
+            Produk::create([
+                'namaProduk' => $request->namaProduk,
+                'stok' => $request->stok - $p->total_stok,
+                'kategori' => $request->kategori
+            ]);
+            
+            Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+            return redirect("/produksiStockKopi/detail/$p->namaProduk");
+        }
     }
 
     /**
