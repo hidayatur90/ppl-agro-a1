@@ -7,20 +7,6 @@
             main {
                 font-family: 'Poppins', sans-serif;
             }
-            .btn-edit{
-                text-align:end;
-                margin-top:30px;
-                margin-right: 50px; 
-                border: none;
-                font-size: 30px;
-            }
-            .btn-edit a {
-                color: black;
-                transition: transform .2s;
-            }
-            /* .btn-edit:hover{
-                transform: scale(1.1) 
-            }    */
         </style>
         <main>
             @foreach($karyawan as $k)

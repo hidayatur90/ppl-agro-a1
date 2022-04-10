@@ -67,15 +67,6 @@ class KaryawanController extends Controller
         ]);
     }
 
-    // public function indexStatus()
-    // {
-    //     $karyawan = DB::select('select DISTINCT(status) from karyawan');
-    //     // $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 3]);
-    // 	return view('karyawanKedaiTambah', [
-    //         'karyawan'=>$karyawan
-    //     ]);
-    // }
-
     /**
      * Show the form for creating a new resource.
      *

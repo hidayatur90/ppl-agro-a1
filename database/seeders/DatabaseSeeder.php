@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use \App\Models\User;
 use \App\Models\Owner;
+use App\Models\Produk;
 use \App\Models\Karyawan;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -87,5 +89,62 @@ class DatabaseSeeder extends Seeder
             'status'=>'Aktif'
         ]);
 
+
+        // Produk
+
+        Produk::create([
+            'namaProduk'=>'Espresso',
+            'stok'=>25,
+            'kategori'=>'Biji Kopi'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Long Black',
+            'stok'=>12,
+            'kategori'=>'Biji Kopi'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Americano',
+            'stok'=>30,
+            'kategori'=>'Biji Kopi'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Cappuchino',
+            'stok'=>20,
+            'kategori'=>'Biji Kopi'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Latte',
+            'stok'=>15,
+            'kategori'=>'Biji Kopi'
+        ]);
+
+        Produk::create([
+            'namaProduk'=>'Espresso',
+            'stok'=>20,
+            'kategori'=>'Kopi Bubuk'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Long Black',
+            'stok'=>10,
+            'kategori'=>'Kopi Bubuk'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Americano',
+            'stok'=>25,
+            'kategori'=>'Kopi Bubuk'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Cappuchino',
+            'stok'=>5,
+            'kategori'=>'Kopi Bubuk'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Latte',
+            'stok'=>50,
+            'kategori'=>'Kopi Bubuk'
+        ]);
+
+
+    
     }
 }
