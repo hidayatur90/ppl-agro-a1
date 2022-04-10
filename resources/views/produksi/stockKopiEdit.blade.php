@@ -11,7 +11,7 @@
     <main>
         <div class="container-fluid px-4 py-4">
             <div class="header">
-                <h4><strong>Tambah Data Produk</strong></h4>
+                <h4><strong>Edit Data Produk</strong></h4>
             </div>
             <hr>
             <div class="form-edit">

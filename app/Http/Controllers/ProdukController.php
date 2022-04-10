@@ -121,7 +121,12 @@ class ProdukController extends Controller
      */
     public function editStockKopi($namaProduk)
     {
-        $produk = produk::find($namaProduk);
+        // $produk = produk::find($namaProduk);
+        $produk = DB::table('produk')
+            ->select('*', DB::raw('SUM(stok) as total_stok'))
+            ->where('namaProduk', '=',  ['namaProduk' => $namaProduk])
+            ->groupBy('kategori')
+            ->get();
         return view('produksi.stockKopiEdit', ['produk' => $produk]);
     }
 
