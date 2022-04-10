@@ -88,6 +88,14 @@ Route::get('/ownerStockKopi', [ProdukController::class, 'indexOwnerStockKopi']);
 Route::get('/kedaiStockKopi', [ProdukController::class, 'indexKedaiStockKopi']);
 Route::get('/stockKopi/tambah', [ProdukController::class, 'createStockKopi']);
 Route::patch('/stockKopi/store', [ProdukController::class, 'storeStockKopi']);
+<<<<<<< HEAD
 Route::get('/stockKopi/detail/{namaProduk}', [ProdukController::class, 'indexStockKopiDetail']);
 Route::get('/stockKopi/edit/{namaProduk}/{kategori}', [ProdukController::class, 'editStockKopi']);
 Route::patch('/stockKopi/update/{namaProduk}/{kategori}', [ProdukController::class, 'updateStockKopi']);
+=======
+Route::get('/produksiStockKopi/detail/{namaProduk}', [ProdukController::class, 'indexProduksiStockKopiDetail']);
+Route::get('/ownerStockKopi/detail/{namaProduk}', [ProdukController::class, 'indexOwnerStockKopiDetail']);
+Route::get('/kedaiStockKopi/detail/{namaProduk}', [ProdukController::class, 'indexKedaiStockKopiDetail']);
+Route::get('/stockKopi/edit/{namaProduk}', [ProdukController::class, 'editStockKopi']);
+Route::patch('/stockKopi/update/{namaProduk}', [ProdukController::class, 'updateStockKopi']);
+>>>>>>> bd97a7edd9d41edae3891a2e743d74cbcae557ee

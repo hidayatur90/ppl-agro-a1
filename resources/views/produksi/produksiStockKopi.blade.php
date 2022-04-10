@@ -41,7 +41,7 @@
                             <td>{{ $p->updated_at }}</td>
                             <td class="text-center">
                                 
-                                <a href="/stockKopi/detail/{{ $p->namaProduk }}" class="btn btn-success">Detail</a>
+                                <a href="/produksiStockKopi/detail/{{ $p->namaProduk }}" class="btn btn-success">Detail</a>
                             </td>
                         </tr>
                         @endforeach
