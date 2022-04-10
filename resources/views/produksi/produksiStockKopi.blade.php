@@ -15,7 +15,7 @@
                 <strong>Data Stok Kopi Pasca Produksi</strong> 
             </div>
             <div class="card-body">
-                <a href="/produkProduksi/tambah" class="btn btn-success mb-3">Tambah Stok Produk</a>
+                <a href="/stockKopi/tambah" class="btn btn-success mb-3">Tambah Stok Produk</a>
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
@@ -40,8 +40,8 @@
                             <td>{{ $p->created_at }}</td>
                             <td>{{ $p->updated_at }}</td>
                             <td class="text-center">
-                                <a href="/produkProduksi/edit/{{ $p->id }}" class="btn btn-warning my-2 mx-1">Edit</a>
-                                <a href="/produkProduksi/detail/{{ $p->namaProduk }}" class="btn btn-success">Detail</a>
+                                
+                                <a href="/stockKopi/detail/{{ $p->namaProduk }}" class="btn btn-success">Detail</a>
                             </td>
                         </tr>
                         @endforeach

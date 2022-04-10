@@ -45,9 +45,13 @@
                         </tbody>
                     </table>
                     <div style="text-align:end;">
-                        <a type="button" class="btn btn-dark border" href="/produkProduksi">
+                        <a type="button" class="btn btn-dark border" href="/produksiStockKopi">
                             Kembali
                         </a>
+                        <a href="/stockKopi/edit/{{ $p->namaProduk }}" class="btn btn-warning my-2 mx-1">Edit</a>
+                        {{-- <a type="button" class="btn btn-dark border" href="/produkProduksiEdit">
+                            Edit
+                        </a> --}}
                     </div>
                 </div>
             </div>

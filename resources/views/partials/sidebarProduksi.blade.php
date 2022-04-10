@@ -14,7 +14,7 @@
                     </a>
 
                     <div class="sb-sidenav-menu-heading">Data Kopi</div>
-                    <a class="nav-link" href="/produkProduksi">
+                    <a class="nav-link" href="/produksiStockKopi">
                         <div class="sb-nav-link-icon"><i class="fa fa-coffee"></i></div>
                         Stock Kopi
                     </a>

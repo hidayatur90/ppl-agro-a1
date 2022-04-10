@@ -15,7 +15,7 @@
             </div>
             <hr>
             <div class="form-edit">
-                <form method="post" action="/produkProduksi/store">
+                <form method="post" action="/stockKopi/store">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     {{-- Nama Produk --}}
@@ -68,7 +68,7 @@
                     <div class="row mb-3 justify-content-end mx-3 my-4">
                         <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
                             <input type="submit" class="btn btn-success mx-3" value="Tambah">
-                            <a type="button" class="btn btn-secondary border" href="/produkProduksi">
+                            <a type="button" class="btn btn-secondary border" href="/produksiStockKopi">
                                 Batal
                             </a>
                         </div>

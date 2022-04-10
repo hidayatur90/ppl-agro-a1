@@ -15,19 +15,41 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexProduk()
+    public function indexProduksiStockKopi()
     {
         $produk = DB::table('produk')
                 ->select('*', DB::raw('SUM(stok) as total_stok'))
                 ->groupBy('namaProduk')
                 ->get();
         // $date = DB::select('select created_at, updated_at from produk');
-        return view('produksi.produkProduksi', [
+        return view('produksi.produksiStockKopi', [
+            'produk'=>$produk
+        ]);
+    }
+    public function indexOwnerStockKopi()
+    {
+        $produk = DB::table('produk')
+                ->select('*', DB::raw('SUM(stok) as total_stok'))
+                ->groupBy('namaProduk')
+                ->get();
+        // $date = DB::select('select created_at, updated_at from produk');
+        return view('owner.ownerStockKopi', [
+            'produk'=>$produk
+        ]);
+    }
+    public function indexKedaiStockKopi()
+    {
+        $produk = DB::table('produk')
+                ->select('*', DB::raw('SUM(stok) as total_stok'))
+                ->groupBy('namaProduk')
+                ->get();
+        // $date = DB::select('select created_at, updated_at from produk');
+        return view('kedai.kedaiStockKopi', [
             'produk'=>$produk
         ]);
     }
 
-    public function indexProdukDetail($namaProduk)
+    public function indexStockKopiDetail($namaProduk)
     {
         // $produk = DB::select('select * from produk where namaProduk = :namaProduk', ['namaProduk' => $namaProduk]);
     	
@@ -37,7 +59,7 @@ class ProdukController extends Controller
              ->groupBy('kategori')
              ->get();
         
-        return view('produksi.produkDetail', [
+        return view('produksi.stockKopiDetail', [
             'produk'=>$produk
         ]);
     }
@@ -47,11 +69,11 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createProduk()
+    public function createStockKopi()
     {
         $produk = DB::select('select DISTINCT(namaProduk) from produk');
 
-    	return view('produksi.produkProduksiTambah', [
+    	return view('produksi.stockKopiTambah', [
             'produk'=>$produk
         ]);
     }
@@ -62,7 +84,7 @@ class ProdukController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeProduk(Request $request)
+    public function storeStockKopi(Request $request)
     {
         $this->validate($request,[
     		'namaProduk' => 'required',
@@ -77,7 +99,7 @@ class ProdukController extends Controller
     	]);
 
         Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
-    	return redirect('/produkProduksi');
+    	return redirect('/produksiStockKopi');
     }
 
     /**
@@ -97,9 +119,10 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produk $produk)
+    public function editStockKopi($namaProduk)
     {
-        //
+        $produk = produk::find($namaProduk);
+        return view('produksi.stockKopiEdit', ['produk' => $produk]);
     }
 
     /**
@@ -109,9 +132,19 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produk $produk)
+    public function updateStockKopi($namaProduk, Request $request)
     {
-        //
+        $this->validate($request,[
+    		'kategori' => 'required',
+    		'stok' => 'required|integer',
+    	]);
+ 
+        $produk = Produk::find($namaProduk);
+        $produk->kategori = $request->kategori;
+        $produk->stok = $request->stok;
+
+        Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+    	return redirect('/produksiStockKopi');
     }
 
     /**
