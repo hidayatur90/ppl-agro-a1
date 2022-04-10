@@ -9,6 +9,7 @@
         }
     </style>
     <main>
+<<<<<<< HEAD
         @php $i = 0; @endphp
         @foreach($produk as $p)
             @if ($i > 0 )
@@ -44,6 +45,13 @@
                             @endforeach
                         </tbody>
                     </table>
+=======
+        <div class="container-fluid px-4 py-4">
+            <div class="header">
+                <h4><strong>Edit Data Produk</strong></h4>
+            </div>
+            <hr>
+>>>>>>> 33fd3bb5acb5b5889e208725b75e8b72039fbd49
             <div class="form-edit">
                 <form method="post" action="/stockKopi/store">
                     {{ csrf_field() }}
