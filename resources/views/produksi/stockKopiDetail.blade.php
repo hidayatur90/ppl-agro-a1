@@ -29,6 +29,7 @@
                             <tr>
                                 <th><strong>Kategori</strong></th>
                                 <th><strong>Stok (Kg)</strong></th>
+                                <th><strong>Aksi</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,6 +41,9 @@
                                 @else
                                     <td style="color: red">{{ $p->total_stok }}</td>
                                 @endif
+                                <td>
+                                    <a href="/stockKopi/edit/{{ $p->namaProduk }}/{{ $p->kategori }}" class="btn btn-warning my-2 mx-1">Edit</a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -48,7 +52,6 @@
                         <a type="button" class="btn btn-dark border" href="/produksiStockKopi">
                             Kembali
                         </a>
-                        <a href="/stockKopi/edit/{{ $p->namaProduk }}" class="btn btn-warning my-2 mx-1">Edit</a>
                         {{-- <a type="button" class="btn btn-dark border" href="/produkProduksiEdit">
                             Edit
                         </a> --}}

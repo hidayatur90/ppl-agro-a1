@@ -9,20 +9,23 @@
         }
     </style>
     <main>
+        @foreach ($produk as $p)
+            
+        @endforeach
         <div class="container-fluid px-4 py-4">
             <div class="header">
                 <h4><strong>Edit Data Produk</strong></h4>
             </div>
             <hr>
             <div class="form-edit">
-                <form method="post" action="/stockKopi/store">
+                <form method="post" action="/stockKopi/update/{{$produk->namaProduk}}/{{ $produk->kategori }}">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     {{-- Nama Produk --}}
                     <div class="row mb-3">
                         <label for="nama" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama Produk</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="text" id="namaProduk" list="listNama" class="form-control" name="namaProduk" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
+                            <input type="text" disabled id="namaProduk" list="listNama" class="form-control" name="namaProduk" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')" />
                             <datalist id="listNama" >
                                 @foreach ($produk as $p)
                                     <option>{{ $p->namaProduk }}</option>
@@ -53,7 +56,7 @@
                     <div class="row mb-3">
                         <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kategori</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <select name="kategori" class="form-control" placeholder="Kategori Kopi">
+                            <select disabled name="kategori" class="form-control" placeholder="Kategori Kopi">
                                 <option value="Biji Kopi">Biji Kopi</option>
                                 <option value="Kopi Bubuk">Kopi Bubuk</option>
                             </select>

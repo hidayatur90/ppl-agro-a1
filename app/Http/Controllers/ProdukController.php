@@ -119,12 +119,15 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function editStockKopi($namaProduk)
+    public function editStockKopi($namaProduk, $kategori)
     {
         // $produk = produk::find($namaProduk);
         $produk = DB::table('produk')
             ->select('*', DB::raw('SUM(stok) as total_stok'))
-            ->where('namaProduk', '=',  ['namaProduk' => $namaProduk])
+            ->where([
+                ['namaProduk', '=',  ['namaProduk' => $namaProduk]],
+                ['kategori', '=',  ['kategori' => $kategori]]
+            ])
             ->groupBy('kategori')
             ->get();
         return view('produksi.stockKopiEdit', ['produk' => $produk]);
@@ -142,11 +145,13 @@ class ProdukController extends Controller
         $this->validate($request,[
     		'kategori' => 'required',
     		'stok' => 'required|integer',
+            'kategori'=> 'required'
     	]);
  
         $produk = Produk::find($namaProduk);
         $produk->kategori = $request->kategori;
         $produk->stok = $request->stok;
+        $produk->kategori = $request->kategori;
 
         Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
     	return redirect('/produksiStockKopi');

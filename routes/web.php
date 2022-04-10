@@ -89,5 +89,5 @@ Route::get('/kedaiStockKopi', [ProdukController::class, 'indexKedaiStockKopi']);
 Route::get('/stockKopi/tambah', [ProdukController::class, 'createStockKopi']);
 Route::patch('/stockKopi/store', [ProdukController::class, 'storeStockKopi']);
 Route::get('/stockKopi/detail/{namaProduk}', [ProdukController::class, 'indexStockKopiDetail']);
-Route::get('/stockKopi/edit/{namaProduk}', [ProdukController::class, 'editStockKopi']);
-Route::patch('/stockKopi/update/{namaProduk}', [ProdukController::class, 'updateStockKopi']);
+Route::get('/stockKopi/edit/{namaProduk}/{kategori}', [ProdukController::class, 'editStockKopi']);
+Route::patch('/stockKopi/update/{namaProduk}/{kategori}', [ProdukController::class, 'updateStockKopi']);
