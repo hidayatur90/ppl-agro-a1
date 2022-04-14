@@ -127,10 +127,12 @@ class DetailProdukController extends Controller
     public function storeStockKopi(Request $request)
     {
         $this->validate($request,[
-    		'namaProduk' => 'required',
+    		'namaProduk' => 'required|string|unique:produk,namaProduk',
     		'jumlahStok' => 'required|integer',
-    		'kategori' => 'required'
-    	]);
+    		'kategori' => 'required'],[
+                'unique' => 'Produk '. $request->namaProduk .' sudah ada. Silahkan ubah stok melalui menu Edit',
+            ]
+        );
 
         $produk = DB::select('SELECT COUNT(DISTINCT(namaProduk)) as jumlah_id from produk');
 

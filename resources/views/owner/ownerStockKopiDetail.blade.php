@@ -35,7 +35,7 @@
                             @foreach($produk as $p)
                             <tr>
                                 <td>{{ $p->kategori }}</td>
-                                @if($p->stok >= 15)
+                                @if($p->jumlahStok >= 15)
                                     <td style="color: green">{{ $p->total_stok }}</td>
                                 @else
                                     <td style="color: red">{{ $p->total_stok }}</td>

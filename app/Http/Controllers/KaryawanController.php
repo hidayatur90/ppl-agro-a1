@@ -94,7 +94,10 @@ class KaryawanController extends Controller
     		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon',
     		'alamat' => 'required',
     		'idStatus' => 'required',
-    		'type_id' => 'required'
+    		'type_id' => 'required',[
+                'required' => 'Masukkan isian dengan sesuai.',
+                'unique' => 'No Telepon '.$request->noTelepon.' sudah terdaftar.'
+            ]
     	]);
  
         Karyawan::create([
@@ -115,8 +118,10 @@ class KaryawanController extends Controller
     		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon',
     		'alamat' => 'required',
     		'idStatus' => 'required',
-            'type_id' => 'required'
-    	]);
+            'type_id' => 'required'],[
+                'required' => 'Masukkan isian dengan sesuai.',
+                'unique' => 'No Telepon '.$request->noTelepon.' sudah terdaftar.'
+            ]);
  
         Karyawan::create([
     		'namaKaryawan' => $request->namaKaryawan,
@@ -172,7 +177,10 @@ class KaryawanController extends Controller
     		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon, ' . $id,
     		'alamat' => 'required',
     		'idStatus' => 'required',
-    		'type_id' => 'required'
+    		'type_id' => 'required',[
+                'required' => 'Masukkan isian dengan sesuai.',
+                'unique' => 'No Telepon '.$request->noTelepon.' sudah terdaftar.'
+            ]
         ]);
         
          $karyawan = Karyawan::find($id);
@@ -194,7 +202,10 @@ class KaryawanController extends Controller
     		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon, ' . $id,
     		'alamat' => 'required',
     		'idStatus' => 'required',
-            'type_id' => 'required'
+            'type_id' => 'required',[
+                'required' => 'Masukkan isian dengan sesuai.',
+                'unique' => 'No Telepon '.$request->noTelepon.' sudah terdaftar.'
+            ]
          ]);
       
          $karyawan = Karyawan::find($id);

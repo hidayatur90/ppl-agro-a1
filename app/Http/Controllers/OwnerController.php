@@ -79,7 +79,10 @@ class OwnerController extends Controller
     		'namaMitra' => 'required',
     		'noTelepon' => 'required|string|unique:owner,noTelepon, ' . $id,
     		'alamat' => 'required',
-    		'type_id' => 'required'
+    		'type_id' => 'required',[
+                'required' => 'Masukkan isian dengan sesuai.',
+                'unique' => 'No Telepon '.$request->noTelepon.' sudah terdaftar.'
+            ]
          ]);
       
          $owner = Owner::find($id);
