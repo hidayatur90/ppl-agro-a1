@@ -24,7 +24,7 @@ class KaryawanController extends Controller
     public function indexKedai()
     {
         $karyawan = DB::select('select * from karyawan where type_id = :type_id', ['type_id' => 3]);
-    	return view('owner.karyawanKedai', [
+        return view('owner.karyawanKedai', [
             'karyawan'=>$karyawan
         ]);
     }
@@ -51,21 +51,21 @@ class KaryawanController extends Controller
         ]);
     }
 
+    public function indexKedaiDetail($id)
+    {
+        $karyawan = Karyawan::with('status')->findOrFail($id);
+        return view('owner.kedaiDetail', [
+            'karyawan'=>$karyawan
+        ]);
+    }
     public function indexProduksiDetail($id)
     {
-        $karyawan = DB::select('select * from karyawan where id = :id', ['id' => $id]);
+        $karyawan = Karyawan::with('status')->findOrFail($id);
     	return view('owner.produksiDetail', [
             'karyawan'=>$karyawan
         ]);
     }
 
-    public function indexKedaiDetail($id)
-    {
-        $karyawan = DB::select('select * from karyawan where id = :id', ['id' => $id]);
-    	return view('owner.kedaiDetail', [
-            'karyawan'=>$karyawan
-        ]);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -93,7 +93,7 @@ class KaryawanController extends Controller
     		'namaKaryawan' => 'required',
     		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon',
     		'alamat' => 'required',
-    		'status' => 'required',
+    		'idStatus' => 'required',
     		'type_id' => 'required'
     	]);
  
@@ -101,7 +101,7 @@ class KaryawanController extends Controller
     		'namaKaryawan' => $request->namaKaryawan,
     		'noTelepon' => $request->noTelepon,
     		'alamat' => $request->alamat,
-    		'status' => $request->status,
+    		'idStatus' => $request->idStatus,
             'type_id' => $request->type_id
     	]);
 
@@ -114,7 +114,7 @@ class KaryawanController extends Controller
     		'namaKaryawan' => 'required',
     		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon',
     		'alamat' => 'required',
-    		'status' => 'required',
+    		'idStatus' => 'required',
             'type_id' => 'required'
     	]);
  
@@ -122,7 +122,7 @@ class KaryawanController extends Controller
     		'namaKaryawan' => $request->namaKaryawan,
     		'noTelepon' => $request->noTelepon,
     		'alamat' => $request->alamat,
-    		'status' => $request->status,
+    		'idStatus' => $request->idStatus,
             'type_id' => $request->type_id
     	]);
         
@@ -149,12 +149,12 @@ class KaryawanController extends Controller
      */
     public function editKedai($id)
     {
-        $karyawan = Karyawan::find($id);
+        $karyawan = Karyawan::with('status')->findOrFail($id);
         return view('owner.karyawanKedaiEdit', ['karyawan' => $karyawan]);
     }
     public function editProduksi($id)
     {
-        $karyawan = Karyawan::find($id);
+        $karyawan = Karyawan::with('status')->findOrFail($id);
         return view('owner.karyawanProduksiEdit', ['karyawan' => $karyawan]);
     }
 
@@ -171,7 +171,7 @@ class KaryawanController extends Controller
             'namaKaryawan' => 'required',
     		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon, ' . $id,
     		'alamat' => 'required',
-    		'status' => 'required',
+    		'idStatus' => 'required',
     		'type_id' => 'required'
         ]);
         
@@ -179,7 +179,7 @@ class KaryawanController extends Controller
          $karyawan->namaKaryawan = $request->namaKaryawan;
          $karyawan->noTelepon = $request->noTelepon;
          $karyawan->alamat = $request->alamat;
-         $karyawan->status = $request->status;
+         $karyawan->idStatus = $request->idStatus;
          $karyawan->type_id = $request->type_id;
          $karyawan->save();
          
@@ -193,7 +193,7 @@ class KaryawanController extends Controller
     		'namaKaryawan' => 'required',
     		'noTelepon' => 'required|string|min:10|max:13|unique:karyawan,noTelepon, ' . $id,
     		'alamat' => 'required',
-    		'status' => 'required',
+    		'idStatus' => 'required',
             'type_id' => 'required'
          ]);
       
@@ -201,7 +201,7 @@ class KaryawanController extends Controller
          $karyawan->namaKaryawan = $request->namaKaryawan;
          $karyawan->noTelepon = $request->noTelepon;
          $karyawan->alamat = $request->alamat;
-         $karyawan->status = $request->status;
+         $karyawan->idStatus = $request->idStatus;
          $karyawan->type_id = $request->type_id;
          $karyawan->save();
 

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
   
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OwnerController;
-use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\DetailProdukController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -83,13 +83,13 @@ Route::get('/karyawanKedai/detail/{id}', [KaryawanController::class, 'indexKedai
 Route::get('/profilKaryawanProduksi', [KaryawanController::class, 'indexProduksiHome']);
 
 // Produksi Produk
-Route::get('/produksiStockKopi', [ProdukController::class, 'indexProduksiStockKopi']);
-Route::get('/ownerStockKopi', [ProdukController::class, 'indexOwnerStockKopi']);
-Route::get('/kedaiStockKopi', [ProdukController::class, 'indexKedaiStockKopi']);
-Route::get('/stockKopi/tambah', [ProdukController::class, 'createStockKopi']);
-Route::patch('/stockKopi/store', [ProdukController::class, 'storeStockKopi']);
-Route::get('/produksiStockKopi/detail/{namaProduk}', [ProdukController::class, 'indexProduksiStockKopiDetail']);
-Route::get('/ownerStockKopi/detail/{namaProduk}', [ProdukController::class, 'indexOwnerStockKopiDetail']);
-Route::get('/kedaiStockKopi/detail/{namaProduk}', [ProdukController::class, 'indexKedaiStockKopiDetail']);
-Route::get('/stockKopi/edit/{namaProduk}/{kategori}', [ProdukController::class, 'editStockKopi']);
-Route::patch('/stockKopi/update/{namaProduk}/{kategori}', [ProdukController::class, 'updateStockKopi']);
+Route::get('/produksiStockKopi', [DetailProdukController::class, 'indexProduksiStockKopi']);
+Route::get('/ownerStockKopi', [DetailProdukController::class, 'indexOwnerStockKopi']);
+Route::get('/kedaiStockKopi', [DetailProdukController::class, 'indexKedaiStockKopi']);
+Route::get('/stockKopi/tambah', [DetailProdukController::class, 'createStockKopi']);
+Route::patch('/stockKopi/store', [DetailProdukController::class, 'storeStockKopi']);
+Route::get('/produksiStockKopi/detail/{namaProduk}', [DetailProdukController::class, 'indexProduksiStockKopiDetail']);
+Route::get('/ownerStockKopi/detail/{namaProduk}', [DetailProdukController::class, 'indexOwnerStockKopiDetail']);
+Route::get('/kedaiStockKopi/detail/{namaProduk}', [DetailProdukController::class, 'indexKedaiStockKopiDetail']);
+Route::get('/stockKopi/edit/{namaProduk}/{kategori}', [DetailProdukController::class, 'editStockKopi']);
+Route::patch('/stockKopi/update/{namaProduk}/{kategori}', [DetailProdukController::class, 'updateStockKopi']);

@@ -61,12 +61,12 @@ class User extends Authenticatable
 
     public function owner()
     {
-        return $this->hasMany(['../App\Owner','type_id','type']);
+        return $this->hasMany(Owner::class,'type_id','type');
     }
 
     public function karyawan()
     {
-        return $this->hasMany(['../App\Karyawan','type_id','type']);
+        return $this->hasMany(Karyawan::class,'type_id','type');
     }
 
 }

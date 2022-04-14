@@ -13,6 +13,11 @@ class Karyawan extends Model
 
     public function user()
     {
-        return $this->belongsTo(['../App\User','type_id','type']);
+        return $this->belongsTo(User::class,'type_id','type');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'idStatus', 'id');
     }
 }

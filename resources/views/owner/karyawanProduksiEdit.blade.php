@@ -62,15 +62,15 @@
                         <div class="row mb-3">
                             <label for="status" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Status</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <select name="status" class="form-control" placeholder="Status Karyawan" value="{{$karyawan->status}}">
-                                    <option selected>{{$karyawan->status}}</option>
-                                    @if ($karyawan->status == 'Tidak Aktif')
+                                <select name="idStatus" class="form-control" placeholder="Status Karyawan" value="{{$karyawan->idStatus}}">
+                                    <option selected>{{$karyawan->status->status}}</option>
+                                    @if ($karyawan->status->status == 'Tidak Aktif')
                                         <option value="1">Aktif</option>
                                     @else
                                         <option value="2">Tidak Aktif</option>
                                     @endif
                                 </select>
-                                @if($errors->has('status'))
+                                @if($errors->has('idStatus'))
                                     <div class="text-danger">
                                         {{ $errors->first('status')}}
                                     </div>

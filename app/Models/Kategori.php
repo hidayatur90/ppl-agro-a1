@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produk extends Model
+
+class Kategori extends Model
 {
     public $timestamps = false;
-    protected $table = "produk";
+    protected $table = "kategori";
 
     protected $guarded = ['id'];
 
     public function detail_produk()
     {
-        return $this->hasMany(DetailProduk::class, 'idProduk', 'id');
+        return $this->hasMany(DetailProduk::class, 'idKategori', 'id');
     }
+
 }

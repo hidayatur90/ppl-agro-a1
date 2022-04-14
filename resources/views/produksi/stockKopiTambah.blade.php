@@ -38,12 +38,12 @@
 
                     {{-- Stok --}}
                     <div class="row mb-3">
-                        <label for="phone" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
+                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" name="stok" id="stok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
-                            @if($errors->has('stok'))
+                            <input type="number" class="form-control" name="jumlahStok" id="jumlahStok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
+                            @if($errors->has('jumlahStok'))
                             <div class="text-danger">
-                                {{ $errors->first('stok')}}
+                                {{ $errors->first('jumlahStok')}}
                             </div>
                         @endif
                         </div>
@@ -55,7 +55,7 @@
                         <div class="col-sm-8 col-md-9 col-xl-10">
                             <select name="kategori" class="form-control" placeholder="Kategori Kopi">
                                 <option value="Biji Kopi">Biji Kopi</option>
-                                <option value="Kopi Bubuk">Kopi Bubuk</option>
+                                <option value="2">Kopi Bubuk</option>
                             </select>
                                 @if($errors->has('kategori'))
                                 <div class="text-danger">
@@ -83,7 +83,6 @@
                             </ul>
                         </div>
                     @endif
-
                 </form>
             </div>
         </div>

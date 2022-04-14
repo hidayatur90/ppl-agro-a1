@@ -15,7 +15,7 @@
                 <strong>Data Stok Kopi Pasca Produksi</strong> 
             </div>
             <div class="card-body">
-                <a href="/stockKopi/tambah" class="btn btn-success mb-3">Tambah Stok Produk</a>
+                <a href="/stockKopi/tambah" class="btn btn-success mb-3">Tambah Produk Baru</a>
                 <table id="datatablesSimple">
                     <thead>
                         <tr>

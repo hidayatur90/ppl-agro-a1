@@ -5,7 +5,10 @@ namespace Database\Seeders;
 use \App\Models\User;
 use \App\Models\Owner;
 use App\Models\Produk;
+use App\Models\Status;
+use App\Models\Kategori;
 use \App\Models\Karyawan;
+use App\Models\DetailProduk;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -19,6 +22,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        
+        // Users
         User::create([
             'type'=>1,
             'name'=>'Owner Mitra',
@@ -38,6 +43,7 @@ class DatabaseSeeder extends Seeder
             'password'=> bcrypt('123456')
         ]);
 
+        // Owner Mitra
         Owner::create([
             'namaMitra'=>'Ferdian Fernanda Syahputra',
             'type_id'=>1,
@@ -46,102 +52,137 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        // Status Karyawan
+        Status::create([
+            'status'=>'Aktif'
+        ]);
+        Status::create([
+            'status'=>'Tidak Aktif'
+        ]);
+
+        
+        // Karyawan
         Karyawan::create([
             'namaKaryawan'=>'Lilik Dwi Wulandari',
             'type_id'=>2,
             'noTelepon'=>'08111112222',
             'alamat'=>'Desa Kabuh, Jombang, Jawa Timur, Indonesia',
-            'status'=>'Aktif'
+            'idStatus'=>1
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Rio Adistya',
             'type_id'=>2,
             'noTelepon'=>'087121232384',
             'alamat'=>'Jalan Sukaharja No 12, Kalipuro Banyuwangi, Indonesia',
-            'status'=>'Aktif'
+            'idStatus'=>1
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Muhammad Hidayatur Rahman',
             'type_id'=>2,
             'noTelepon'=>'082123451234',
             'alamat'=>'Desa Jurang Sapi, Tapen Bondoowoso, Indonesia',
-            'status'=>'Tidak Aktif'
+            'idStatus'=>2
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Azimatul Hanafiyah',
             'type_id'=>3,
             'noTelepon'=>'081112344321',
             'alamat'=>'Desa Cermee, Bondowoso, Indonesia',
-            'status'=>'Aktif'
+            'idStatus'=>1
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Naadiyatushofia',
             'type_id'=>3,
             'noTelepon'=>'082132321235',
             'alamat'=>'Jalan Jaksa Agung, Blitar, Indonesia',
-            'status'=>'Aktif'
+            'idStatus'=>1
         ]);
         Karyawan::create([
             'namaKaryawan'=>'Tiara Dwi Melinda',
             'type_id'=>3,
             'noTelepon'=>'08136780009',
             'alamat'=>'Panjii, Kabupaten Situbondo, Indonesia',
-            'status'=>'Aktif'
+            'idStatus'=>1
         ]);
 
 
         // Produk
-
         Produk::create([
-            'namaProduk'=>'Espresso',
-            'stok'=>25,
-            'kategori'=>'Biji Kopi'
+            'namaProduk'=>'Espresso'
         ]);
         Produk::create([
-            'namaProduk'=>'Long Black',
-            'stok'=>12,
-            'kategori'=>'Biji Kopi'
+            'namaProduk'=>'Long Black'
         ]);
         Produk::create([
-            'namaProduk'=>'Americano',
-            'stok'=>30,
-            'kategori'=>'Biji Kopi'
+            'namaProduk'=>'Americano'
         ]);
         Produk::create([
-            'namaProduk'=>'Cappuchino',
-            'stok'=>20,
-            'kategori'=>'Biji Kopi'
+            'namaProduk'=>'Cappuchino'
         ]);
         Produk::create([
-            'namaProduk'=>'Latte',
-            'stok'=>15,
-            'kategori'=>'Biji Kopi'
+            'namaProduk'=>'Latte'
         ]);
 
-        Produk::create([
-            'namaProduk'=>'Espresso',
-            'stok'=>20,
-            'kategori'=>'Kopi Bubuk'
+        // Kategori
+        Kategori::create([
+            'Kategori'=>'Biji Kopi'
         ]);
-        Produk::create([
-            'namaProduk'=>'Long Black',
-            'stok'=>10,
-            'kategori'=>'Kopi Bubuk'
+        Kategori::create([
+            'Kategori'=>'Kopi Bubuk'
         ]);
-        Produk::create([
-            'namaProduk'=>'Americano',
-            'stok'=>25,
-            'kategori'=>'Kopi Bubuk'
+
+
+        // Detail Produk
+        DetailProduk::create([
+            'idProduk'=>1,
+            'idKategori'=>1,
+            'jumlahStok'=>25
         ]);
-        Produk::create([
-            'namaProduk'=>'Cappuchino',
-            'stok'=>5,
-            'kategori'=>'Kopi Bubuk'
+        DetailProduk::create([
+            'idProduk'=>2,
+            'idKategori'=>1,
+            'jumlahStok'=>12
         ]);
-        Produk::create([
-            'namaProduk'=>'Latte',
-            'stok'=>50,
-            'kategori'=>'Kopi Bubuk'
+        DetailProduk::create([
+            'idProduk'=>3,
+            'idKategori'=>1,
+            'jumlahStok'=>30
+        ]);
+        DetailProduk::create([
+            'idProduk'=>4,
+            'idKategori'=>1,
+            'jumlahStok'=>20
+        ]);
+        DetailProduk::create([
+            'idProduk'=>5,
+            'idKategori'=>1,
+            'jumlahStok'=>15
+        ]);
+
+        DetailProduk::create([
+            'idProduk'=>1,
+            'idKategori'=>2,
+            'jumlahStok'=>20
+        ]);
+        DetailProduk::create([
+            'idProduk'=>2,
+            'idKategori'=>2,
+            'jumlahStok'=>10
+        ]);
+        DetailProduk::create([
+            'idProduk'=>3,
+            'idKategori'=>2,
+            'jumlahStok'=>25
+        ]);
+        DetailProduk::create([
+            'idProduk'=>4,
+            'idKategori'=>2,
+            'jumlahStok'=>5
+        ]);
+        DetailProduk::create([
+            'idProduk'=>5,
+            'idKategori'=>2,
+            'jumlahStok'=>50
         ]);
 
 

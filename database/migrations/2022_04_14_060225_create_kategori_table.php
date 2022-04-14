@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('produk', function (Blueprint $table) {
+        Schema::create('kategori', function (Blueprint $table) {
             $table->id();
-            $table->string('namaProduk')->unique();
+            $table->enum('kategori', ['Biji Kopi', 'Kopi Bubuk'])->default('Biji Kopi');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produk');
+        Schema::dropIfExists('kategori');
     }
 };

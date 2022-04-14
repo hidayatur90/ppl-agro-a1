@@ -32,10 +32,10 @@
                             <td>{{ $k->namaKaryawan }}</td>
                             <td>{{ $k->noTelepon }}</td>
                             <td>{{ $k->alamat }}</td>
-                            @if($k->status == 'Aktif')
-                                <td style="color: green">{{ $k->status }}</td>
+                            @if($k->idStatus == 1)
+                                <td style="color: green">Aktif</td>
                             @else
-                                <td style="color: red">{{ $k->status }}</td>
+                                <td style="color: red">Tidak Aktif</td>
                             @endif
                         </tr>
                         @endforeach
