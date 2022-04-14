@@ -128,7 +128,10 @@ class DetailProdukController extends Controller
     {
         $this->validate($request,[
     		'namaProduk' => 'required|string|unique:produk,namaProduk',
-    		'jumlahStok' => 'required|integer',
+    		'jumlahStok' => 'integer',
+    		'kategori' => 'required'],[
+                'unique' => 'Produk '. $request->namaProduk .' sudah ada. Silahkan ubah stok melalui menu Edit',
+    		'jumlahStok' => 'integer',
     		'kategori' => 'required'],[
                 'unique' => 'Produk '. $request->namaProduk .' sudah ada. Silahkan ubah stok melalui menu Edit',
             ]
@@ -143,8 +146,13 @@ class DetailProdukController extends Controller
         foreach ($produk as $p){
             DetailProduk::create([
                 'idProduk' => $p->jumlah_id + 1,
-                'jumlahStok' => $request->jumlahStok,
-                'idKategori' => $request->kategori
+                'idKategori' => 1,
+                'jumlahStok' => 0,
+            ]);
+            DetailProduk::create([
+                'idProduk' => $p->jumlah_id + 1,
+                'idKategori' => 2,
+                'jumlahStok' => 0,
             ]);
         }
 

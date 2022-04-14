@@ -36,8 +36,17 @@
                         </div>
                     </div>
 
-                    {{-- Stok --}}
+                    {{-- Kategori --}}
                     <div class="row mb-3">
+                        <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kategori</strong></label>
+                        <div class="col-sm-8 col-md-9 col-xl-10">
+                            <select name="kategori" class="form-control" >
+                                <option>Biji Kopi</option>
+                            </select>
+                        </div>
+                    </div>
+                    {{-- Stok --}}
+                    {{-- <div class="row mb-3">
                         <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
                             <input type="number" class="form-control" name="jumlahStok" id="jumlahStok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
@@ -47,23 +56,30 @@
                             </div>
                         @endif
                         </div>
-                    </div>
-
+                    </div> --}}
+                    
                     {{-- Kategori --}}
                     <div class="row mb-3">
-                        <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kategori</strong></label>
+                        <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong></strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <select name="kategori" class="form-control" placeholder="Kategori Kopi">
-                                <option value="Biji Kopi">Biji Kopi</option>
-                                <option value="2">Kopi Bubuk</option>
+                            <select name="kategori" class="form-control">
+                                <option>Kopi Bubuk</option>
                             </select>
-                                @if($errors->has('kategori'))
-                                <div class="text-danger">
-                                    {{ $errors->first('kategori')}}
-                                </div>
-                            @endif
                         </div>
                     </div>
+                    {{-- Stok --}}
+                    {{-- <div class="row mb-3">
+                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
+                        <div class="col-sm-8 col-md-9 col-xl-10">
+                            <input type="number" class="form-control" name="jumlahStok" id="jumlahStok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
+                            @if($errors->has('jumlahStok'))
+                            <div class="text-danger">
+                                {{ $errors->first('jumlahStok')}}
+                            </div>
+                        @endif
+                        </div>
+                    </div> --}}
+
 
                     <div class="row mb-3 justify-content-end mx-3 my-4">
                         <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
