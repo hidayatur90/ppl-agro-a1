@@ -56,8 +56,8 @@
                             </div>
                         @endif
                         </div>
-                    </div> --}}
-                    
+                    </div>
+                     --}}
                     {{-- Kategori --}}
                     <div class="row mb-3">
                         <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong></strong></label>

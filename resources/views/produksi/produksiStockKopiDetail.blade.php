@@ -52,9 +52,7 @@
                         <a type="button" class="btn btn-dark border" href="/produksiStockKopi">
                             Kembali
                         </a>
-                        {{-- <a type="button" class="btn btn-dark border" href="/produkProduksiEdit">
-                            Edit
-                        </a> --}}
+
                     </div>
                 </div>
             </div>
