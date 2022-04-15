@@ -38,47 +38,49 @@
 
                     {{-- Kategori --}}
                     <div class="row mb-3">
-                        <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kategori</strong></label>
+                        <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Biji Kopi</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
                             <select name="kategori" class="form-control" >
                                 <option>Biji Kopi</option>
                             </select>
                         </div>
                     </div>
+
                     {{-- Stok --}}
-                    {{-- <div class="row mb-3">
-                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
+                    <div class="row mb-3">
+                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" name="jumlahStok" id="jumlahStok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
-                            @if($errors->has('jumlahStok'))
+                            <input type="number" class="form-control" min="0" name="jumlahStokBiji" id="jumlahStokBiji" placeholder="Stok Biji Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
+                            @if($errors->has('jumlahStokBiji'))
                             <div class="text-danger">
-                                {{ $errors->first('jumlahStok')}}
+                                {{ $errors->first('jumlahStokBiji')}}
                             </div>
                         @endif
                         </div>
                     </div>
-                     --}}
+                    
                     {{-- Kategori --}}
                     <div class="row mb-3">
-                        <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong></strong></label>
+                        <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kopi Bubuk</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
                             <select name="kategori" class="form-control">
                                 <option>Kopi Bubuk</option>
                             </select>
                         </div>
                     </div>
+
                     {{-- Stok --}}
-                    {{-- <div class="row mb-3">
-                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
+                    <div class="row mb-3">
+                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" name="jumlahStok" id="jumlahStok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
-                            @if($errors->has('jumlahStok'))
+                            <input type="number" class="form-control" min="0" name="jumlahStokBubuk" id="jumlahStokBubuk" placeholder="Stok Kopi Bubuk" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
+                            @if($errors->has('jumlahStokBubuk'))
                             <div class="text-danger">
-                                {{ $errors->first('jumlahStok')}}
+                                {{ $errors->first('jumlahStokBubuk')}}
                             </div>
                         @endif
                         </div>
-                    </div> --}}
+                    </div>
 
 
                     <div class="row mb-3 justify-content-end mx-3 my-4">

@@ -24,7 +24,7 @@
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="card-body">
-                    <table class="table table-light table-striped" style="font-size: 20px">
+                    <table class="table table-light table-striped justify-content-center text-center" style="font-size: 20px">
                         <thead>
                             <tr>
                                 <th><strong>Kategori</strong></th>
@@ -42,7 +42,7 @@
                                     <td style="color: red">{{ $p->total_stok }}</td>
                                 @endif
                                 <td>
-                                    <a href="/stockKopi/edit/{{ $p->namaProduk }}/{{ $p->kategori }}" class="btn btn-warning my-2 mx-1">Edit</a>
+                                    <a href="/stockKopi/edit/{{ $p->namaProduk }}/{{ $p->kategori }}" class="btn btn-warning my-2">Edit Stok</a>
                                 </td>
                             </tr>
                             @endforeach

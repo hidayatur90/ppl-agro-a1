@@ -147,12 +147,12 @@ class DetailProdukController extends Controller
             DetailProduk::create([
                 'idProduk' => $p->jumlah_id + 1,
                 'idKategori' => 1,
-                'jumlahStok' => 0
+                'jumlahStok' => $request->jumlahStokBiji
             ]);
             DetailProduk::create([
                 'idProduk' => $p->jumlah_id + 1,
                 'idKategori' => 2,
-                'jumlahStok' => 0
+                'jumlahStok' => $request->jumlahStokBubuk
             ]);
         }
 
@@ -202,6 +202,7 @@ class DetailProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
+
     public function updateStockKopi($namaProduk, $kategori, Request $request)
     {
         $this->validate($request,[
@@ -227,7 +228,6 @@ class DetailProdukController extends Controller
                 'jumlahStok' => $request->jumlahStok - $p->total_stok,
                 'idKategori' => $p->idKategori
             ]);
-            
             Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
             return redirect("/produksiStockKopi/detail/$p->namaProduk");
         }

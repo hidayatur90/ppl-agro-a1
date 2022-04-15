@@ -14,7 +14,7 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li>
-                        <a class="dropdown-item" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="('#exampleModal, #logout-form').attr('action','{{ route('logout') }}')">{{ __('Logout') }}</a>
+                        <a class="dropdown-item" type="submit" data-bs-toggle="modal" data-bs-target="#logoutModal" onclick="('#logoutModal, #logout-form').attr('action','{{ route('logout') }}')">{{ __('Logout') }}</a>
                     </li>
                 </ul>
             </li>
@@ -23,7 +23,7 @@
 </nav>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center">
             <h1 class="h2">
