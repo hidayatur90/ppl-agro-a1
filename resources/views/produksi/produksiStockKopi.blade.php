@@ -38,7 +38,7 @@
                                 <td style="color: red">{{ $p->total_stok }} (Hampir Habis)</td>
                             @endif
                             <td>{{ $p->created_at }}</td>
-                            <td>{{ $p->updated_at }}</td>
+                            <td>{{ $p->last_updated }}</td>
                             <td class="text-center">
                                 
                                 <a href="/produksiStockKopi/detail/{{ $p->namaProduk }}" class="btn btn-success">Detail</a>

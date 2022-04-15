@@ -14,31 +14,33 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li>
-                        <a class="dropdown-item" type="submit" data-bs-toggle="modal" data-bs-target="#logoutModal" onclick="('#logoutModal, #logout-form').attr('action','{{ route('logout') }}')">{{ __('Logout') }}</a>
+                        <a class="dropdown-item" type="submit" id="logout">{{ __('Logout') }}</a>
                     </li>
                 </ul>
             </li>
         </ul>
     </div>
 </nav>
-
-<!-- Modal -->
-<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content text-center">
-            <h1 class="h2">
-                <i class="fa fa-exclamation-circle mt-5" aria-hidden="true" style="font-size: 120px; color: #e62929;"></i>
-            </h1>
-            <div class="modal-body my-2" style="text-align: center">
-                <h4>Apakah Anda yakin ingin Logout?</h4>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <form id="logout-form" action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">YA</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">TIDAK</button>
-                </form>
-            </div>
-      </div>
-    </div>
-</div>
+<script 
+    src="https://code.jquery.com/jquery-3.6.0.slim.js"  
+    integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+    crossorigin="anonymous">
+</script>
+<script>
+    $('#logout').click(function(){
+        Swal.fire({
+            title: 'Yakin?',
+            text: "Apakah Anda yakin ingin Logout?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#c4c4c4',
+            confirmButtonText: 'Yakin',
+            cancelButtonText: 'Batal'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "{{ route('logout') }}";
+            }
+        })
+    })
+</script>

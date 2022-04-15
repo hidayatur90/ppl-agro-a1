@@ -21,7 +21,7 @@ class DetailProdukController extends Controller
         $produk = DB::table('detail_produk')
                 ->join('produk', 'idProduk', '=', 'produk.id')
                 ->join('kategori', 'idKategori', '=', 'kategori.id')
-                ->select('detail_produk.*', 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
+                ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
                 ->groupBy('produk.namaProduk')
                 ->get();
         
@@ -34,7 +34,7 @@ class DetailProdukController extends Controller
         $produk = DB::table('detail_produk')
                 ->join('produk', 'idProduk', '=', 'produk.id')
                 ->join('kategori', 'idKategori', '=', 'kategori.id')
-                ->select('detail_produk.*', 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
+                ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
                 ->groupBy('produk.namaProduk')
                 ->get();
         
@@ -47,7 +47,7 @@ class DetailProdukController extends Controller
         $produk = DB::table('detail_produk')
                 ->join('produk', 'idProduk', '=', 'produk.id')
                 ->join('kategori', 'idKategori', '=', 'kategori.id')
-                ->select('detail_produk.*', 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
+                ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
                 ->groupBy('produk.namaProduk')
                 ->get();
         
@@ -73,7 +73,6 @@ class DetailProdukController extends Controller
 
     public function indexOwnerStockKopiDetail($namaProduk)
     {
-        // $produk = DB::select('select * from produk where namaProduk = :namaProduk', ['namaProduk' => $namaProduk]);
     	
         $produk = DB::table('detail_produk')
             ->join('produk', 'idProduk', '=', 'produk.id')
@@ -89,12 +88,11 @@ class DetailProdukController extends Controller
     }
     public function indexKedaiStockKopiDetail($namaProduk)
     {
-        // $produk = DB::select('select * from produk where namaProduk = :namaProduk', ['namaProduk' => $namaProduk]);
     	
         $produk = DB::table('detail_produk')
             ->join('produk', 'idProduk', '=', 'produk.id')
             ->join('kategori', 'idKategori', '=', 'kategori.id')
-            ->select('detail_produk.*', 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
+            ->select('detail_produk.*','produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
             ->where('produk.namaProduk', '=',  ['namaProduk' => $namaProduk])
             ->groupBy('kategori.kategori')
             ->get();
@@ -203,11 +201,11 @@ class DetailProdukController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function updateStockKopi($namaProduk, $kategori, Request $request)
+    public function updateStockKopi($namaProduk, $kategori, $jumlahStok, Request $request)
     {
         $this->validate($request,[
             'idProduk',
-            'jumlahStok' => 'required|integer',
+            'jumlahStok' => 'integer',
             'idKategori'
         ]);
         
@@ -225,10 +223,11 @@ class DetailProdukController extends Controller
         foreach ($produk as $p){
             DetailProduk::create([
                 'idProduk' => $p->idProduk,
-                'jumlahStok' => $request->jumlahStok - $p->total_stok,
+                'jumlahStok' => $jumlahStok - $p->total_stok,
                 'idKategori' => $p->idKategori
             ]);
-            Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+
+            Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#198754');
             return redirect("/produksiStockKopi/detail/$p->namaProduk");
         }
     }

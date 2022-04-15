@@ -24,7 +24,7 @@
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="card-body">
-                    <table class="table table-light table-striped" style="font-size: 20px">
+                    <table class="table table-light table-striped text-center" style="font-size: 20px">
                         <thead>
                             <tr>
                                 <th><strong>Kategori</strong></th>

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
+use Session;
 
 class LoginController extends Controller
 {
@@ -70,6 +71,7 @@ class LoginController extends Controller
 
     public function logout()
     {   
+        Session::flush();
         auth()->logout();
         return redirect('/');
     }
