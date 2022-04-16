@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('produk', function (Blueprint $table) {
             $table->id();
-            $table->string('namaProduk')->unique();
+            $table->string('namaProduk', 50)->unique();
         });
     }
 

@@ -205,7 +205,7 @@ class DetailProdukController extends Controller
     {
         $this->validate($request,[
             'idProduk',
-            'jumlahStok' => 'required|integer',
+            'jumlahStok' => 'integer',
             'idKategori'
         ]);
         

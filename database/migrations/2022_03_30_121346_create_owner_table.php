@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('owner', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('type_id');
-            $table->string('namaMitra');
-            $table->string('noTelepon')->unique();;
-            $table->string('alamat');
+            $table->string('namaMitra', 50);
+            $table->string('noTelepon', 15)->unique();;
+            $table->text('alamat');
             $table->timestamps();
         });
     }

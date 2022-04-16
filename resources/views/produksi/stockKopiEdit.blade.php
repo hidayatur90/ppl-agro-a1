@@ -37,7 +37,7 @@
                     <div class="row mb-3">
                         <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" name="jumlahStok" id="jumlahStok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->total_stok }}"/>
+                            <input type="number" class="form-control" min="0" max="99999" name="jumlahStok" id="jumlahStok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->total_stok }}"/>
                             @if($errors->has('jumlahStok'))
                             <div class="text-danger">
                                 {{ $errors->first('jumlahStok')}}
@@ -65,7 +65,7 @@
                     <div class="row mb-3 justify-content-end mx-3 my-4">
                         <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
                             <a type="submit" id="edit" class="btn btn-success mx-3" stokLama="{{ $p->total_stok }}">{{ __('Simpan') }}</a>
-                            <a type="button" class="btn btn-secondary border" href="/produksiStockKopi">
+                            <a type="button" class="btn btn-secondary border" href="/produksiStockKopi/detail/{{ $p->namaProduk}}">
                                 Batal
                             </a>
                         </div>
@@ -96,49 +96,81 @@
     $('#edit').click(function(){
         var stokLama = $(this).attr('stokLama');
         var stokBaru = jumlahStok.value - stokLama;
-        if (stokBaru > 0){
-            Swal.fire({
-                title: 'Yakin?',
-                text: "Akan menambahkan stok kopi sebanyak "+ stokBaru + " kg",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#198754',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yakin',
-                cancelButtonText: 'Batal'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "/stockKopi/update/"+namaProduk.value+"/"+kategori.value+"/"+jumlahStok.value;
-                }
-            })
-        } else if (stokBaru < 0) {
-            Swal.fire({
-                title: 'Yakin?',
-                text: "Akan mengurangi stok kopi sebanyak "+ Math.abs(stokBaru) + " kg",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#198754',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yakin',
-                cancelButtonText: 'Batal'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "/stockKopi/update/"+namaProduk.value+"/"+kategori.value+"/"+jumlahStok.value;
-                }
-            })
-        } else {
+
+        if (jumlahStok.value.length == 0){
             Swal.fire({
                 title: 'Maaf',
-                text: "Anda belum menambah atau mengurangi stok.",
+                text: "Stok tidak boleh kosong.",
                 icon: 'warning',
-                showCancelButton: false,
-                confirmButtonColor: '#198754',
-                confirmButtonText: 'Ok',
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonColor: '#ffc107',
+                cancelButtonText: 'OK',
                 }).then((result) => {
                 if (result.isConfirmed) {
                     window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value
                 }
             })
+        } else{
+            if (stokBaru > 0 && stokBaru <= 99999){
+                Swal.fire({
+                    title: 'Yakin?',
+                    text: "Akan menambahkan stok kopi sebanyak "+ stokBaru + " kg",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#198754',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yakin',
+                    cancelButtonText: 'Batal'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "/stockKopi/update/"+namaProduk.value+"/"+kategori.value+"/"+jumlahStok.value;
+                    }
+                })
+            } else if (stokBaru < 0 && stokBaru <= 99999) {
+                Swal.fire({
+                    title: 'Yakin?',
+                    text: "Akan mengurangi stok kopi sebanyak "+ Math.abs(stokBaru) + " kg",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#198754',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yakin',
+                    cancelButtonText: 'Batal'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "/stockKopi/update/"+namaProduk.value+"/"+kategori.value+"/"+jumlahStok.value;
+                    }
+                })
+            } else if (stokBaru == 0){
+                Swal.fire({
+                    title: 'Maaf',
+                    text: "Anda belum menambah atau mengurangi stok.",
+                    icon: 'warning',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonColor: '#ffc107',
+                    cancelButtonText: 'OK',
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value
+                    }
+                })
+            } else {
+                Swal.fire({
+                    title: 'Maaf',
+                    text: "Stok melebihi jumlah maksimum.",
+                    icon: 'warning',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonColor: '#ffc107',
+                    cancelButtonText: 'OK',
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value
+                    }
+                })
+            }
         }
     })
     

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger("idProduk");
             $table->bigInteger("idKategori");
-            $table->integer("jumlahStok");
+            $table->smallInteger("jumlahStok");
             $table->timestamps();
         });
     }
