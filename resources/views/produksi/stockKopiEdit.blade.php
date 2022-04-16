@@ -128,17 +128,15 @@
             })
         } else {
             Swal.fire({
-                title: 'Yakin?',
-                text: "Akan belum menambah atau mengurangi stok.",
+                title: 'Maaf',
+                text: "Anda belum menambah atau mengurangi stok.",
                 icon: 'warning',
-                showCancelButton: true,
+                showCancelButton: false,
                 confirmButtonColor: '#198754',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yakin',
-                cancelButtonText: 'Batal'
+                confirmButtonText: 'Ok',
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location = "/stockKopi/update/"+namaProduk.value+"/"+kategori.value+"/"+jumlahStok.value;
+                    window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value
                 }
             })
         }
