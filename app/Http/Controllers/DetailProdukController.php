@@ -126,7 +126,7 @@ class DetailProdukController extends Controller
     {
         $this->validate($request,[
     		'namaProduk' => 'required|string|unique:produk,namaProduk',
-    		'jumlahStok' => 'integer',
+    		'jumlahStok' => 'required|integer',
     		'kategori' => 'required'],[
                 'unique' => 'Produk '. $request->namaProduk .' sudah ada. Silahkan ubah stok melalui menu Edit',
     		'jumlahStok' => 'integer',
@@ -205,7 +205,7 @@ class DetailProdukController extends Controller
     {
         $this->validate($request,[
             'idProduk',
-            'jumlahStok' => 'integer',
+            'jumlahStok' => 'required|integer',
             'idKategori'
         ]);
         

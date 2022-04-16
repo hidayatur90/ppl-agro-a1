@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('detail_produk', function (Blueprint $table) {
             $table->id();
-            $table->integer("idProduk");
-            $table->integer("idKategori");
+            $table->bigInteger("idProduk");
+            $table->bigInteger("idKategori");
             $table->integer("jumlahStok");
             $table->timestamps();
         });
