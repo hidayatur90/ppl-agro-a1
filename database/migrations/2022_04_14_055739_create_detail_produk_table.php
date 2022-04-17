@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("idProduk");
             $table->foreignId("idKategori");
+            $table->bigInteger("type_id")->default(2);
             $table->smallInteger("jumlahStok");
             $table->timestamps();
         });
