@@ -182,12 +182,19 @@ class KaryawanController extends Controller
                 'unique' => 'No Telepon '.$request->noTelepon.' sudah terdaftar.'
             ]
         ]);
-        
+
+        $status;
+        if ($request->idStatus == 'Aktif'){
+            $status = 1;
+        } else if ($request->idStatus == 'Tidak Aktif') {
+            $status = 2;
+        }
+
          $karyawan = Karyawan::find($id);
          $karyawan->namaKaryawan = $request->namaKaryawan;
          $karyawan->noTelepon = $request->noTelepon;
          $karyawan->alamat = $request->alamat;
-         $karyawan->idStatus = $request->idStatus;
+         $karyawan->idStatus = $status;
          $karyawan->type_id = $request->type_id;
          $karyawan->save();
          
@@ -207,12 +214,19 @@ class KaryawanController extends Controller
                 'unique' => 'No Telepon '.$request->noTelepon.' sudah terdaftar.'
             ]
          ]);
-      
+         
+         $status;
+         if ($request->idStatus == 'Aktif'){
+             $status = 1;
+         } else if ($request->idStatus == 'Tidak Aktif') {
+             $status = 2;
+         }
+
          $karyawan = Karyawan::find($id);
          $karyawan->namaKaryawan = $request->namaKaryawan;
          $karyawan->noTelepon = $request->noTelepon;
          $karyawan->alamat = $request->alamat;
-         $karyawan->idStatus = $request->idStatus;
+         $karyawan->idStatus = $status;
          $karyawan->type_id = $request->type_id;
          $karyawan->save();
 

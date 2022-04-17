@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('detail_produk', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("idProduk");
-            $table->foreignId("idKategori");
+            $table->bigInteger("idProduk")->unsigned();
+            $table->bigInteger("idKategori")->unsigned();
             $table->bigInteger("type_id")->default(2);
             $table->smallInteger("jumlahStok");
             $table->timestamps();

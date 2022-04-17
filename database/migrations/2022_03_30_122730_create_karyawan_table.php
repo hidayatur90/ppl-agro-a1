@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('namaKaryawan', 50);
             $table->string('noTelepon', 15)->unique();
             $table->text('alamat');
-            $table->foreignId('idStatus');
+            $table->bigInteger('idStatus')->unsigned();
             $table->timestamps();
         });
     }

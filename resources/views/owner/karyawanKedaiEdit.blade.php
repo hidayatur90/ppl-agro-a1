@@ -65,14 +65,14 @@
                                 <select name="idStatus" class="form-control" placeholder="Status Karyawan" value="{{$karyawan->idStatus}}">
                                     <option selected>{{$karyawan->status->status}}</option>
                                     @if ($karyawan->status->status == 'Tidak Aktif')
-                                        <option value="1">Aktif</option>
+                                        <option value="Aktif">Aktif</option>
                                     @else
-                                        <option value="2">Tidak Aktif</option>
+                                        <option value="Tidak Aktif">Tidak Aktif</option>
                                     @endif
                                 </select>
                                 @if($errors->has('idStatus'))
                                     <div class="text-danger">
-                                        {{ $errors->first('status')}}
+                                        {{ $errors->first('idStatus')}}
                                     </div>
                                 @endif
                             </div>
