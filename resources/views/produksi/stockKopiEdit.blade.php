@@ -97,7 +97,7 @@
         var stokLama = $(this).attr('stokLama');
         var stokBaru = jumlahStok.value - stokLama;
 
-        if (jumlahStok.value.length == 0){
+        if (jumlahStok.value.length == 0 || jumlahStok.value < 0){
             Swal.fire({
                 title: 'Maaf',
                 text: "Stok tidak boleh kosong.",
