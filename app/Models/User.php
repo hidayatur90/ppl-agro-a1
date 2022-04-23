@@ -69,4 +69,14 @@ class User extends Authenticatable
         return $this->hasMany(Karyawan::class,'type_id','type');
     }
 
+    public function detail_produk()
+    {
+        return $this->hasMany(DetailProduk::class,'type_id','type');
+    }
+
+    public function bahan_baku()
+    {
+        return $this->hasMany(BahanBaku::class,'type_id','type');
+    }
+
 }
