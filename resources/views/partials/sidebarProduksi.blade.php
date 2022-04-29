@@ -23,7 +23,7 @@
                         <div class="sb-nav-link-icon"><i class="fa fa-coffee"></i></div>
                         Stock Kopi
                     </a>
-                    <a class="nav-link" href="/bahanBaku">
+                    <a class="nav-link" href="/produksiBahanBaku">
                         <div class="sb-nav-link-icon"><i class="fa fa-cubes"></i></i></div>
                         Bahan Baku
                     </a>

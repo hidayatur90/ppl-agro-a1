@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\DetailProdukController;
+use App\Http\Controllers\DetailBahanBakuController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -93,4 +94,8 @@ Route::get('/ownerStockKopi/detail/{namaProduk}', [DetailProdukController::class
 Route::get('/kedaiStockKopi/detail/{namaProduk}', [DetailProdukController::class, 'indexKedaiStockKopiDetail']);
 Route::get('/stockKopi/edit/{namaProduk}/{kategori}', [DetailProdukController::class, 'editStockKopi']);
 Route::get('/stockKopi/update/{namaProduk}/{kategori}/{jumlahStok}', [DetailProdukController::class, 'updateStockKopi']);
-// Route::patch('updateStockKopi',[DetailProdukController::class, 'updateStockKopi'])->name('updateStockKopi');
+
+// Produksi Bahan Baku
+Route::get('/produksiBahanBaku', [DetailBahanBakuController::class, 'indexProduksiBahanBaku']);
+Route::get('/bahanBaku/tambah', [DetailBahanBakuController::class, 'createBahanBaku']);
+Route::patch('/bahanBaku/store', [DetailBahanBakuController::class, 'storeBahanBaku']);
