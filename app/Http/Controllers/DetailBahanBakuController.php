@@ -29,6 +29,19 @@ class DetailBahanBakuController extends Controller
     ]);
     }
 
+    public function indexProduksiBahanBakuDetail()
+    {
+        $bahan_baku = DB::table('detail_bahan_baku')
+        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+        ->select('detail_bahan_baku.*', DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+        ->groupBy('bahan_baku.namaBahan')
+        ->get();
+
+        return view('produksi.produksiBahanBaku', [
+            'bahan_baku'=>$bahan_baku
+    ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -54,8 +67,7 @@ class DetailBahanBakuController extends Controller
         $this->validate($request,[
     		'namaBahan' => 'required|string|unique:bahan_baku,namaBahan',
     		'kuantitas' => 'integer',
-    		'hargaSatuan' => 'integer',
-    		'keterangan'],[
+    		'hargaSatuan' => 'integer'],[
                 'unique' => 'Bahan Baku '. $request->namaBahan .' sudah ada. Silahkan edit melalui menu Edit',
             ]
         );
@@ -71,7 +83,7 @@ class DetailBahanBakuController extends Controller
                 'idBahan' => $bahan->jumlah_id + 1,
                 'kuantitas' => $request->kuantitas,
                 'hargaSatuan' => $request->hargaSatuan,
-                'keterangan' => $request->keterangan->default("-")
+                'keterangan' => $request->keterangan 
             ]);
         }
 
