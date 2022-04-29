@@ -86,6 +86,7 @@ class DetailProdukController extends Controller
             'produk'=>$produk
         ]);
     }
+    
     public function indexKedaiStockKopiDetail($namaProduk)
     {
     	

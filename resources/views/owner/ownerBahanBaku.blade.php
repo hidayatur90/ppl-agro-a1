@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('partials.navbar')
-@include('partials.sidebarProduksi')
+@include('partials.sidebarOwner')
 <div id="layoutSidenav_content">
     <style>
         strong, thead{
@@ -11,46 +11,42 @@
     <main>
     <div class="container-fluid px-4">
         <div class="card mt-3">
-            @foreach($bahan_baku as $bahan)
             <div class="card-header text-start">
-                <strong>Riwayat Pengguanaan {{ $bahan->namaBahan }}</strong> 
+                <strong>Data Bahan Baku</strong> 
             </div>
-            @php break; @endphp
-            @endforeach
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Tanggal</th>
-                            <th>Nama</th>
-                            <th>Kuantitas</th>
+                            <th>Nama Produk</th>
+                            <th>Sisa</th>
                             <th>Harga Satuan</th>
-                            <th>Keterangan</th>
+                            <th>Tanggal Input</th>
+                            <th>Terakhir Update</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($bahan_baku as $bahan)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $bahan->updated_at }}</td>
                             <td>{{ $bahan->namaBahan }}</td>
-                            <td>{{ $bahan->kuantitas }}</td>
+                            @if($bahan->total_stok_bahan >= 5)
+                                <td style="color: green">{{ $bahan->total_stok_bahan }}</td>
+                            @else
+                                <td style="color: red">{{ $bahan->total_stok_bahan }} (Hampir Habis)</td>
+                            @endif
                             <td>{{ $bahan->hargaSatuan }}</td>
-                            <td style="width: 300px;">{{ $bahan->keterangan }}</td>
+                            <td>{{ $bahan->created_at }}</td>
+                            <td>{{ $bahan->last_updated }}</td>
+                            <td class="text-center">
+                                <a href="/ownerBahanBaku/detail/{{ $bahan->namaBahan }}" class="btn btn-success">Detail</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-
-                <div class="row mb-3 justify-content-end mx-3 my-4">
-                    <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
-                        <a type="button" class="btn btn-secondary border" href="/produksiBahanBaku">
-                            Kembali
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

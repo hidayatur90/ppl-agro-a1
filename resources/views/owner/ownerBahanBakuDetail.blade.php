@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('partials.navbar')
-@include('partials.sidebarProduksi')
+@include('partials.sidebarOwner')
 <div id="layoutSidenav_content">
     <style>
         strong, thead{

@@ -29,7 +29,7 @@ class DetailBahanBakuController extends Controller
     ]);
     }
 
-    public function indexProduksiBahanBakuDetail()
+    public function indexOwnerBahanBaku()
     {
         $bahan_baku = DB::table('detail_bahan_baku')
         ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
@@ -37,7 +37,33 @@ class DetailBahanBakuController extends Controller
         ->groupBy('bahan_baku.namaBahan')
         ->get();
 
-        return view('produksi.produksiBahanBaku', [
+        return view('owner.ownerBahanBaku', [
+            'bahan_baku'=>$bahan_baku
+    ]);
+    }
+
+    public function indexProduksiBahanBakuDetail($namaBahan)
+    {
+        $bahan_baku = DB::table('detail_bahan_baku')
+        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+        ->select('detail_bahan_baku.*', 'bahan_baku.namaBahan as namaBahan')
+        ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
+        ->get();
+
+        return view('produksi.produksiBahanBakuDetail', [
+            'bahan_baku'=>$bahan_baku
+    ]);
+    }
+
+    public function indexOwnerBahanBakuDetail($namaBahan)
+    {
+        $bahan_baku = DB::table('detail_bahan_baku')
+        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+        ->select('detail_bahan_baku.*', 'bahan_baku.namaBahan as namaBahan')
+        ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
+        ->get();
+
+        return view('owner.ownerBahanBakuDetail', [
             'bahan_baku'=>$bahan_baku
     ]);
     }

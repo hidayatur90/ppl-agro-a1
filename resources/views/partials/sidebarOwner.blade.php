@@ -6,9 +6,6 @@
             }
         </style>
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-            {{-- <div class="sb-nav-link-icon mx-2 justify-content-end">
-                <img src="assets/img/Rodicord-logo.png" height="30" alt="RODICORD">
-            </div> --}}
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <a class="nav-link" href="../home">
@@ -40,7 +37,7 @@
                         <div class="sb-nav-link-icon"><i class="fa fa-coffee"></i></div>
                         Stock Kopi
                     </a>
-                    <a class="nav-link" href="/bahanBaku">
+                    <a class="nav-link" href="/ownerBahanBaku">
                         <div class="sb-nav-link-icon"><i class="fa fa-cubes"></i></i></div>
                         Bahan Baku
                     </a>

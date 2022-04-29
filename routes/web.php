@@ -97,5 +97,8 @@ Route::get('/stockKopi/update/{namaProduk}/{kategori}/{jumlahStok}', [DetailProd
 
 // Produksi Bahan Baku
 Route::get('/produksiBahanBaku', [DetailBahanBakuController::class, 'indexProduksiBahanBaku']);
+Route::get('/ownerBahanBaku', [DetailBahanBakuController::class, 'indexOwnerBahanBaku']);
+Route::get('/produksiBahanBaku/detail/{namaProduk}', [DetailBahanBakuController::class, 'indexProduksiBahanBakuDetail']);
+Route::get('/ownerBahanBaku/detail/{namaProduk}', [DetailBahanBakuController::class, 'indexOwnerBahanBakuDetail']);
 Route::get('/bahanBaku/tambah', [DetailBahanBakuController::class, 'createBahanBaku']);
 Route::patch('/bahanBaku/store', [DetailBahanBakuController::class, 'storeBahanBaku']);
