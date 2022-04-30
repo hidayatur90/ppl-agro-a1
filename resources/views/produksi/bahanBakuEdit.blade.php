@@ -96,6 +96,7 @@
 <script>
     var kuantitas = document.getElementById("kuantitas");
     var namaBahan = document.getElementById("namaBahan");
+    var hargaSatuan = document.getElementById("hargaSatuan");
     var keterangan = document.getElementById("keterangan");
 
     $('#edit').click(function(){
@@ -116,6 +117,20 @@
                     window.location = "/bahanBaku/edit/"+namaBahan.value;
                 }
             })
+        } else if (hargaSatuan.value.length == 0 || hargaSatuan.value < 0){
+                Swal.fire({
+                    title: 'Maaf',
+                    text: "Data harga satuan tidak boleh kosong.",
+                    icon: 'warning',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonColor: '#ffc107',
+                    cancelButtonText: 'OK',
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "/bahanBaku/edit/"+hargaSatuan.value;
+                    }
+            })          
         } else{
             if (stokBaru > 0 ){
                 Swal.fire({
