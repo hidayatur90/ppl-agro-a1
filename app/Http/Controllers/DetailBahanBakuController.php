@@ -20,16 +20,9 @@ class DetailBahanBakuController extends Controller
     {
         $bahan_baku = DB::table('detail_bahan_baku')
             ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-            ->select('detail_bahan_baku.*', DB::raw('MAX(hargaSatuan) as hargaSatuan'),DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+            ->select('detail_bahan_baku.*',DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
             ->groupBy('bahan_baku.namaBahan')
             ->get();
-        
-        // $hargaSatuan = DB::table('detail_bahan_baku')
-        //     ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-        //     ->select('detail_bahan_baku.hargaSatuan')
-        //     ->orderBy('updated_at', 'desc')
-        //     ->groupBy('bahan_baku.namaBahan')
-        //     ->get();
 
         return view('produksi.produksiBahanBaku', [
             'bahan_baku'=>$bahan_baku
@@ -40,7 +33,7 @@ class DetailBahanBakuController extends Controller
     {
         $bahan_baku = DB::table('detail_bahan_baku')
             ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-            ->select('detail_bahan_baku.*', DB::raw('MAX(hargaSatuan) as hargaSatuan'),  DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+            ->select('detail_bahan_baku.*', DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
             ->groupBy('bahan_baku.namaBahan')
             ->get();
 
@@ -111,6 +104,12 @@ class DetailBahanBakuController extends Controller
             'namaBahan' => $request->namaBahan
         ]);
 
+        if ($request->keterangan == "") {
+            $request->keterangan = "-";
+        } else {
+            $request->keterangan = $request->keterangan;
+        }
+
         foreach ($bahan_baku as $bahan){
             DetailBahanBaku::create([
                 'idBahan' => $bahan->jumlah_id + 1,
@@ -146,7 +145,7 @@ class DetailBahanBakuController extends Controller
     {
         $bahan_baku = DB::table('detail_bahan_baku')
         ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-        ->select('detail_bahan_baku.*',DB::raw('MAX(hargaSatuan) as hargaSatuan'), DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+        ->select('detail_bahan_baku.*', DB::raw('MAX(hargaSatuan) as hargaSatuan'), DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
         ->groupBy('bahan_baku.namaBahan')
         ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
         ->get();

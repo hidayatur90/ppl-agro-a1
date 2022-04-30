@@ -16,7 +16,7 @@
             </div>
             <hr>
             <div class="form-edit">
-                <form method="post" action="/bahanBaku/update/{{$p->namaBahan}}/{{ $p->kuantitas }}/{{ $p->hargaSatuan }}/{{ $p->keterangan }}">
+                <form method="post" action="/bahanBaku/update/{{$p->namaBahan}}/{{ $p->kuantitas }}/{{ $p->hargaSatuan }}/{{ $p->hargaSatuan }}">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
 
@@ -105,7 +105,7 @@
         if (kuantitas.value.length == 0 || kuantitas.value < 0){
             Swal.fire({
                 title: 'Maaf',
-                text: "Stok tidak boleh kosong.",
+                text: "Data kuantitas tidak boleh kosong.",
                 icon: 'warning',
                 showConfirmButton: false,
                 showCancelButton: true,
@@ -120,7 +120,7 @@
             if (stokBaru > 0 && stokBaru <= 99999){
                 Swal.fire({
                     title: 'Yakin?',
-                    text: "Akan menambahkan stok kopi sebanyak "+ stokBaru + " kg",
+                    text: "Ingin menambahkan jumlah " + namaBahan.value +" sebanyak "+ stokBaru + "?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#198754',
@@ -129,13 +129,18 @@
                     cancelButtonText: 'Batal'
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                        if (keterangan.value == ""){
+                            keterangan.value = "-"
+                            window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                        } else{
+                            window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                        }
                     }
                 })
             } else if (stokBaru < 0 && stokBaru <= 99999) {
                 Swal.fire({
                     title: 'Yakin?',
-                    text: "Akan mengurangi stok kopi sebanyak "+ Math.abs(stokBaru) + " kg",
+                    text: "Ingin mengurangi jumlah " + namaBahan.value +" sebanyak "+ Math.abs(stokBaru) + "?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#198754',
@@ -144,13 +149,18 @@
                     cancelButtonText: 'Batal'
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                        if (keterangan.value == ""){
+                            keterangan.value = "-"
+                            window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                        } else{
+                            window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                        }
                     }
                 })
             } else if (stokBaru == 0){
                 Swal.fire({
                     title: 'Maaf',
-                    text: "Anda belum menambah atau mengurangi stok.",
+                    text: "Anda belum mengedit kuantitas bahan baku.",
                     icon: 'warning',
                     showConfirmButton: false,
                     showCancelButton: true,
@@ -164,7 +174,7 @@
             } else {
                 Swal.fire({
                     title: 'Maaf',
-                    text: "Stok melebihi jumlah maksimum.",
+                    text: "Melebihi jumlah maksimum.",
                     icon: 'warning',
                     showConfirmButton: false,
                     showCancelButton: true,

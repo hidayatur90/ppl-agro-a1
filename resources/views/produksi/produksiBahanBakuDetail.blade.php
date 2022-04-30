@@ -35,22 +35,26 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $bahan->updated_at }}</td>
                             <td>{{ $bahan->namaBahan }}</td>
-                            <td>{{ $bahan->kuantitas }}</td>
+                            @if($bahan->kuantitas > 0)
+                                <td style="color: green">{{ $bahan->kuantitas }}</td>
+                            @elseif ($bahan->kuantitas < 0)
+                                <td style="color: red">{{ $bahan->kuantitas }}</td>
+                            @else
+                                <td style="color: black">{{ $bahan->kuantitas }}</td>
+                            @endif
                             <td>{{ $bahan->hargaSatuan }}</td>
                             <td style="width: 300px;">{{ $bahan->keterangan }}</td>
                         </tr>
                         @endforeach
                     </tbody>
-                </table>
-
-                <div class="row mb-3 justify-content-end mx-3 my-4">
-                    <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
-                        <a type="button" class="btn btn-secondary border" href="/produksiBahanBaku">
-                            Kembali
-                        </a>
-                    </div>
-                </div>
-
+                </table>       
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-end mx-3 my-4">
+            <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
+                <a type="button" class="btn btn-secondary border" href="/produksiBahanBaku">
+                    Kembali
+                </a>
             </div>
         </div>
     </div>

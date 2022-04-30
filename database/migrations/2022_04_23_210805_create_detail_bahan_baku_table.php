@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('hargaSatuan');
             $table->bigInteger("type_id")->default(2);
             $table->timestamps();
-            $table->text('keterangan')->nullable();
+            $table->text('keterangan')->nullable()->default('-');
         });
     }
 
