@@ -91,10 +91,10 @@ class DetailBahanBakuController extends Controller
     public function storeBahanBaku(Request $request)
     {
         $this->validate($request,[
-    		'namaBahan' => 'required|string|unique:bahan_baku,namaBahan',
+    		'namaBahan' => 'required|string',
     		'kuantitas' => 'integer',
     		'hargaSatuan' => 'integer'],[
-                'unique' => 'Bahan Baku '. $request->namaBahan .' sudah ada. Silahkan edit melalui menu Edit',
+                // 'unique' => 'Bahan Baku '. $request->namaBahan .' sudah ada. Silahkan edit melalui menu Edit',
             ]
         );
 
@@ -106,7 +106,7 @@ class DetailBahanBakuController extends Controller
 
         foreach ($bahan_baku as $bahan){
             DetailBahanBaku::create([
-                'idBahan' => $bahan->jumlah_id + 1,
+                // 'idBahan' => $bahan->jumlah_id + 1,
                 'kuantitas' => $request->kuantitas,
                 'hargaSatuan' => $request->hargaSatuan,
                 'keterangan' => $request->keterangan 
@@ -135,9 +135,17 @@ class DetailBahanBakuController extends Controller
      * @param  \App\Models\DetailBahanBaku  $detailBahanBaku
      * @return \Illuminate\Http\Response
      */
-    public function edit(DetailBahanBaku $detailBahanBaku)
+    public function editBahanBaku($namaBahan)
     {
-        //
+        $bahan_baku = DB::table('detail_bahan_baku')
+        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+        ->select('detail_bahan_baku.*', DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+        ->groupBy('bahan_baku.namaBahan')
+        ->get();
+
+        return view('produksi.produksiBahanBakuEdit', [
+            'bahan_baku'=>$bahan_baku
+    ]);
     }
 
     /**
