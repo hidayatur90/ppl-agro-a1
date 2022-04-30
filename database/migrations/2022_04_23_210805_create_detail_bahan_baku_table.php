@@ -18,7 +18,6 @@ return new class extends Migration
             $table->bigInteger('idBahan')->unsigned();
             $table->integer('kuantitas');
             $table->bigInteger('hargaSatuan');
-            // $table->bigInteger('total');
             $table->bigInteger("type_id")->default(2);
             $table->timestamps();
             $table->text('keterangan')->nullable();
