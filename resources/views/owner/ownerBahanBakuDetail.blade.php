@@ -45,7 +45,7 @@
 
                 <div class="row mb-3 justify-content-end mx-3 my-4">
                     <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
-                        <a type="button" class="btn btn-secondary border" href="/produksiBahanBaku">
+                        <a type="button" class="btn btn-secondary border" href="/ownerBahanBaku">
                             Kembali
                         </a>
                     </div>
