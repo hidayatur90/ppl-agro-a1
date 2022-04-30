@@ -37,7 +37,7 @@
                     <div class="row mb-3">
                         <label for="kuantitas" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" max="99999" name="kuantitas" id="kuantitas" placeholder="Kuantitas" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->total_stok_bahan }}"/>
+                            <input type="number" class="form-control" min="0" name="kuantitas" id="kuantitas" placeholder="Kuantitas" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->total_stok_bahan }}"/>
                             @if($errors->has('kuantitas'))
                             <div class="text-danger">
                                 {{ $errors->first('kuantitas')}}
@@ -50,7 +50,7 @@
                     <div class="row mb-3">
                         <label for="hargaSatuan" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga Satuan</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" step="1000" name="hargaSatuan" id="hargaSatuan" placeholder="Harga Satuan" autocomplete="off" required oninvalid="this.setCustomValidity('Harga satuan harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->hargaSatuan }}"/>
+                            <input type="number" class="form-control" min="0" name="hargaSatuan" id="hargaSatuan" placeholder="Harga Satuan" autocomplete="off" required oninvalid="this.setCustomValidity('Harga satuan harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->hargaSatuan }}"/>
                             @if($errors->has('hargaSatuan'))
                             <div class="text-danger">
                                 {{ $errors->first('hargaSatuan')}}
@@ -117,7 +117,7 @@
                 }
             })
         } else{
-            if (stokBaru > 0 && stokBaru <= 99999){
+            if (stokBaru > 0 ){
                 Swal.fire({
                     title: 'Yakin?',
                     text: "Ingin menambahkan jumlah " + namaBahan.value +" sebanyak "+ stokBaru + "?",
@@ -137,7 +137,7 @@
                         }
                     }
                 })
-            } else if (stokBaru < 0 && stokBaru <= 99999) {
+            } else if (stokBaru < 0 ) {
                 Swal.fire({
                     title: 'Yakin?',
                     text: "Ingin mengurangi jumlah " + namaBahan.value +" sebanyak "+ Math.abs(stokBaru) + "?",

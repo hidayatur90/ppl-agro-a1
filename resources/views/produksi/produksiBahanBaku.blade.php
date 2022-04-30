@@ -15,7 +15,7 @@
                 <strong>Data Bahan Baku</strong> 
             </div>
             <div class="card-body">
-                <a href="/bahanBaku/tambah" class="btn btn-success mb-3">Tambah Bahan Baku</a>
+                <a href="/bahanBaku/tambah" class="btn btn-success mb-3">Tambah Bahan Baru</a>
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
