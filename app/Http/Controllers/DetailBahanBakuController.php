@@ -157,7 +157,29 @@ class DetailBahanBakuController extends Controller
      */
     public function update(Request $request, DetailBahanBaku $detailBahanBaku)
     {
-        //
+        $this->validate($request,[
+            'idBahan',
+            'kuantitas' => 'integer',
+            'idKategori'
+        ]);
+
+        $bahan_baku = DB::table('detail_bahan_baku')
+        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+        ->select('detail_bahan_baku.*', DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+        ->groupBy('bahan_baku.namaBahan')
+        ->get();
+
+        foreach ($bahan_baku as $bahan){
+            DetailBahanBaku::create([
+                'idBahan' => $bahan->jumlah_id + 1,
+                'kuantitas' => $request->kuantitas,
+                'hargaSatuan' => $request->hargaSatuan,
+                'keterangan' => $request->keterangan 
+            ]);
+
+            Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#198754');
+            return redirect("/StockKopi/detail/$bahan->namaBahan");
+        }
     }
 
     /**
