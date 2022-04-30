@@ -101,6 +101,8 @@ class DetailProdukController extends Controller
         return view('kedai.KedaiStockKopiDetail', [
             'produk'=>$produk
         ]);
+        
+        
     }
 
     /**
