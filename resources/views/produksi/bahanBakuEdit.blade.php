@@ -9,22 +9,22 @@
         }
     </style>
     <main>
-        @foreach ($bahan_baku as $bahan)
+        @foreach ($bahan_baku as $p)
         <div class="container-fluid px-4 py-4">
             <div class="header">
-                <h4><strong>Edit Data Stok</strong></h4>
+                <h4><strong>Edit Data Produk</strong></h4>
             </div>
             <hr>
             <div class="form-edit">
-                <form method="post" action="/bahanBaku/update/{{$bahan->namaBahan}}">
+                <form method="post" action="/bahanBaku/update/{{$p->namaBahan}}/{{ $p->kuantitas }}/{{ $p->hargaSatuan }}/{{ $p->keterangan }}">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
 
-                    {{-- Nama Bahan baku --}}
+                    {{-- Nama Bahan --}}
                     <div class="row mb-3">
-                        <label for="namaProduk" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama Bahan</strong></label>
+                        <label for="namaBahan" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama Produk</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="text" id="namaBahan" readonly="readonly" class="form-control" name="namaBahan" placeholder="Nama Bahan" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')" value="{{ $bahan->namaBahan }}"/>
+                            <input type="text" id="namaBahan" readonly="readonly" class="form-control" name="namaBahan" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')" value="{{ $p->namaBahan }}"/>
                             @if($errors->has('namaBahan'))
                             <div class="text-danger">
                                 {{ $errors->first('namaBahan')}}
@@ -33,14 +33,27 @@
                         </div>
                     </div>
 
-                    {{-- kuantitas --}}
+                    {{-- Kuantitas --}}
                     <div class="row mb-3">
-                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kuantitas</strong></label>
+                        <label for="kuantitas" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" max="99999" name="kuantitas" id="kuantitas" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $bahan->total_stok_bahan }}"/>
+                            <input type="number" class="form-control" min="0" max="99999" name="kuantitas" id="kuantitas" placeholder="Kuantitas" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->total_stok_bahan }}"/>
                             @if($errors->has('kuantitas'))
                             <div class="text-danger">
                                 {{ $errors->first('kuantitas')}}
+                            </div>
+                        @endif
+                        </div>
+                    </div>
+
+                    {{-- Harga Satuan --}}
+                    <div class="row mb-3">
+                        <label for="hargaSatuan" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga Satuan</strong></label>
+                        <div class="col-sm-8 col-md-9 col-xl-10">
+                            <input type="number" class="form-control" min="0" step="1000" name="hargaSatuan" id="hargaSatuan" placeholder="Harga Satuan" autocomplete="off" required oninvalid="this.setCustomValidity('Harga satuan harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->hargaSatuan }}"/>
+                            @if($errors->has('hargaSatuan'))
+                            <div class="text-danger">
+                                {{ $errors->first('hargaSatuan')}}
                             </div>
                         @endif
                         </div>
@@ -56,8 +69,8 @@
                     
                     <div class="row mb-3 justify-content-end mx-3 my-4">
                         <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
-                            <a type="submit" id="edit" class="btn btn-success mx-3" stokLama="{{ $bahan->total_stok_bahan }}">{{ __('Simpan') }}</a>
-                            <a type="button" class="btn btn-secondary border" href="/produksiBahanBaku/detail/{{ $bahan->total_stok_bahan}}">
+                            <a type="submit" id="edit" class="btn btn-success mx-3" stokLama="{{ $p->total_stok_bahan }}">{{ __('Simpan') }}</a>
+                            <a type="button" class="btn btn-secondary border" href="/produksiBahanBaku">
                                 Batal
                             </a>
                         </div>
@@ -83,6 +96,7 @@
 <script>
     var kuantitas = document.getElementById("kuantitas");
     var namaBahan = document.getElementById("namaBahan");
+    var keterangan = document.getElementById("keterangan");
 
     $('#edit').click(function(){
         var stokLama = $(this).attr('stokLama');
@@ -99,7 +113,7 @@
                 cancelButtonText: 'OK',
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location = "/bahanBaku/edit/"+namaBahan.value+
+                    window.location = "/bahanBaku/edit/"+namaBahan.value;
                 }
             })
         } else{
@@ -115,7 +129,7 @@
                     cancelButtonText: 'Batal'
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/bahanBaku/update/"+namaBahan.value+kuantitas.value;
+                        window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
                     }
                 })
             } else if (stokBaru < 0 && stokBaru <= 99999) {
@@ -130,7 +144,7 @@
                     cancelButtonText: 'Batal'
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/bahanBaku/update/"+namaBahan.value+kuantitas.value;
+                        window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
                     }
                 })
             } else if (stokBaru == 0){
@@ -144,7 +158,7 @@
                     cancelButtonText: 'OK',
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/bahanBaku/edit/"+namaBahan.value
+                        window.location = "/bahanBaku/edit/"+namaBahan.value;
                     }
                 })
             } else {
@@ -158,7 +172,7 @@
                     cancelButtonText: 'OK',
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/bahanBaku/edit/"+namaBahan.value
+                        window.location = "/bahanBaku/edit/"+namaBahan.value;
                     }
                 })
             }

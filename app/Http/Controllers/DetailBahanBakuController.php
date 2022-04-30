@@ -19,10 +19,17 @@ class DetailBahanBakuController extends Controller
     public function indexProduksiBahanBaku()
     {
         $bahan_baku = DB::table('detail_bahan_baku')
-        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-        ->select('detail_bahan_baku.*', DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
-        ->groupBy('bahan_baku.namaBahan')
-        ->get();
+            ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+            ->select('detail_bahan_baku.*', DB::raw('MAX(hargaSatuan) as hargaSatuan'),DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+            ->groupBy('bahan_baku.namaBahan')
+            ->get();
+        
+        // $hargaSatuan = DB::table('detail_bahan_baku')
+        //     ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+        //     ->select('detail_bahan_baku.hargaSatuan')
+        //     ->orderBy('updated_at', 'desc')
+        //     ->groupBy('bahan_baku.namaBahan')
+        //     ->get();
 
         return view('produksi.produksiBahanBaku', [
             'bahan_baku'=>$bahan_baku
@@ -32,10 +39,10 @@ class DetailBahanBakuController extends Controller
     public function indexOwnerBahanBaku()
     {
         $bahan_baku = DB::table('detail_bahan_baku')
-        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-        ->select('detail_bahan_baku.*', DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
-        ->groupBy('bahan_baku.namaBahan')
-        ->get();
+            ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+            ->select('detail_bahan_baku.*', DB::raw('MAX(hargaSatuan) as hargaSatuan'),  DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+            ->groupBy('bahan_baku.namaBahan')
+            ->get();
 
         return view('owner.ownerBahanBaku', [
             'bahan_baku'=>$bahan_baku
@@ -45,10 +52,10 @@ class DetailBahanBakuController extends Controller
     public function indexProduksiBahanBakuDetail($namaBahan)
     {
         $bahan_baku = DB::table('detail_bahan_baku')
-        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-        ->select('detail_bahan_baku.*', 'bahan_baku.namaBahan as namaBahan')
-        ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
-        ->get();
+            ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+            ->select('detail_bahan_baku.*', 'bahan_baku.namaBahan as namaBahan')
+            ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
+            ->get();
 
         return view('produksi.produksiBahanBakuDetail', [
             'bahan_baku'=>$bahan_baku
@@ -58,10 +65,10 @@ class DetailBahanBakuController extends Controller
     public function indexOwnerBahanBakuDetail($namaBahan)
     {
         $bahan_baku = DB::table('detail_bahan_baku')
-        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-        ->select('detail_bahan_baku.*', 'bahan_baku.namaBahan as namaBahan')
-        ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
-        ->get();
+            ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+            ->select('detail_bahan_baku.*', 'bahan_baku.namaBahan as namaBahan')
+            ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
+            ->get();
 
         return view('owner.ownerBahanBakuDetail', [
             'bahan_baku'=>$bahan_baku
@@ -139,8 +146,9 @@ class DetailBahanBakuController extends Controller
     {
         $bahan_baku = DB::table('detail_bahan_baku')
         ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-        ->select('detail_bahan_baku.*', DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+        ->select('detail_bahan_baku.*',DB::raw('MAX(hargaSatuan) as hargaSatuan'), DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
         ->groupBy('bahan_baku.namaBahan')
+        ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
         ->get();
 
         return view('produksi.BahanBakuEdit', [
@@ -155,33 +163,32 @@ class DetailBahanBakuController extends Controller
      * @param  \App\Models\DetailBahanBaku  $detailBahanBaku
      * @return \Illuminate\Http\Response
      */
-    public function updateBahanBaku($namaBahan, $kuantitas, Request $request)
+    public function updateBahanBaku($namaBahan, $kuantitas, $hargaSatuan, $keterangan, Request $request)
     {
         $this->validate($request,[
-    		'namaBahan' => 'required|string|unique:bahan_baku,namaBahan',
+            'idBahan',
     		'kuantitas' => 'integer',
-    		'hargaSatuan' => 'integer'],[
-                'unique' => 'Bahan Baku '. $request->namaBahan .' sudah ada. Silahkan edit melalui menu Edit',
-            ]
+    		'hargaSatuan' => 'integer']
         );
 
         $bahan_baku = DB::table('detail_bahan_baku')
-        ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
-        ->select('detail_bahan_baku.*', 'bahan_baku.namaBahan as namaBahan')
-        ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
-        ->get();
+            ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+            ->select('detail_bahan_baku.*', 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+            ->where('bahan_baku.namaBahan', '=',  ['namaBahan' => $namaBahan])
+            ->groupBy('bahan_baku.namaBahan')
+            ->get();
 
         foreach ($bahan_baku as $bahan){
             DetailBahanBaku::create([
-                'idBahan' => $bahan->jumlah_id + 1,
-                'kuantitas' => $request->kuantitas,
-                'hargaSatuan' => $request->hargaSatuan,
+                'idBahan' => $bahan->idBahan,
+                'kuantitas' => $request->kuantitas - $bahan->total_stok_bahan,
+                'hargaSatuan' => $request->hargaSatuan, 
                 'keterangan' => $request->keterangan 
             ]);
-        }
 
-        Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
-        return redirect('/produksiBahanBaku');
+            Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#198754');
+            return redirect("/produksiBahanBaku");
+        }
 
     }
 

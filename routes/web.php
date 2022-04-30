@@ -103,4 +103,4 @@ Route::get('/ownerBahanBaku/detail/{namaProduk}', [DetailBahanBakuController::cl
 Route::get('/bahanBaku/tambah', [DetailBahanBakuController::class, 'createBahanBaku']);
 Route::patch('/bahanBaku/store', [DetailBahanBakuController::class, 'storeBahanBaku']);
 Route::get('/bahanBaku/edit/{namaBahan}', [DetailBahanBakuController::class, 'editBahanBaku']);
-Route::get('/bahanBaku/update/{namaBahan}{kuantitas}', [DetailBahanBakuController::class, 'updateBahanBaku']);
+Route::get('/bahanBaku/update/{namaBahan}/{kuantitas}/{hargaSatuan}/{keterangan}', [DetailBahanBakuController::class, 'updateBahanBaku']);
