@@ -12,7 +12,7 @@
         @foreach ($bahan_baku as $p)
         <div class="container-fluid px-4 py-4">
             <div class="header">
-                <h4><strong>Edit Data Produk</strong></h4>
+                <h4><strong>Edit Data Bahan Baku</strong></h4>
             </div>
             <hr>
             <div class="form-edit">
@@ -24,7 +24,7 @@
                     <div class="row mb-3">
                         <label for="namaBahan" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama Produk</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="text" id="namaBahan" readonly="readonly" class="form-control" name="namaBahan" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')" value="{{ $p->namaBahan }}"/>
+                            <input type="text" id="namaBahan" readonly="readonly" class="form-control" name="namaBahan" placeholder="Nama Bahan Baku" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')" value="{{ $p->namaBahan }}"/>
                             @if($errors->has('namaBahan'))
                             <div class="text-danger">
                                 {{ $errors->first('namaBahan')}}
@@ -35,7 +35,7 @@
 
                     {{-- Kuantitas --}}
                     <div class="row mb-3">
-                        <label for="kuantitas" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
+                        <label for="kuantitas" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kuantitas</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
                             <input type="number" class="form-control" min="0" name="kuantitas" id="kuantitas" placeholder="Kuantitas" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->total_stok_bahan }}"/>
                             @if($errors->has('kuantitas'))
@@ -50,7 +50,7 @@
                     <div class="row mb-3">
                         <label for="hargaSatuan" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga Satuan</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" name="hargaSatuan" id="hargaSatuan" placeholder="Harga Satuan" autocomplete="off" required oninvalid="this.setCustomValidity('Harga satuan harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->hargaSatuan }}"/>
+                            <input type="number" class="form-control" min="0" step="1000" name="hargaSatuan" id="hargaSatuan" placeholder="Harga Satuan" autocomplete="off" required oninvalid="this.setCustomValidity('Harga satuan harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->hargaSatuan }}"/>
                             @if($errors->has('hargaSatuan'))
                             <div class="text-danger">
                                 {{ $errors->first('hargaSatuan')}}
@@ -118,60 +118,92 @@
                 }
             })
         } else if (hargaSatuan.value.length == 0 || hargaSatuan.value < 0){
-                Swal.fire({
-                    title: 'Maaf',
-                    text: "Data harga satuan tidak boleh kosong.",
-                    icon: 'warning',
-                    showConfirmButton: false,
-                    showCancelButton: true,
-                    cancelButtonColor: '#ffc107',
-                    cancelButtonText: 'OK',
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "/bahanBaku/edit/"+hargaSatuan.value;
-                    }
+            Swal.fire({
+                title: 'Maaf',
+                text: "Data harga satuan tidak boleh kosong.",
+                icon: 'warning',
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonColor: '#ffc107',
+                cancelButtonText: 'OK',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/bahanBaku/edit/"+hargaSatuan.value;
+                }
             })          
         } else{
             if (stokBaru > 0 ){
-                Swal.fire({
-                    title: 'Yakin?',
-                    text: "Ingin menambahkan jumlah " + namaBahan.value +" sebanyak "+ stokBaru + "?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#198754',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yakin',
-                    cancelButtonText: 'Batal'
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        if (keterangan.value == ""){
-                            keterangan.value = "-"
-                            window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
-                        } else{
-                            window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                if (hargaSatuan.value.length >= 11 || hargaSatuan.value.length < 3){
+                    Swal.fire({
+                        title: 'Maaf',
+                        text: "Cek kembali harga satuan yang anda inputkan.",
+                        icon: 'warning',
+                        showConfirmButton: false,
+                        showCancelButton: true,
+                        cancelButtonColor: '#ffc107',
+                        cancelButtonText: 'OK',
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "/bahanBaku/edit/"+hargaSatuan.value;
                         }
-                    }
-                })
+                    }) 
+                } else {
+                    Swal.fire({
+                        title: 'Yakin?',
+                        text: "Ingin menambahkan jumlah " + namaBahan.value +" sebanyak "+ stokBaru + "?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#198754',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yakin',
+                        cancelButtonText: 'Batal'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            if (keterangan.value == ""){
+                                keterangan.value = "-"
+                                window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                            } else{
+                                window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                            }
+                        }
+                    })
+                }
             } else if (stokBaru < 0 ) {
-                Swal.fire({
-                    title: 'Yakin?',
-                    text: "Ingin mengurangi jumlah " + namaBahan.value +" sebanyak "+ Math.abs(stokBaru) + "?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#198754',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yakin',
-                    cancelButtonText: 'Batal'
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        if (keterangan.value == ""){
-                            keterangan.value = "-"
-                            window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
-                        } else{
-                            window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                if (hargaSatuan.value.length >= 11 || hargaSatuan.value.length < 3){
+                    Swal.fire({
+                        title: 'Maaf',
+                        text: "Cek kembali harga satuan yang anda inputkan.",
+                        icon: 'warning',
+                        showConfirmButton: false,
+                        showCancelButton: true,
+                        cancelButtonColor: '#ffc107',
+                        cancelButtonText: 'OK',
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "/bahanBaku/edit/"+hargaSatuan.value;
                         }
-                    }
-                })
+                    }) 
+                } else {
+                    Swal.fire({
+                        title: 'Yakin?',
+                        text: "Ingin mengurangi jumlah " + namaBahan.value +" sebanyak "+ Math.abs(stokBaru) + "?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#198754',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yakin',
+                        cancelButtonText: 'Batal'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            if (keterangan.value == ""){
+                                keterangan.value = "-"
+                                window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                            } else{
+                                window.location = "/bahanBaku/update/"+namaBahan.value+"/"+kuantitas.value+"/"+hargaSatuan.value+"/"+keterangan.value;
+                            }
+                        }
+                    })  
+                }
             } else if (stokBaru == 0){
                 Swal.fire({
                     title: 'Maaf',
@@ -186,7 +218,7 @@
                         window.location = "/bahanBaku/edit/"+namaBahan.value;
                     }
                 })
-            } else {
+            } else{
                 Swal.fire({
                     title: 'Maaf',
                     text: "Melebihi jumlah maksimum.",
