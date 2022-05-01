@@ -132,7 +132,7 @@
                 }
             })          
         } else{
-            if (stokBaru > 0 ){
+            if (stokBaru > 0 && stokBaru <= 99999 ){
                 if (hargaSatuan.value.length >= 11 || hargaSatuan.value.length < 3){
                     Swal.fire({
                         title: 'Maaf',
@@ -168,7 +168,7 @@
                         }
                     })
                 }
-            } else if (stokBaru < 0 ) {
+            } else if (stokBaru < 0 && stokBaru <= 99999 ) {
                 if (hargaSatuan.value.length >= 11 || hargaSatuan.value.length < 3){
                     Swal.fire({
                         title: 'Maaf',
@@ -221,7 +221,7 @@
             } else{
                 Swal.fire({
                     title: 'Maaf',
-                    text: "Melebihi jumlah maksimum.",
+                    text: "Kuantitas bahan baku melebihi jumlah maksimum.",
                     icon: 'warning',
                     showConfirmButton: false,
                     showCancelButton: true,
