@@ -35,7 +35,13 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $bahan->updated_at }}</td>
                             <td>{{ $bahan->namaBahan }}</td>
-                            <td>{{ $bahan->kuantitas }}</td>
+                            @if($bahan->kuantitas > 0)
+                                <td style="color: green">{{ $bahan->kuantitas }}</td>
+                            @elseif ($bahan->kuantitas < 0)
+                                <td style="color: red">{{ $bahan->kuantitas }}</td>
+                            @else
+                                <td style="color: black">{{ $bahan->kuantitas }}</td>
+                            @endif
                             <td>{{ $bahan->hargaSatuan }}</td>
                             <td style="width: 300px;">{{ $bahan->keterangan }}</td>
                         </tr>

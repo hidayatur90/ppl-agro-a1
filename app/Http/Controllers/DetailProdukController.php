@@ -242,4 +242,27 @@ class DetailProdukController extends Controller
     {
         //
     }
+
+    // Forcast
+    public function indexForcastBijiKopi() {
+        $produk = DB::table('detail_produk')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M') as bulan"), DB::raw('SUM(jumlahStok) as total_stok'))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M')"))
+            ->orderBy('created_at','asc')
+            ->get();
+
+        $mounth = [];
+        $stok = [];
+
+        foreach ($produk as $p) {
+            $mounth[] = $p->bulan;
+            $stok[] = $p->total_stok;
+        }
+
+        $mounth_in_dashboard = array_slice($mounth, -5);
+        $stok_in_dashboard = array_slice($stok, -5);
+        
+        return view('owner.home', compact('mounth_in_dashboard', 'stok_in_dashboard', 'mounth', 'stok'));
+    }
+
 }

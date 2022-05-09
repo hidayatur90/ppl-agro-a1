@@ -22,7 +22,11 @@
                             <h1 class="text-white">BronkCoffee</h1>
                         </div>
                         <div class="col-lg-6 align-self-baseline">
-                            <p class="text-white mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+                            <p class="text-white mb-5">Rodicord (Bronkcoffee Prediction And Record) adalah sebuah sistem informasi
+                                berbasis website akan pencatatan dan olah data stok, produksi, dan penjualan kopi. Dengan menggunakan sistem ini, diharap dapat mempermudah mitra dalam mengetahui
+                                penyimpanan data stok, produksi, dan penjualan kopi. Selain untuk melakukan pencatatan dan
+                                olah data, sistem ini juga berfungsi untuk memprediksi jumlah permintaan pasar dan jumlah
+                                stok biji kopi.</p>
                         </div>
                         <div class="btn">
                             <a type="button" class="btn btn-success mx-3" href="/login">Login</a>
@@ -38,7 +42,14 @@
                     <div class="col-lg-8 text-center">
                         <h2 class="text-white mt-0">Rodicord</h2>
                         <hr class="divider divider-light" />
-                        <p class="text-white-80 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        <p class="text-white-80 mb-3">Sistem ini ditujukan untuk mitra kami yang memiliki permasalahan
+                            dalam pencatatan dan olah data stok, produksi, dan penjualan kopi dengan cara
+                            manual. Sehingga target pengguna sistem ini adalah Mitra sendiri (Owner
+                            Bronkcoffee), dan karyawan-karyawan mitra. Yang mana diharapkan
+                            penerapan sistem ini akan mempermudah karyawan-karyawan mitra dalam hal
+                            pencatatan dan olah data stok, produksi, dan penjualan kopi. Serta
+                            mempermudah mitra juga untuk memantau rekap data penjualan, pengeluaran,
+                            dan pemasukan.</p>
                     </div>
                 </div>
             </div>

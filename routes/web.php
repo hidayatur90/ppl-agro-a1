@@ -104,3 +104,7 @@ Route::get('/bahanBaku/tambah', [DetailBahanBakuController::class, 'createBahanB
 Route::patch('/bahanBaku/store', [DetailBahanBakuController::class, 'storeBahanBaku']);
 Route::get('/bahanBaku/edit/{namaBahan}', [DetailBahanBakuController::class, 'editBahanBaku']);
 Route::get('/bahanBaku/update/{namaBahan}/{kuantitas}/{hargaSatuan}/{keterangan}', [DetailBahanBakuController::class, 'updateBahanBaku']);
+
+// Forcast
+// Route::get('home', [DetailBahanBakuController::class, 'indexForcast']);
+Route::get('/home', [DetailProdukController::class, 'indexForcastBijiKopi'])->name('home');

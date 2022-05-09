@@ -201,4 +201,27 @@ class DetailBahanBakuController extends Controller
     {
         //
     }
+
+    // Forcast
+    public function indexForcast() {
+        $bahan_baku = DB::table('detail_bahan_baku')
+        ->select(DB::raw("DATE_FORMAT(created_at, '%M %Y') as bulan"), DB::raw('SUM(kuantitas) as total_kuantitas'), DB::raw('SUM(hargaSatuan) as total_harga'))
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M %Y')"))
+        ->orderBy('created_at','asc')
+        ->get();
+
+        $mounth = [];
+        $price = [];
+
+        foreach ($bahan_baku as $bahan) {
+            $mounth[] = $bahan->bulan;
+            $price[] = $bahan->total_harga;
+        }
+
+        $mounth_in_dashboard = array_slice($mounth, -5);
+        $price_in_dashboard = array_slice($price, -5);
+
+        return view('owner.home', compact('mounth_in_dashboard', 'price_in_dashboard', 'mounth', 'price'));
+    }
+
 }

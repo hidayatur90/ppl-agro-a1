@@ -34,6 +34,8 @@
                             <td>{{ $bahan->namaBahan }}</td>
                             @if($bahan->total_stok_bahan >= 5)
                                 <td style="color: green">{{ $bahan->total_stok_bahan }}</td>
+                            @elseif($bahan->total_stok_bahan == 0)
+                                <td style="color: red">{{ $bahan->total_stok_bahan }} (Habis)</td>
                             @else
                                 <td style="color: red">{{ $bahan->total_stok_bahan }} (Hampir Habis)</td>
                             @endif
