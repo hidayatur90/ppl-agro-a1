@@ -28,7 +28,8 @@
                         <thead>
                             <tr>
                                 <th><strong>Kategori</strong></th>
-                                <th><strong>Stok (Kg)</strong></th>
+                                <th><strong>Stok (kg)</strong></th>
+                                <th><strong>harga (100 gram)</strong></th>
                                 <th><strong>Aksi</strong></th>
                             </tr>
                         </thead>
@@ -41,6 +42,7 @@
                                 @else
                                     <td style="color: red">{{ $p->total_stok }}</td>
                                 @endif
+                                <td>{{ $p->hargaPer100Gram }}</td>
                                 <td>
                                     <a href="/stockKopi/edit/{{ $p->namaProduk }}/{{ $p->kategori }}" class="btn btn-warning my-2">Edit Stok</a>
                                 </td>

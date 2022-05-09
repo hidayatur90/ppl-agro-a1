@@ -145,12 +145,14 @@ class DetailProdukController extends Controller
             DetailProduk::create([
                 'idProduk' => $p->jumlah_id + 1,
                 'idKategori' => 1,
-                'jumlahStok' => $request->jumlahStokBiji
+                'jumlahStok' => $request->jumlahStokBiji,
+                'hargaPer100Gram' => $request->hargaPer100GramBiji
             ]);
             DetailProduk::create([
                 'idProduk' => $p->jumlah_id + 1,
                 'idKategori' => 2,
-                'jumlahStok' => $request->jumlahStokBubuk
+                'jumlahStok' => $request->jumlahStokBubuk,
+                'hargaPer100Gram' => $request->hargaPer100GramBubuk
             ]);
         }
 

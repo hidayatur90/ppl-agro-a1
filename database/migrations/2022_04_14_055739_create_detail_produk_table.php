@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger("idKategori")->unsigned();
             $table->bigInteger("type_id")->default(2);
             $table->smallInteger("jumlahStok");
+            $table->bigInteger("hargaPer100Gram");
             $table->timestamps();
         });
     }

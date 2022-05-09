@@ -187,6 +187,70 @@ class DatabaseSeeder extends Seeder
         //     'jumlahStok'=>50
         // ]);
 
+        // Detail Produk
+        DetailProduk::create([
+            'idProduk'=>1,
+            'idKategori'=>1,
+            'jumlahStok'=>25,
+            'hargaPer100Gram'=>25000
+        ]);
+        DetailProduk::create([
+            'idProduk'=>2,
+            'idKategori'=>1,
+            'jumlahStok'=>12,
+            'hargaPer100Gram'=>27000
+        ]);
+        DetailProduk::create([
+            'idProduk'=>3,
+            'idKategori'=>1,
+            'jumlahStok'=>30,
+            'hargaPer100Gram'=>29000
+        ]);
+        DetailProduk::create([
+            'idProduk'=>4,
+            'idKategori'=>1,
+            'jumlahStok'=>20,
+            'hargaPer100Gram'=>31000
+        ]);
+        DetailProduk::create([
+            'idProduk'=>5,
+            'idKategori'=>1,
+            'jumlahStok'=>15,
+            'hargaPer100Gram'=>28000
+        ]);
+
+        DetailProduk::create([
+            'idProduk'=>1,
+            'idKategori'=>2,
+            'jumlahStok'=>20,
+            'hargaPer100Gram'=>35000
+        ]);
+        DetailProduk::create([
+            'idProduk'=>2,
+            'idKategori'=>2,
+            'jumlahStok'=>10,
+            'hargaPer100Gram'=>37000
+        ]);
+        DetailProduk::create([
+            'idProduk'=>3,
+            'idKategori'=>2,
+            'jumlahStok'=>25,
+            'hargaPer100Gram'=>39000
+        ]);
+        DetailProduk::create([
+            'idProduk'=>4,
+            'idKategori'=>2,
+            'jumlahStok'=>5,
+            'hargaPer100Gram'=>41000
+        ]);
+        DetailProduk::create([
+            'idProduk'=>5,
+            'idKategori'=>2,
+            'jumlahStok'=>50,
+            'hargaPer100Gram'=>38000
+        ]);
+
+
         // // Bahan Baku
         // BahanBaku::create([
         //     'namaBahan'=>'Gula Pasir'

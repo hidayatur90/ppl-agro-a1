@@ -58,6 +58,19 @@
                         @endif
                         </div>
                     </div>
+
+                    {{-- Harga Per100Gram --}}
+                    <div class="row mb-3">
+                        <label for="hargaPer100GramBiji" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga (100 Gram)</strong></label>
+                        <div class="col-sm-8 col-md-9 col-xl-10">
+                            <input type="number" class="form-control" min="0"  name="hargaPer100GramBiji" id="hargaPer100GramBiji" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')"/>
+                            @if($errors->has('hargaPer100GramBiji'))
+                            <div class="text-danger">
+                                {{ $errors->first('hargaPer100GramBiji')}}
+                            </div>
+                        @endif
+                        </div>
+                    </div>
                     
                     {{-- Kategori --}}
                     <div class="row mb-3">
@@ -77,6 +90,19 @@
                             @if($errors->has('jumlahStokBubuk'))
                             <div class="text-danger">
                                 {{ $errors->first('jumlahStokBubuk')}}
+                            </div>
+                        @endif
+                        </div>
+                    </div>
+
+                    {{-- Harga Per100Gram --}}
+                    <div class="row mb-3">
+                        <label for="hargaPer100GramBubuk" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga (100 Gram)</strong></label>
+                        <div class="col-sm-8 col-md-9 col-xl-10">
+                            <input type="number" class="form-control" min="0"  name="hargaPer100GramBubuk" id="hargaPer100GramBubuk" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')"/>
+                            @if($errors->has('hargaPer100GramBubuk'))
+                            <div class="text-danger">
+                                {{ $errors->first('hargaPer100GramBubuk')}}
                             </div>
                         @endif
                         </div>
