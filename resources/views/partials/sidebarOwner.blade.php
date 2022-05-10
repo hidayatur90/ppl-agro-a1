@@ -41,10 +41,6 @@
                         <div class="sb-nav-link-icon"><i class="fa fa-cubes"></i></i></div>
                         Bahan Baku
                     </a>
-                    <a class="nav-link" href="/prediksiPasar">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Penjualan
-                    </a>
                     <a class="nav-link" href="/rekapitulasi">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Keuangan
