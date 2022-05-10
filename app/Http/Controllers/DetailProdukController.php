@@ -236,9 +236,9 @@ class DetailProdukController extends Controller
             ->groupBy('kategori.kategori')
             ->get();
             
-        $price_biji = DB::select('SELECT DISTINCT(hargaPer100Gram) as last_price from detail_produk where idKategori=1');
-        $price_bubuk = DB::select('SELECT DISTINCT(hargaPer100Gram) as last_price from detail_produk where idKategori=2');
-
+        $price_biji = DB::select('SELECT DISTINCT(detail_produk.hargaPer100Gram) as last_price from detail_produk join produk on produk.id=detail_produk.idProduk where idKategori=1 and namaProduk="'.$namaProduk.'"');
+        $price_bubuk = DB::select('SELECT DISTINCT(detail_produk.hargaPer100Gram) as last_price from detail_produk join produk on produk.id=detail_produk.idProduk where idKategori=2 and namaProduk="'.$namaProduk.'"');
+        
         $last_price_biji = [];
         $last_price_bubuk = [];
         
