@@ -1,3 +1,3 @@
 <h3>Rodicord</h3>
 <p>Rodicord (Bronkcoffee Prediction And Record) adalah sebuah sistem informasi berbasis website akan pencatatan dan olah data stok, produksi, dan penjualan kopi. Dengan menggunakan sistem ini, diharap dapat mempermudah mitra dalam mengetahui penyimpanan data stok, produksi, dan penjualan kopi. Selain untuk melakukan pencatatan dan olah data, sistem ini juga berfungsi untuk memprediksi jumlah permintaan pasar dan jumlah stok biji kopi.</p>
-<img src="img/landing-page.png"></img>
+<img src="\img\landing-page.png"></img>
