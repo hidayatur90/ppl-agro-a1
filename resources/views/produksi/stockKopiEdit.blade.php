@@ -16,7 +16,7 @@
             </div>
             <hr>
             <div class="form-edit">
-                <form method="post" action="/stockKopi/update/{{$p->namaProduk}}/{{ $p->kategori }}">
+                <form method="post" action="/stockKopi/update/{{$p->namaProduk}}/{{ $p->kategori }}/{{ $p->jumlahStok }}/{{ $p->hargaPer100Gram }}">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
 
@@ -37,10 +37,33 @@
                     <div class="row mb-3">
                         <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Jumlah Stok</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" max="99999" name="jumlahStok" id="jumlahStok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->total_stok }}"/>
+                            <input type="number" class="form-control" min="0" step="100" max="99999" name="jumlahStok" id="jumlahStok" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->total_stok }}"/>
                             @if($errors->has('jumlahStok'))
                             <div class="text-danger">
                                 {{ $errors->first('jumlahStok')}}
+                            </div>
+                        @endif
+                        </div>
+                    </div>
+
+                    {{-- Harga Per100Gram --}}
+                    <div class="row mb-3">
+                        <label for="hargaPer100Gram" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga (100 Gram)</strong></label>
+                        <div class="col-sm-8 col-md-9 col-xl-10">
+
+                            @if($p->kategori=='Biji Kopi')
+                                @foreach ($last_price_biji as $lp)
+                                    <input type="number" class="form-control" min="0" step="1000" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                @endforeach
+                            @else
+                                @foreach ($last_price_bubuk as $lp)    
+                                    <input type="number" class="form-control" min="0" step="1000" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                @endforeach
+                            @endif
+
+                            @if($errors->has('hargaPer100Gram'))
+                            <div class="text-danger">
+                                {{ $errors->first('hargaPer100Gram')}}
                             </div>
                         @endif
                         </div>
@@ -51,9 +74,6 @@
                         <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kategori</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
                             <input type="text" id="kategori" readonly="readonly" class="form-control" name="kategori" placeholder="Kategori " autocomplete="off" required oninvalid="this.setCustomValidity('Kategori tidak boleh Kosong')" oninput="this.setCustomValidity('')" value="{{ $p->kategori }}"/>
-                            {{-- <select name="kategori" readonly="readonly" class="form-control" placeholder="Kategori Kopi">
-                                <option value="{{ $p->kategori }}">{{ $p->kategori }}</option>
-                            </select> --}}
                                 @if($errors->has('kategori'))
                                 <div class="text-danger">
                                     {{ $errors->first('kategori')}}
@@ -92,6 +112,8 @@
     var jumlahStok = document.getElementById("jumlahStok");
     var namaProduk = document.getElementById("namaProduk");
     var kategori = document.getElementById("kategori");
+    var jumlahStok = document.getElementById("jumlahStok");
+    var hargaPer100Gram = document.getElementById("hargaPer100Gram");
 
     $('#edit').click(function(){
         var stokLama = $(this).attr('stokLama');
@@ -108,40 +130,86 @@
                 cancelButtonText: 'OK',
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value
+                    window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value;
+                }
+            })
+        } else if (hargaPer100Gram.value.length == 0 || hargaPer100Gram.value < 0){
+            Swal.fire({
+                title: 'Maaf',
+                text: "Data harga tidak boleh kosong.",
+                icon: 'warning',
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonColor: '#ffc107',
+                cancelButtonText: 'OK',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value;
                 }
             })
         } else{
             if (stokBaru > 0 && stokBaru <= 99999){
-                Swal.fire({
-                    title: 'Yakin?',
-                    text: "Akan menambahkan stok kopi sebanyak "+ stokBaru + " kg",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#198754',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yakin',
-                    cancelButtonText: 'Batal'
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "/stockKopi/update/"+namaProduk.value+"/"+kategori.value+"/"+jumlahStok.value;
-                    }
-                })
+                if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3){
+                    Swal.fire({
+                        title: 'Maaf',
+                        text: "Cek kembali harga yang anda inputkan.",
+                        icon: 'warning',
+                        showConfirmButton: false,
+                        showCancelButton: true,
+                        cancelButtonColor: '#ffc107',
+                        cancelButtonText: 'OK',
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value;
+                        }
+                    }) 
+                } else{
+                    Swal.fire({
+                        title: 'Yakin?',
+                        text: "Akan menambahkan stok kopi sebanyak "+ stokBaru + " gram",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#198754',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yakin',
+                        cancelButtonText: 'Batal'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "/stockKopi/update/"+namaProduk.value+"/"+kategori.value+"/"+jumlahStok.value+"/"+hargaPer100Gram.value;
+                        }
+                    })
+                }
             } else if (stokBaru < 0 && stokBaru <= 99999) {
-                Swal.fire({
-                    title: 'Yakin?',
-                    text: "Akan mengurangi stok kopi sebanyak "+ Math.abs(stokBaru) + " kg",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#198754',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yakin',
-                    cancelButtonText: 'Batal'
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "/stockKopi/update/"+namaProduk.value+"/"+kategori.value+"/"+jumlahStok.value;
-                    }
-                })
+                if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3){
+                    Swal.fire({
+                        title: 'Maaf',
+                        text: "Cek kembali harga yang anda inputkan.",
+                        icon: 'warning',
+                        showConfirmButton: false,
+                        showCancelButton: true,
+                        cancelButtonColor: '#ffc107',
+                        cancelButtonText: 'OK',
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value;
+                        }
+                    }) 
+                }else{
+                    Swal.fire({
+                        title: 'Yakin?',
+                        text: "Akan mengurangi stok kopi sebanyak "+ Math.abs(stokBaru) + " gram",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#198754',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yakin',
+                        cancelButtonText: 'Batal'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "/stockKopi/update/"+namaProduk.value+"/"+kategori.value+"/"+jumlahStok.value+"/"+hargaPer100Gram.value;
+                        }
+                    })
+                }
             } else if (stokBaru == 0){
                 Swal.fire({
                     title: 'Maaf',

@@ -93,7 +93,7 @@ Route::get('/produksiStockKopi/detail/{namaProduk}', [DetailProdukController::cl
 Route::get('/ownerStockKopi/detail/{namaProduk}', [DetailProdukController::class, 'indexOwnerStockKopiDetail']);
 Route::get('/kedaiStockKopi/detail/{namaProduk}', [DetailProdukController::class, 'indexKedaiStockKopiDetail']);
 Route::get('/stockKopi/edit/{namaProduk}/{kategori}', [DetailProdukController::class, 'editStockKopi']);
-Route::get('/stockKopi/update/{namaProduk}/{kategori}/{jumlahStok}', [DetailProdukController::class, 'updateStockKopi']);
+Route::get('/stockKopi/update/{namaProduk}/{kategori}/{jumlahStok}/{hargaPer100Gram}', [DetailProdukController::class, 'updateStockKopi']);
 
 // Produksi Bahan Baku
 Route::get('/produksiBahanBaku', [DetailBahanBakuController::class, 'indexProduksiBahanBaku']);

@@ -28,18 +28,30 @@
                         <thead>
                             <tr>
                                 <th><strong>Kategori</strong></th>
-                                <th><strong>Stok (Kg)</strong></th>
+                                <th><strong>Stok (gram)</strong></th>
+                                <th><strong>Harga 100gram(Rp)</strong></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($produk as $p)
                             <tr>
                                 <td>{{ $p->kategori }}</td>
-                                @if($p->jumlahStok >= 15)
+                                @if($p->total_stok >= 150)
                                     <td style="color: green">{{ $p->total_stok }}</td>
                                 @else
                                     <td style="color: red">{{ $p->total_stok }}</td>
                                 @endif
+
+                                @if($p->kategori=='Biji Kopi')
+                                    @foreach ($last_price_biji as $lp)
+                                        <td>{{ $lp }}</td>
+                                    @endforeach
+                                @else
+                                    @foreach ($last_price_bubuk as $lp)
+                                        <td>{{ $lp }}</td>
+                                    @endforeach
+                                @endif
+
                             </tr>
                             @endforeach
                         </tbody>

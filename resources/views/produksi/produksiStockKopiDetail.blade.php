@@ -28,8 +28,8 @@
                         <thead>
                             <tr>
                                 <th><strong>Kategori</strong></th>
-                                <th><strong>Stok (kg)</strong></th>
-                                <th><strong>harga (100 gram)</strong></th>
+                                <th><strong>Stok (gram)</strong></th>
+                                <th><strong>Harga 100gram(Rp)</strong></th>
                                 <th><strong>Aksi</strong></th>
                             </tr>
                         </thead>
@@ -37,12 +37,21 @@
                             @foreach($produk as $p)
                             <tr>
                                 <td>{{ $p->kategori }}</td>
-                                @if($p->total_stok >= 15)
+                                @if($p->total_stok >= 150)
                                     <td style="color: green">{{ $p->total_stok }}</td>
                                 @else
                                     <td style="color: red">{{ $p->total_stok }}</td>
                                 @endif
-                                <td>{{ $p->hargaPer100Gram }}</td>
+
+                                @if($p->kategori=='Biji Kopi')
+                                    @foreach ($last_price_biji as $lp)
+                                        <td>{{ $lp }}</td>
+                                    @endforeach
+                                @else
+                                    @foreach ($last_price_bubuk as $lp)
+                                        <td>{{ $lp }}</td>
+                                    @endforeach
+                                @endif
                                 <td>
                                     <a href="/stockKopi/edit/{{ $p->namaProduk }}/{{ $p->kategori }}" class="btn btn-warning my-2">Edit Stok</a>
                                 </td>

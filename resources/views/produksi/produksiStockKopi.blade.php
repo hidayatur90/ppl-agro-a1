@@ -21,7 +21,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nama Produk</th>
-                            <th>Total Stok (Kg)</th>
+                            <th>Total Stok (gram)</th>
                             <th>Tanggal Input</th>
                             <th>Terakhir Update</th>
                             <th>Aksi</th>
@@ -32,7 +32,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $p->namaProduk }}</td>
-                            @if($p->total_stok >= 30)
+                            @if($p->total_stok >= 300)
                                 <td style="color: green">{{ $p->total_stok }}</td>
                             @else
                                 <td style="color: red">{{ $p->total_stok }} (Hampir Habis)</td>

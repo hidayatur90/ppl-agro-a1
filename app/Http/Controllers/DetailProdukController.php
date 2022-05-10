@@ -19,25 +19,26 @@ class DetailProdukController extends Controller
     public function indexProduksiStockKopi()
     {
         $produk = DB::table('detail_produk')
-                ->join('produk', 'idProduk', '=', 'produk.id')
-                ->join('kategori', 'idKategori', '=', 'kategori.id')
-                ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
-                ->groupBy('produk.namaProduk')
-                ->get();
-        
-        return view('produksi.produksiStockKopi', [
-            'produk'=>$produk
-        ]);
+            ->join('produk', 'idProduk', '=', 'produk.id')
+            ->join('kategori', 'idKategori', '=', 'kategori.id')
+            ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
+            ->groupBy('produk.namaProduk')
+            ->get();
+
+        return view('produksi.produksiStockKopi', 
+        ['produk'=>$produk
+    ]);
     }
+
     public function indexOwnerStockKopi()
     {
         $produk = DB::table('detail_produk')
-                ->join('produk', 'idProduk', '=', 'produk.id')
-                ->join('kategori', 'idKategori', '=', 'kategori.id')
-                ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
-                ->groupBy('produk.namaProduk')
-                ->get();
-        
+            ->join('produk', 'idProduk', '=', 'produk.id')
+            ->join('kategori', 'idKategori', '=', 'kategori.id')
+            ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
+            ->groupBy('produk.namaProduk')
+            ->get();
+    
         return view('owner.ownerStockKopi', [
             'produk'=>$produk
         ]);
@@ -45,11 +46,11 @@ class DetailProdukController extends Controller
     public function indexKedaiStockKopi()
     {
         $produk = DB::table('detail_produk')
-                ->join('produk', 'idProduk', '=', 'produk.id')
-                ->join('kategori', 'idKategori', '=', 'kategori.id')
-                ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
-                ->groupBy('produk.namaProduk')
-                ->get();
+            ->join('produk', 'idProduk', '=', 'produk.id')
+            ->join('kategori', 'idKategori', '=', 'kategori.id')
+            ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
+            ->groupBy('produk.namaProduk')
+            ->get();
         
         return view('kedai.kedaiStockKopi', [
             'produk'=>$produk
@@ -65,10 +66,25 @@ class DetailProdukController extends Controller
             ->where('produk.namaProduk', '=',  ['namaProduk' => $namaProduk])
             ->groupBy('kategori.kategori')
             ->get();
+        
+        $price_biji = DB::select('SELECT DISTINCT(detail_produk.hargaPer100Gram) as last_price from detail_produk join produk on produk.id=detail_produk.idProduk where idKategori=1 and namaProduk="'.$namaProduk.'"');
+        $price_bubuk = DB::select('SELECT DISTINCT(detail_produk.hargaPer100Gram) as last_price from detail_produk join produk on produk.id=detail_produk.idProduk where idKategori=2 and namaProduk="'.$namaProduk.'"');
 
-        return view('produksi.produksiStockKopiDetail', [
-            'produk'=>$produk
-        ]);
+        $last_price_biji = [];
+        $last_price_bubuk = [];
+        
+        foreach ($price_biji as $p) {
+            $last_price_biji[] = $p->last_price;
+        }
+
+        foreach ($price_bubuk as $p) {
+            $last_price_bubuk[] = $p->last_price;
+        }
+
+        $last_price_biji = array_slice($last_price_biji, -1);
+        $last_price_bubuk = array_slice($last_price_bubuk, -1);
+
+        return view('produksi.produksiStockKopiDetail', ['produk'=>$produk], compact('last_price_biji', 'last_price_bubuk'));
     }
 
     public function indexOwnerStockKopiDetail($namaProduk)
@@ -81,10 +97,25 @@ class DetailProdukController extends Controller
             ->where('produk.namaProduk', '=',  ['namaProduk' => $namaProduk])
             ->groupBy('kategori.kategori')
             ->get();
+    
+        $price_biji = DB::select('SELECT DISTINCT(detail_produk.hargaPer100Gram) as last_price from detail_produk join produk on produk.id=detail_produk.idProduk where idKategori=1 and namaProduk="'.$namaProduk.'"');
+        $price_bubuk = DB::select('SELECT DISTINCT(detail_produk.hargaPer100Gram) as last_price from detail_produk join produk on produk.id=detail_produk.idProduk where idKategori=2 and namaProduk="'.$namaProduk.'"');
+    
+        $last_price_biji = [];
+        $last_price_bubuk = [];
         
-        return view('owner.ownerStockKopiDetail', [
-            'produk'=>$produk
-        ]);
+        foreach ($price_biji as $p) {
+            $last_price_biji[] = $p->last_price;
+        }
+
+        foreach ($price_bubuk as $p) {
+            $last_price_bubuk[] = $p->last_price;
+        }
+
+        $last_price_biji = array_slice($last_price_biji, -1);
+        $last_price_bubuk = array_slice($last_price_bubuk, -1);
+
+        return view('owner.ownerStockKopiDetail', ['produk'=>$produk], compact('last_price_biji', 'last_price_bubuk'));
     }
     
     public function indexKedaiStockKopiDetail($namaProduk)
@@ -97,12 +128,25 @@ class DetailProdukController extends Controller
             ->where('produk.namaProduk', '=',  ['namaProduk' => $namaProduk])
             ->groupBy('kategori.kategori')
             ->get();
+    
+        $price_biji = DB::select('SELECT DISTINCT(detail_produk.hargaPer100Gram) as last_price from detail_produk join produk on produk.id=detail_produk.idProduk where idKategori=1 and namaProduk="'.$namaProduk.'"');
+        $price_bubuk = DB::select('SELECT DISTINCT(detail_produk.hargaPer100Gram) as last_price from detail_produk join produk on produk.id=detail_produk.idProduk where idKategori=2 and namaProduk="'.$namaProduk.'"');
         
-        return view('kedai.KedaiStockKopiDetail', [
-            'produk'=>$produk
-        ]);
+        $last_price_biji = [];
+        $last_price_bubuk = [];
         
-        
+        foreach ($price_biji as $p) {
+            $last_price_biji[] = $p->last_price;
+        }
+
+        foreach ($price_bubuk as $p) {
+            $last_price_bubuk[] = $p->last_price;
+        }
+
+        $last_price_biji = array_slice($last_price_biji, -1);
+        $last_price_bubuk = array_slice($last_price_bubuk, -1);
+
+        return view('kedai.KedaiStockKopiDetail', ['produk'=>$produk], compact('last_price_biji', 'last_price_bubuk'));
     }
 
     /**
@@ -191,8 +235,25 @@ class DetailProdukController extends Controller
             ])
             ->groupBy('kategori.kategori')
             ->get();
+            
+        $price_biji = DB::select('SELECT DISTINCT(hargaPer100Gram) as last_price from detail_produk where idKategori=1');
+        $price_bubuk = DB::select('SELECT DISTINCT(hargaPer100Gram) as last_price from detail_produk where idKategori=2');
 
-        return view('produksi.stockKopiEdit', ['produk' => $produk]);
+        $last_price_biji = [];
+        $last_price_bubuk = [];
+        
+        foreach ($price_biji as $p) {
+            $last_price_biji[] = $p->last_price;
+        }
+
+        foreach ($price_bubuk as $p) {
+            $last_price_bubuk[] = $p->last_price;
+        }
+
+        $last_price_biji = array_slice($last_price_biji, -1);
+        $last_price_bubuk = array_slice($last_price_bubuk, -1);
+
+        return view('produksi.stockKopiEdit', ['produk' => $produk], compact('last_price_biji', 'last_price_bubuk'));
     }
 
     /**
@@ -203,18 +264,19 @@ class DetailProdukController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function updateStockKopi($namaProduk, $kategori, $jumlahStok, Request $request)
+    public function updateStockKopi($namaProduk, $kategori, $jumlahStok, $hargaPer100Gram, Request $request)
     {
         $this->validate($request,[
             'idProduk',
             'jumlahStok' => 'integer',
-            'idKategori'
+            'idKategori',
+            'hargaPer100Gram' => 'integer'
         ]);
         
         $produk = DB::table('detail_produk')
             ->join('produk', 'idProduk', '=', 'produk.id')
             ->join('kategori', 'idKategori', '=', 'kategori.id')
-            ->select('detail_produk.*', 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
+            ->select('detail_produk.*','detail_produk.hargaPer100Gram as hargaPer100Gram', 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
             ->where([
                 ['produk.namaProduk', '=',  ['namaProduk' => $namaProduk]],
                 ['kategori.kategori', '=',  ['kategori' => $kategori]]
@@ -226,7 +288,8 @@ class DetailProdukController extends Controller
             DetailProduk::create([
                 'idProduk' => $p->idProduk,
                 'jumlahStok' => $jumlahStok - $p->total_stok,
-                'idKategori' => $p->idKategori
+                'idKategori' => $p->idKategori,
+                'hargaPer100Gram' => $request->hargaPer100Gram
             ]);
 
             Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#198754');
@@ -263,7 +326,7 @@ class DetailProdukController extends Controller
 
         $mounth_in_dashboard = array_slice($mounth, -5);
         $stok_in_dashboard = array_slice($stok, -5);
-        
+
         return view('owner.home', compact('mounth_in_dashboard', 'stok_in_dashboard', 'mounth', 'stok'));
     }
 

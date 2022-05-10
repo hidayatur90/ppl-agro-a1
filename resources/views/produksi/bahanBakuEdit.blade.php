@@ -16,7 +16,7 @@
             </div>
             <hr>
             <div class="form-edit">
-                <form method="post" action="/bahanBaku/update/{{$p->namaBahan}}/{{ $p->kuantitas }}/{{ $p->hargaSatuan }}/{{ $p->hargaSatuan }}">
+                <form method="post" action="/bahanBaku/update/{{$p->namaBahan}}/{{ $p->kuantitas }}/{{ $p->hargaSatuan }}/{{ $p->keterangan }}">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
 

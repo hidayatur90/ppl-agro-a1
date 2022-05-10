@@ -108,22 +108,22 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        // // Produk
-        // Produk::create([
-        //     'namaProduk'=>'Espresso'
-        // ]);
-        // Produk::create([
-        //     'namaProduk'=>'Long Black'
-        // ]);
-        // Produk::create([
-        //     'namaProduk'=>'Americano'
-        // ]);
-        // Produk::create([
-        //     'namaProduk'=>'Cappuchino'
-        // ]);
-        // Produk::create([
-        //     'namaProduk'=>'Latte'
-        // ]);
+        // Produk
+        Produk::create([
+            'namaProduk'=>'Espresso'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Long Black'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Americano'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Cappuchino'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Latte'
+        ]);
 
         // Kategori
         Kategori::create([
@@ -134,122 +134,68 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        // // Detail Produk
-        // DetailProduk::create([
-        //     'idProduk'=>1,
-        //     'idKategori'=>1,
-        //     'jumlahStok'=>25
-        // ]);
-        // DetailProduk::create([
-        //     'idProduk'=>2,
-        //     'idKategori'=>1,
-        //     'jumlahStok'=>12
-        // ]);
-        // DetailProduk::create([
-        //     'idProduk'=>3,
-        //     'idKategori'=>1,
-        //     'jumlahStok'=>30
-        // ]);
-        // DetailProduk::create([
-        //     'idProduk'=>4,
-        //     'idKategori'=>1,
-        //     'jumlahStok'=>20
-        // ]);
-        // DetailProduk::create([
-        //     'idProduk'=>5,
-        //     'idKategori'=>1,
-        //     'jumlahStok'=>15
-        // ]);
-
-        // DetailProduk::create([
-        //     'idProduk'=>1,
-        //     'idKategori'=>2,
-        //     'jumlahStok'=>20
-        // ]);
-        // DetailProduk::create([
-        //     'idProduk'=>2,
-        //     'idKategori'=>2,
-        //     'jumlahStok'=>10
-        // ]);
-        // DetailProduk::create([
-        //     'idProduk'=>3,
-        //     'idKategori'=>2,
-        //     'jumlahStok'=>25
-        // ]);
-        // DetailProduk::create([
-        //     'idProduk'=>4,
-        //     'idKategori'=>2,
-        //     'jumlahStok'=>5
-        // ]);
-        // DetailProduk::create([
-        //     'idProduk'=>5,
-        //     'idKategori'=>2,
-        //     'jumlahStok'=>50
-        // ]);
-
         // Detail Produk
         DetailProduk::create([
             'idProduk'=>1,
             'idKategori'=>1,
-            'jumlahStok'=>25,
-            'hargaPer100Gram'=>25000
+            'jumlahStok'=>250,
+            'hargaPer100Gram'=>10000
         ]);
         DetailProduk::create([
             'idProduk'=>2,
             'idKategori'=>1,
-            'jumlahStok'=>12,
-            'hargaPer100Gram'=>27000
+            'jumlahStok'=>1200,
+            'hargaPer100Gram'=>5000
         ]);
         DetailProduk::create([
             'idProduk'=>3,
             'idKategori'=>1,
-            'jumlahStok'=>30,
-            'hargaPer100Gram'=>29000
+            'jumlahStok'=>300,
+            'hargaPer100Gram'=>32000
         ]);
         DetailProduk::create([
             'idProduk'=>4,
             'idKategori'=>1,
-            'jumlahStok'=>20,
-            'hargaPer100Gram'=>31000
+            'jumlahStok'=>200,
+            'hargaPer100Gram'=>15000
         ]);
         DetailProduk::create([
             'idProduk'=>5,
             'idKategori'=>1,
-            'jumlahStok'=>15,
-            'hargaPer100Gram'=>28000
+            'jumlahStok'=>1500,
+            'hargaPer100Gram'=>25000
         ]);
 
         DetailProduk::create([
             'idProduk'=>1,
             'idKategori'=>2,
-            'jumlahStok'=>20,
-            'hargaPer100Gram'=>35000
+            'jumlahStok'=>200,
+            'hargaPer100Gram'=>15000
         ]);
         DetailProduk::create([
             'idProduk'=>2,
             'idKategori'=>2,
-            'jumlahStok'=>10,
-            'hargaPer100Gram'=>37000
+            'jumlahStok'=>1000,
+            'hargaPer100Gram'=>7000
         ]);
         DetailProduk::create([
             'idProduk'=>3,
             'idKategori'=>2,
-            'jumlahStok'=>25,
-            'hargaPer100Gram'=>39000
+            'jumlahStok'=>250,
+            'hargaPer100Gram'=>15000
         ]);
         DetailProduk::create([
             'idProduk'=>4,
             'idKategori'=>2,
-            'jumlahStok'=>5,
-            'hargaPer100Gram'=>41000
+            'jumlahStok'=>500,
+            'hargaPer100Gram'=>12000
         ]);
         DetailProduk::create([
             'idProduk'=>5,
             'idKategori'=>2,
-            'jumlahStok'=>50,
-            'hargaPer100Gram'=>38000
+            'jumlahStok'=>500,
+            'hargaPer100Gram'=>13000
         ]);
-
 
         // // Bahan Baku
         // BahanBaku::create([
