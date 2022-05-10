@@ -48,16 +48,16 @@
 
                     {{-- Harga Per100Gram --}}
                     <div class="row mb-3">
-                        <label for="hargaPer100Gram" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga (100 Gram)</strong></label>
+                        <label for="hargaPer100Gram" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga gr (Rp)</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
 
                             @if($p->kategori=='Biji Kopi')
                                 @foreach ($last_price_biji as $lp)
-                                    <input type="number" class="form-control" min="0" step="1000" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                    <input type="number" class="form-control" min="0" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
                                 @endforeach
                             @else
                                 @foreach ($last_price_bubuk as $lp)    
-                                    <input type="number" class="form-control" min="0" step="1000" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                    <input type="number" class="form-control" min="0" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
                                 @endforeach
                             @endif
 

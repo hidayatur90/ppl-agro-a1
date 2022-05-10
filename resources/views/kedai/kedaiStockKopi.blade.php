@@ -20,7 +20,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nama Produk</th>
-                            <th>Total Stok (gram)</th>
+                            <th>Total Stok (gr)</th>
                             <th>Tanggal Input</th>
                             <th>Terakhir Update</th>
                             <th>Aksi</th>

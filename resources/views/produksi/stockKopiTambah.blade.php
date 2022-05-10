@@ -48,9 +48,9 @@
 
                     {{-- Stok --}}
                     <div class="row mb-3">
-                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Stok</strong></label>
+                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Stok (gr)</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" step="100" name="jumlahStokBiji" id="jumlahStokBiji" placeholder="Stok Biji Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
+                            <input type="number" class="form-control" min="0" name="jumlahStokBiji" id="jumlahStokBiji" placeholder="Stok Biji Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
                             @if($errors->has('jumlahStokBiji'))
                             <div class="text-danger">
                                 {{ $errors->first('jumlahStokBiji')}}
@@ -61,9 +61,9 @@
 
                     {{-- Harga Per100Gram --}}
                     <div class="row mb-3">
-                        <label for="hargaPer100GramBiji" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga (100 Gram)</strong></label>
+                        <label for="hargaPer100GramBiji" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga 100gr (Rp)</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" step="1000" name="hargaPer100GramBiji" id="hargaPer100GramBiji" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')"/>
+                            <input type="number" class="form-control" min="0" name="hargaPer100GramBiji" id="hargaPer100GramBiji" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')"/>
                             @if($errors->has('hargaPer100GramBiji'))
                             <div class="text-danger">
                                 {{ $errors->first('hargaPer100GramBiji')}}
@@ -84,9 +84,9 @@
 
                     {{-- Stok --}}
                     <div class="row mb-3">
-                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Stok</strong></label>
+                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Stok (gr)</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" step="100" name="jumlahStokBubuk" id="jumlahStokBubuk" placeholder="Stok Kopi Bubuk" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
+                            <input type="number" class="form-control" min="0" name="jumlahStokBubuk" id="jumlahStokBubuk" placeholder="Stok Kopi Bubuk" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')"/>
                             @if($errors->has('jumlahStokBubuk'))
                             <div class="text-danger">
                                 {{ $errors->first('jumlahStokBubuk')}}
@@ -97,9 +97,9 @@
 
                     {{-- Harga Per100Gram --}}
                     <div class="row mb-3">
-                        <label for="hargaPer100GramBubuk" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga (100 Gram)</strong></label>
+                        <label for="hargaPer100GramBubuk" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga 100gr (Rp)</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" step="1000" name="hargaPer100GramBubuk" id="hargaPer100GramBubuk" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')"/>
+                            <input type="number" class="form-control" min="0" name="hargaPer100GramBubuk" id="hargaPer100GramBubuk" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')"/>
                             @if($errors->has('hargaPer100GramBubuk'))
                             <div class="text-danger">
                                 {{ $errors->first('hargaPer100GramBubuk')}}

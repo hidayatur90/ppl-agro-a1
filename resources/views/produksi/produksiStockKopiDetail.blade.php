@@ -28,8 +28,8 @@
                         <thead>
                             <tr>
                                 <th><strong>Kategori</strong></th>
-                                <th><strong>Stok (gram)</strong></th>
-                                <th><strong>Harga 100gram(Rp)</strong></th>
+                                <th><strong>Stok (gr)</strong></th>
+                                <th><strong>Harga 100gr (Rp)</strong></th>
                                 <th><strong>Aksi</strong></th>
                             </tr>
                         </thead>
