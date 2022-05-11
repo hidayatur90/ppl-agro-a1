@@ -63,11 +63,7 @@
                     <div class="row mb-3">
                         <label for="hargaPer100GramBiji" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga 100gr (Rp)</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-<<<<<<< HEAD
-                            <input type="number" class="form-control" min="0" step="500" name="hargaPer100GramBiji" id="hargaPer100GramBiji" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')"/>
-=======
-                            <input type="number" class="form-control" min="1000" name="hargaPer100GramBiji" id="hargaPer100GramBiji" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')"/>
->>>>>>> b7acb075918592e7a44af6a1fbe213a127dc5f9b
+                            <input type="number" class="form-control" min="500" step="500" name="hargaPer100GramBiji" id="hargaPer100GramBiji" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')"/>
                             @if($errors->has('hargaPer100GramBiji'))
                             <div class="text-danger">
                                 {{ $errors->first('hargaPer100GramBiji')}}
@@ -103,7 +99,7 @@
                     <div class="row mb-3">
                         <label for="hargaPer100GramBubuk" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga 100gr (Rp)</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="1000" name="hargaPer100GramBubuk" id="hargaPer100GramBubuk" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')"/>
+                            <input type="number" class="form-control" min="500" step="500" name="hargaPer100GramBubuk" id="hargaPer100GramBubuk" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')"/>
                             @if($errors->has('hargaPer100GramBubuk'))
                             <div class="text-danger">
                                 {{ $errors->first('hargaPer100GramBubuk')}}
