@@ -53,11 +53,11 @@
 
                             @if($p->kategori=='Biji Kopi')
                                 @foreach ($last_price_biji as $lp)
-                                    <input type="number" class="form-control" min="0" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                    <input type="number" class="form-control" min="1000" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
                                 @endforeach
                             @else
                                 @foreach ($last_price_bubuk as $lp)    
-                                    <input type="number" class="form-control" min="0" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                    <input type="number" class="form-control" min="1000" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
                                 @endforeach
                             @endif
 
@@ -148,11 +148,11 @@
                 }
             })
         } else{
-            if (stokBaru > 0 && stokBaru <= 99999){
+            if (stokBaru > 1000 && stokBaru <= 99999){
                 if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3){
                     Swal.fire({
                         title: 'Maaf',
-                        text: "Cek kembali harga yang anda inputkan.",
+                        text: "Cek kembali harga yang anda inputkan dan inputan minimal 1000",
                         icon: 'warning',
                         showConfirmButton: false,
                         showCancelButton: true,
@@ -179,11 +179,11 @@
                         }
                     })
                 }
-            } else if (stokBaru < 0 && stokBaru <= 99999) {
+            } else if (stokBaru < 1000 && stokBaru <= 99999) {
                 if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3){
                     Swal.fire({
                         title: 'Maaf',
-                        text: "Cek kembali harga yang anda inputkan.",
+                        text: "Cek kembali harga yang anda inputkan dan inputan minimal 1000",
                         icon: 'warning',
                         showConfirmButton: false,
                         showCancelButton: true,
