@@ -53,11 +53,11 @@
 
                             @if($p->kategori=='Biji Kopi')
                                 @foreach ($last_price_biji as $lp)
-                                    <input type="number" class="form-control" min="0" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                    <input type="number" class="form-control" min="0" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
                                 @endforeach
                             @else
                                 @foreach ($last_price_bubuk as $lp)    
-                                    <input type="number" class="form-control" min="0" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                    <input type="number" class="form-control" min="0" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Harga harus angka')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
                                 @endforeach
                             @endif
 
