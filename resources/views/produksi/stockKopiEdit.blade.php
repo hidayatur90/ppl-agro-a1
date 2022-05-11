@@ -148,11 +148,11 @@
                 }
             })
         } else{
-            if (stokBaru > 1000 && stokBaru <= 99999){
+            if (stokBaru > 500 && stokBaru <= 99999){
                 if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3){
                     Swal.fire({
                         title: 'Maaf',
-                        text: "Cek kembali harga yang anda inputkan dan inputan minimal 1000",
+                        text: "Cek kembali harga yang anda inputkan dan inputan minimal 500",
                         icon: 'warning',
                         showConfirmButton: false,
                         showCancelButton: true,
@@ -179,11 +179,11 @@
                         }
                     })
                 }
-            } else if (stokBaru < 1000 && stokBaru <= 99999) {
+            } else if (stokBaru < 500 && stokBaru <= 99999) {
                 if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3){
                     Swal.fire({
                         title: 'Maaf',
-                        text: "Cek kembali harga yang anda inputkan dan inputan minimal 1000",
+                        text: "Cek kembali harga yang anda inputkan dan inputan minimal 500",
                         icon: 'warning',
                         showConfirmButton: false,
                         showCancelButton: true,
