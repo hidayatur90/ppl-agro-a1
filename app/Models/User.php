@@ -79,4 +79,9 @@ class User extends Authenticatable
         return $this->hasMany(BahanBaku::class,'type_id','type');
     }
 
+    public function detail_penjualan()
+    {
+        return $this->hasMany(BahanBaku::class,'type_id','type');
+    }
+
 }

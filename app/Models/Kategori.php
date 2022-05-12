@@ -18,4 +18,9 @@ class Kategori extends Model
         return $this->hasMany(DetailProduk::class, 'idKategori', 'id');
     }
 
+    public function detail_penjualan()
+    {
+        return $this->hasMany(DetailProduk::class, 'idKategori', 'id');
+    }
+
 }

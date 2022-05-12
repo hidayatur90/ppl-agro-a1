@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\DetailProdukController;
 use App\Http\Controllers\DetailBahanBakuController;
+use App\Http\Controllers\DetailPenjualanController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -104,6 +105,10 @@ Route::get('/bahanBaku/tambah', [DetailBahanBakuController::class, 'createBahanB
 Route::patch('/bahanBaku/store', [DetailBahanBakuController::class, 'storeBahanBaku']);
 Route::get('/bahanBaku/edit/{namaBahan}', [DetailBahanBakuController::class, 'editBahanBaku']);
 Route::get('/bahanBaku/update/{namaBahan}/{kuantitas}/{hargaSatuan}/{keterangan}', [DetailBahanBakuController::class, 'updateBahanBaku']);
+
+// Penjualan
+Route::get('/kedaiPenjualan', [DetailPenjualanController::class, 'indexKedaiPenjualan']);
+Route::get('/penjualan/create/{namaProduk}/{kategori}', [DetailPenjualanController::class, 'createPenjualan']);
 
 // Forcast
 // Route::get('home', [DetailBahanBakuController::class, 'indexForcast']);

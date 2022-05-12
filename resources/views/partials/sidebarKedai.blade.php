@@ -23,7 +23,7 @@
                         <div class="sb-nav-link-icon"><i class="fa fa-coffee"></i></div>
                         Stock Kopi
                     </a>
-                    <a class="nav-link" href="/prediksiPasar">
+                    <a class="nav-link" href="/kedaiPenjualan">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Penjualan
                     </a>
