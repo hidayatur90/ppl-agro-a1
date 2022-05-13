@@ -11,7 +11,11 @@
         </style>
     <main>
         <div class="container-fluid px-4">
-        @include('kedai.kedaiPenjualanTambah')
+        <a href="#" onclick="showStuff('tambah', this); return false;" id="btn1" class="btn btn-secondary w-100 mt-3"><i class="bi bi-arrow-bar-down"></i> Tambah</a>
+            <span id="tambah" style="display: none;">
+            @include('kedai.kedaiPenjualanTambah')
+        </span>
+
         <div class="card mt-3">
             <div class="card-header text-start">
                 <strong>Data Penjualan Kopi</strong> 
@@ -73,6 +77,18 @@
     </div>
 
     <script>
+
+        function showStuff(tambah, btn1) {
+            document.getElementById(tambah).style.display = 'block';
+            btn1.style.display = 'none';
+        }
+
+        // function hideStuff(tambah, btn1) {
+        //     document.getElementById(tambah).style.display = 'none';
+        //     btn1.style.display;
+        //     showStuff();
+        // }
+
         var nama = document.getElementById('namaProduk');
         var kategory = document.getElementById('kategori');
         function useValue() {
