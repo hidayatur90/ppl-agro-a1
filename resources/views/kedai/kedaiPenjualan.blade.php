@@ -11,9 +11,6 @@
         </style>
     <main>
         <div class="container-fluid px-4">
-        {{-- @php
-            var_dump($data_produk)
-        @endphp --}}
         @include('kedai.kedaiPenjualanTambah')
         <div class="card mt-3">
             <div class="card-header text-start">
@@ -34,8 +31,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i = 0;
+                        @endphp
                         @foreach($data_penjualan as $data)
                         <tr>
+                            @if ($i == $id)
+                                @break
+                            @endif
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->created_at }}</td>
                             <td>{{ $data->namaProduk }}</td>
@@ -49,24 +52,18 @@
                             <td class="text-center">
                                 <a href="/penjualan/edit/{{ $data->namaProduk }}" class="btn btn-warning">Edit</a>
                             </td>
-                            @endforeach
+                            @php
+                                $i++;
+                            @endphp
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <script type="text/javascript" src=
-    "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" >
-    </script>
-    <script type="text/javascript" src=
-    "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js">
-    </script>
     <script>
-    
-        var data_penjualan = @json($data_penjualan);
-
         var nama = document.getElementById('namaProduk');
         var kategory = document.getElementById('kategori');
         function useValue() {
@@ -91,6 +88,6 @@
         document.getElementById("kuantitas").addEventListener("input", function(){
             document.getElementById("harga").value = this.value*useValue();
         });
-
     </script>
+
 @endsection

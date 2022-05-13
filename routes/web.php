@@ -107,9 +107,8 @@ Route::get('/bahanBaku/edit/{namaBahan}', [DetailBahanBakuController::class, 'ed
 Route::get('/bahanBaku/update/{namaBahan}/{kuantitas}/{hargaSatuan}/{keterangan}', [DetailBahanBakuController::class, 'updateBahanBaku']);
 
 // Penjualan
-Route::get('/kedaiPenjualan', [DetailPenjualanController::class, 'indexKedaiPenjualan']);
 Route::get('/kedaiPenjualan', [DetailPenjualanController::class, 'createPenjualan']);
-Route::patch('/penjualan/store/{namaProduk}/{kategori}', [DetailPenjualanController::class, 'storePenjualan']);
+Route::patch('/penjualan/store', [DetailPenjualanController::class, 'storePenjualan']);
 
 // Forcast
 // Route::get('home', [DetailBahanBakuController::class, 'indexForcast']);
