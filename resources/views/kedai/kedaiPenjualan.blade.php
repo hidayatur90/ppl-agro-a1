@@ -24,9 +24,9 @@
                             <th>Tanggal</th>
                             <th>Nama Produk</th>
                             <th>Kategori</th>
-                            <th>Kuantitas</th>
-                            <th>Harga Satuan</th>
-                            <th>Harga Total</th>
+                            <th>Kuantitas (gr)</th>
+                            <th>Harga 100gr (Rp)</th>
+                            <th>Harga Total (Rp)</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -44,13 +44,22 @@
                             <td>{{ $data->namaProduk }}</td>
                             <td>{{ $data->kategori }}</td>
                             <td>{{ $data->kuantitas }}</td>
-                            <td>{{ $data->harga }}</td>
-                            @php
-                                $harga_total = $data->kuantitas * $data->harga;
-                            @endphp
+                            @if($data->kategori == "Biji Kopi")
+                                @foreach ($data_harga_biji as $biji)
+                                    <td>{{ $biji->hargaBiji }}</td>
+                                    @php $harga_total = $data->kuantitas * $biji->hargaBiji /100;@endphp
+                                    @break
+                                @endforeach
+                            @else
+                                @foreach ($data_harga_bubuk as $bubuk)
+                                    <td>{{ $bubuk->hargaBubuk }}</td>
+                                    @php $harga_total = $data->kuantitas * $bubuk->hargaBubuk /100;@endphp
+                                    @break
+                                @endforeach
+                            @endif
                             <td>{{ $harga_total }}</td>
                             <td class="text-center">
-                                <a href="/penjualan/edit/{{ $data->namaProduk }}" class="btn btn-warning">Edit</a>
+                                <a href="/penjualan/edit/{{ $data->idPenjualan }}" class="btn btn-warning">Edit</a>
                             </td>
                             @php
                                 $i++;
@@ -86,7 +95,7 @@
         kategory.onblur = useValue;
     
         document.getElementById("kuantitas").addEventListener("input", function(){
-            document.getElementById("harga").value = this.value*useValue();
+            document.getElementById("harga").value = this.value*useValue()/100;
         });
     </script>
 

@@ -42,13 +42,13 @@
 
                 {{-- Kuantitas --}}
                 <div class="mb-3 col-xl-6 col-md-12">
-                    <label for="kuantitas" class="form-label">Kuantitas</label>
-                    <input name="kuantitas" type="number" min="0" class="form-control" id="kuantitas" placeholder="Jumlah Kuantitas"/>
+                    <label for="kuantitas" class="form-label">Kuantitas (gr)</label>
+                    <input name="kuantitas" type="number" min="0" step="10" class="form-control" id="kuantitas" placeholder="Jumlah Kuantitas (gr)"/>
                 </div>
 
                 {{-- Harga Total --}}
                 <div class="mb-3 col-xl-6 col-md-12">
-                    <label for="harga" class="form-label">Harga Total</label>
+                    <label for="harga" class="form-label">Harga Total (Rp)</label>
                     <input name="harga" readonly type="number" class="form-control" id="harga" placeholder="Harga Total"/>
                 </div>
 

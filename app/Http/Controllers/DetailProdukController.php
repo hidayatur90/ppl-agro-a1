@@ -149,6 +149,35 @@ class DetailProdukController extends Controller
         return view('kedai.KedaiStockKopiDetail', ['produk'=>$produk], compact('last_price_biji', 'last_price_bubuk'));
     }
 
+    public function indexKedaiStockKopiDashboard()
+    {
+        $data_penjualan = DB::table('detail_produk')
+            ->join('produk', 'idProduk', '=', 'produk.id')
+            ->join('kategori', 'idKategori', '=', 'kategori.id')
+            ->select('detail_produk.*', DB::raw('MAX(updated_at) as last_updated'), 'produk.namaProduk as namaProduk', 'kategori.kategori as kategori', DB::raw('SUM(jumlahStok) as total_stok'))
+            ->groupBy('produk.namaProduk')
+            ->get();
+        
+        $produk = DB::table('detail_produk')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M') as bulan"), DB::raw('SUM(jumlahStok) as total_stok'))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M')"))
+            ->orderBy('created_at','asc')
+            ->get();
+
+        $mounth = [];
+        $stok = [];
+
+        foreach ($produk as $p) {
+            $mounth[] = $p->bulan;
+            $stok[] = $p->total_stok;
+        }
+
+        $mounth_in_dashboard = array_slice($mounth, -5);
+        $stok_in_dashboard = array_slice($stok, -5);
+
+        return view('kedai.kedaiHome', compact('data_penjualan', 'produk', 'mounth_in_dashboard', 'stok_in_dashboard'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -224,7 +253,6 @@ class DetailProdukController extends Controller
      */
     public function editStockKopi($namaProduk, $kategori)
     {
-
         $produk = DB::table('detail_produk')
             ->join('produk', 'idProduk', '=', 'produk.id')
             ->join('kategori', 'idKategori', '=', 'kategori.id')

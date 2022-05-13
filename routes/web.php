@@ -109,6 +109,11 @@ Route::get('/bahanBaku/update/{namaBahan}/{kuantitas}/{hargaSatuan}/{keterangan}
 // Penjualan
 Route::get('/kedaiPenjualan', [DetailPenjualanController::class, 'createPenjualan']);
 Route::patch('/penjualan/store', [DetailPenjualanController::class, 'storePenjualan']);
+Route::get('/penjualan/edit/{idPenjualan}', [DetailPenjualanController::class, 'editPenjualan']);
+Route::get('/penjualan/update/{idPenjualan}', [DetailPenjualanController::class, 'updatePenjualan']);
+
+// Dashboard
+Route::get('/kedai/home', [DetailProdukController::class, 'indexKedaiStockKopiDashboard'])->name('kedai.home');
 
 // Forcast
 // Route::get('home', [DetailBahanBakuController::class, 'indexForcast']);
