@@ -68,6 +68,34 @@ class DetailBahanBakuController extends Controller
     ]);
     }
 
+    public function indexProduksiBahanBakuDashboard()
+    {
+        $bahan_baku = DB::table('detail_bahan_baku')
+            ->join('bahan_baku', 'idBahan', '=', 'bahan_baku.id')
+            ->select('detail_bahan_baku.*',DB::raw('MAX(updated_at) as last_updated'), 'bahan_baku.namaBahan as namaBahan', DB::raw('SUM(kuantitas) as total_stok_bahan'))
+            ->groupBy('bahan_baku.namaBahan')
+            ->get();
+        
+        $produk = DB::table('detail_produk')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M') as bulan"), DB::raw('SUM(jumlahStok) as total_stok'))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M')"))
+            ->orderBy('created_at','asc')
+            ->get();
+
+        $mounth = [];
+        $stok = [];
+
+        foreach ($produk as $p) {
+            $mounth[] = $p->bulan;
+            $stok[] = $p->total_stok;
+        }
+
+        $mounth_in_dashboard = array_slice($mounth, -5);
+        $stok_in_dashboard = array_slice($stok, -5);
+
+        return view('produksi.produksiHome', compact('bahan_baku', 'produk', 'mounth_in_dashboard', 'stok_in_dashboard'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

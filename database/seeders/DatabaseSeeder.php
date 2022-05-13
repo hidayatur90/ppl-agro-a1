@@ -197,105 +197,105 @@ class DatabaseSeeder extends Seeder
             'hargaPer100Gram'=>13000
         ]);
 
-        // // Bahan Baku
-        // BahanBaku::create([
-        //     'namaBahan'=>'Gula Pasir'
-        // ]);
-        // BahanBaku::create([
-        //     'namaBahan'=>'Biji Kopi Arabika'
-        // ]);
-        // BahanBaku::create([
-        //     'namaBahan'=>'Susu'
-        // ]);
-        // BahanBaku::create([
-        //     'namaBahan'=>'Cream'
-        // ]);
-        // BahanBaku::create([
-        //     'namaBahan'=>'Air'
-        // ]);
-        // BahanBaku::create([
-        //     'namaBahan'=>'Sirup Caramel'
-        // ]);
+        // Bahan Baku
+        BahanBaku::create([
+            'namaBahan'=>'Gula Pasir'
+        ]);
+        BahanBaku::create([
+            'namaBahan'=>'Biji Kopi Arabika'
+        ]);
+        BahanBaku::create([
+            'namaBahan'=>'Susu'
+        ]);
+        BahanBaku::create([
+            'namaBahan'=>'Cream'
+        ]);
+        BahanBaku::create([
+            'namaBahan'=>'Air'
+        ]);
+        BahanBaku::create([
+            'namaBahan'=>'Sirup Caramel'
+        ]);
 
-        // // Detail Bahan Baku
-        // DetailBahanBaku::create([
-        //     'idBahan'=>1,
-        //     'kuantitas'=>10,
-        //     'hargaSatuan'=>15000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>1,
-        //     'kuantitas'=>5,
-        //     'hargaSatuan'=>15000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>1,
-        //     'kuantitas'=>12,
-        //     'hargaSatuan'=>15000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>2,
-        //     'kuantitas'=>40,
-        //     'hargaSatuan'=>165000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>2,
-        //     'kuantitas'=>20,
-        //     'hargaSatuan'=>165000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>3,
-        //     'kuantitas'=>3,
-        //     'hargaSatuan'=>12000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>3,
-        //     'kuantitas'=>1,
-        //     'hargaSatuan'=>12000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>4,
-        //     'kuantitas'=>5,
-        //     'hargaSatuan'=>30000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>5,
-        //     'kuantitas'=>1,
-        //     'hargaSatuan'=>20000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>5,
-        //     'kuantitas'=>1,
-        //     'hargaSatuan'=>20000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>5,
-        //     'kuantitas'=>1,
-        //     'hargaSatuan'=>20000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>6,
-        //     'kuantitas'=>2,
-        //     'hargaSatuan'=>80000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
-        // DetailBahanBaku::create([
-        //     'idBahan'=>6,
-        //     'kuantitas'=>1,
-        //     'hargaSatuan'=>80000,
-        //     'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
-        // ]);
+        // Detail Bahan Baku
+        DetailBahanBaku::create([
+            'idBahan'=>1,
+            'kuantitas'=>10,
+            'hargaSatuan'=>15000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>1,
+            'kuantitas'=>5,
+            'hargaSatuan'=>15000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>1,
+            'kuantitas'=>12,
+            'hargaSatuan'=>15000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>2,
+            'kuantitas'=>40,
+            'hargaSatuan'=>165000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>2,
+            'kuantitas'=>20,
+            'hargaSatuan'=>165000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>3,
+            'kuantitas'=>3,
+            'hargaSatuan'=>12000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>3,
+            'kuantitas'=>1,
+            'hargaSatuan'=>12000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>4,
+            'kuantitas'=>5,
+            'hargaSatuan'=>30000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>5,
+            'kuantitas'=>1,
+            'hargaSatuan'=>20000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>5,
+            'kuantitas'=>1,
+            'hargaSatuan'=>20000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>5,
+            'kuantitas'=>1,
+            'hargaSatuan'=>20000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>6,
+            'kuantitas'=>2,
+            'hargaSatuan'=>80000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
+        DetailBahanBaku::create([
+            'idBahan'=>6,
+            'kuantitas'=>1,
+            'hargaSatuan'=>80000,
+            'keterangan'=>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolores perspiciatis porro magnam quam quaerat, illum voluptatibus delectus praesentium velit.'
+        ]);
     
     }
 }

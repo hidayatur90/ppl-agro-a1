@@ -113,8 +113,9 @@ Route::get('/penjualan/edit/{idPenjualan}', [DetailPenjualanController::class, '
 Route::get('/penjualan/update/{idPenjualan}', [DetailPenjualanController::class, 'updatePenjualan']);
 
 // Dashboard
+Route::get('/home', [DetailProdukController::class, 'indexForcastBijiKopi'])->name('home');
 Route::get('/kedai/home', [DetailProdukController::class, 'indexKedaiStockKopiDashboard'])->name('kedai.home');
+Route::get('/produksi/home', [DetailBahanBakuController::class, 'indexProduksiBahanBakuDashboard'])->name('produksi.home');
 
 // Forcast
 // Route::get('home', [DetailBahanBakuController::class, 'indexForcast']);
-Route::get('/home', [DetailProdukController::class, 'indexForcastBijiKopi'])->name('home');

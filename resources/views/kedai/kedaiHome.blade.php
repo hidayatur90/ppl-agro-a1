@@ -66,7 +66,7 @@
     
         var ctx = document.getElementById("myAreaChart");
         var myLineChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: @json($mounth_in_dashboard),
             datasets: [{
@@ -112,4 +112,5 @@
             }
         }
         });
+    </script>
 @endsection
