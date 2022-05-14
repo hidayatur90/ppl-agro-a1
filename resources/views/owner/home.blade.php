@@ -167,7 +167,7 @@
 
     var ctx = document.getElementById("myAreaChart2");
     var myLineChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
         labels: @json($mounth_in_dashboard),
         datasets: [{
@@ -188,6 +188,7 @@
     options: {
         scales: {
         xAxes: [{
+            weight:2,
             time: {
             unit: 'date'
             },

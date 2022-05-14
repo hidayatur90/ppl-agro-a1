@@ -45,7 +45,7 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Keuangan
                     </a>
-                    <a class="nav-link" href="/prediksiPasar">
+                    <a class="nav-link" href="/ownerPrediksi/{{ date("Y") }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Prediksi
                     </a>

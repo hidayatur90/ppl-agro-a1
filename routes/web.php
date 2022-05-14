@@ -9,6 +9,7 @@ use App\Http\Controllers\DetailProdukController;
 use App\Http\Controllers\DetailBahanBakuController;
 use App\Http\Controllers\DetailPenjualanController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -113,9 +114,9 @@ Route::get('/penjualan/edit/{idPenjualan}', [DetailPenjualanController::class, '
 Route::get('/penjualan/update/{idPenjualan}', [DetailPenjualanController::class, 'updatePenjualan']);
 
 // Dashboard
-Route::get('/home', [DetailProdukController::class, 'indexForcastBijiKopi'])->name('home');
+Route::get('/home', [ForecastController::class, 'indexOwnerBijiKopiDashboard'])->name('home');
 Route::get('/kedai/home', [DetailProdukController::class, 'indexKedaiStockKopiDashboard'])->name('kedai.home');
 Route::get('/produksi/home', [DetailBahanBakuController::class, 'indexProduksiBahanBakuDashboard'])->name('produksi.home');
 
 // Forcast
-// Route::get('home', [DetailBahanBakuController::class, 'indexForcast']);
+Route::get('/ownerPrediksi/{tahun}', [ForecastController::class, 'indexForcastBijiKopi']);
