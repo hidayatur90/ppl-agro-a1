@@ -32,32 +32,6 @@ class ForecastController extends Controller
         return view('owner.home', compact('mounth_in_dashboard', 'stok_in_dashboard', 'mounth', 'stok'));
     }
 
-    public function indexForcastBijiKopi($tahun) {
-        $produk = DB::table('detail_produk')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as bulan"),DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"), DB::raw('SUM(jumlahStok) as total_stok'))
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
-            ->orderBy('created_at','asc')
-            ->get();
-
-        $years = [];
-        $mounth = [];
-        $stok = [];
-        
-        foreach ($produk as $p) {
-            $years[] = $p->tahun;
-            if($p->tahun == $tahun){
-                $mounth[] = $p->bulan;
-                $stok[] = $p->total_stok;
-            }
-        }
-        
-        $yearURL = $tahun;
-        $years = array_unique($years);
-        rsort(($years));
-
-        return view('owner.ownerPrediksi', compact('years', 'yearURL', 'mounth', 'stok'));
-    }
-
     public function exponentialSmoothing($periode, $dataset)
     {
         // Adaptive Response Rate Single Exponential Smoothing
@@ -122,29 +96,143 @@ class ForecastController extends Controller
         return $final;
     }
 
-    public function result(Request $request, $id)
-    {
-        $outlet = Outlet::findOrFail($id);
-        $stock = Stock::findOrFail($request->stock_id);
-
+    public function indexForecastBijiKopi($tahun) {
         // total sales orders grouped by month
-        $totalSales = Order::selectRaw("DATE_FORMAT(orders.created_at, '%Y-%m') as periode, SUM(orders.amount) as total")
-            ->where('stock_id', $stock->id)
-            ->join('sales', 'sales.id', '=', 'orders.sale_id')
-            ->where('outlet_id', $outlet->id)
-            ->groupBy('periode')->get();
+        if($tahun=="Keseluruhan"){
+            $stok_kopi = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+    
+            // all periode of sales
+            $periode = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"))
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+        } else{
+            $stok_kopi = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+                ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
 
-        // all periode of sales
-        $periode = Sale::selectRaw("DATE_FORMAT(sales.created_at, '%Y-%m') as periode")
-            ->where('outlet_id', $outlet->id)
-            ->groupBy('periode')->get();
+            // all periode of sales
+            $periode = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"))
+                ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+        }
+
+        // check if product have sales
+        $allStok = 0;
+        $monthStok = [];
+        foreach($stok_kopi as $data) {
+            $allStok += $data->total;
+            $monthStok[] = $data->periode;
+        }
+        if($allStok <= 0) {
+            return back()->with('error', 'Produk masih belum pernah terjual!');
+        }
+        if(count($monthStok) <= 1) {
+            return back()->with('error', 'Produk minimal harus terjual dalam 2 bulan!');
+        }
+
+        // sales per month for dataset
+        $dataset = [];
+        for($i=0; $i<count($periode); $i++) {
+            for($j=0; $j<count($stok_kopi); $j++) {
+                if($periode[$i]->periode == $stok_kopi[$j]->periode){
+                    $dataset[$i] = intval($stok_kopi[$j]->total);
+                    break;
+                }else{
+                    $dataset[$i] = 0;
+                }
+            }
+        }
+        
+        // get periodes to array
+        $month = [];
+        for ($i = 0; $i <= count($periode); $i++) {
+            if ($i < count($periode)) {
+                $month[$i] = $periode[$i]->periode;
+            }
+            else {
+                $nextMonth = date('Y-m', strtotime("+1 month", strtotime(date($periode[$i-1]->periode))));
+                $month[$i] = $nextMonth;
+            }
+        }
+        
+        // result
+        $exponentialSmoothing = $this->exponentialSmoothing($periode, $dataset);
+
+        $forecast = $exponentialSmoothing['result'];
+        $last = $exponentialSmoothing['last'];
+        $mape = round($exponentialSmoothing['mape']);
+
+        // year
+        $yearsQuery = DB::table('detail_produk')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+            ->orderBy('created_at','asc')
+            ->get();
+
+        $years = [];
+        
+        foreach ($yearsQuery as $data) {
+            $years[] = $data->tahun;
+        }
+        
+        $yearURL = $tahun;
+        $years = array_unique($years);
+        rsort(($years));
+
+        return view('owner.ownerPrediksiStok', compact('stok_kopi','years', 'yearURL', 'month','dataset','forecast','last','mape'));
+    }
+
+    // Forcast Pasar
+    public function indexForecastPasar($tahun) {
+        // total sales orders grouped by month
+        if($tahun=="Keseluruhan"){
+            $totalSales = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok)*10000 as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+    
+            // all periode of sales
+            $periode = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"))
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+        } else{
+            $totalSales = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok*10000) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+                ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+
+            // all periode of sales
+            $periode = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"))
+                ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+        }
 
         // check if product have sales
         $allSales = 0;
         $monthSales = [];
         foreach($totalSales as $data) {
-            $allSales += $data['total'];
-            $monthSales[] = $data['periode'];
+            $allSales += $data->total;
+            $monthSales[] = $data->periode;
         }
         if($allSales <= 0) {
             return back()->with('error', 'Produk masih belum pernah terjual!');
@@ -157,8 +245,8 @@ class ForecastController extends Controller
         $dataset = [];
         for($i=0; $i<count($periode); $i++) {
             for($j=0; $j<count($totalSales); $j++) {
-                if($periode[$i]['periode'] == $totalSales[$j]['periode']){
-                    $dataset[$i] = intval($totalSales[$j]['total']);
+                if($periode[$i]->periode == $totalSales[$j]->periode){
+                    $dataset[$i] = intval($totalSales[$j]->total);
                     break;
                 }else{
                     $dataset[$i] = 0;
@@ -170,10 +258,10 @@ class ForecastController extends Controller
         $month = [];
         for ($i = 0; $i <= count($periode); $i++) {
             if ($i < count($periode)) {
-                $month[$i] = $periode[$i]['periode'];
+                $month[$i] = $periode[$i]->periode;
             }
             else {
-                $nextMonth = date('Y-m', strtotime("+1 month", strtotime(date($periode[$i-1]['periode']))));
+                $nextMonth = date('Y-m', strtotime("+1 month", strtotime(date($periode[$i-1]->periode))));
                 $month[$i] = $nextMonth;
             }
         }
@@ -185,8 +273,221 @@ class ForecastController extends Controller
         $last = $exponentialSmoothing['last'];
         $mape = round($exponentialSmoothing['mape']);
 
-        $ingredient = Ingredient::where('product_id', $stock->product->id)->get();
-        return view('forecast.result',compact('outlet','stock','month','dataset','forecast','last','mape','ingredient'));
-    }
+        // year
+        $yearsQuery = DB::table('detail_produk')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+            ->orderBy('created_at','asc')
+            ->get();
 
+        $years = [];
+        
+        foreach ($yearsQuery as $data) {
+            $years[] = $data->tahun;
+        }
+        
+        $yearURL = $tahun;
+        $years = array_unique($years);
+        rsort(($years));
+
+        return view('owner.ownerPrediksiPasar', compact('totalSales','years', 'yearURL', 'month','dataset','forecast','last','mape'));
+    }  
+    
+    // Forcast Pasar Kedai
+    public function indexForecastPasarKedai($tahun) {
+        // total sales orders grouped by month
+        if($tahun=="Keseluruhan"){
+            $totalSales = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok)*10000 as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+    
+            // all periode of sales
+            $periode = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"))
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+        } else{
+            $totalSales = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok*10000) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+                ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+
+            // all periode of sales
+            $periode = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"))
+                ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+        }
+
+        // check if product have sales
+        $allSales = 0;
+        $monthSales = [];
+        foreach($totalSales as $data) {
+            $allSales += $data->total;
+            $monthSales[] = $data->periode;
+        }
+        if($allSales <= 0) {
+            return back()->with('error', 'Produk masih belum pernah terjual!');
+        }
+        if(count($monthSales) <= 1) {
+            return back()->with('error', 'Produk minimal harus terjual dalam 2 bulan!');
+        }
+
+        // sales per month for dataset
+        $dataset = [];
+        for($i=0; $i<count($periode); $i++) {
+            for($j=0; $j<count($totalSales); $j++) {
+                if($periode[$i]->periode == $totalSales[$j]->periode){
+                    $dataset[$i] = intval($totalSales[$j]->total);
+                    break;
+                }else{
+                    $dataset[$i] = 0;
+                }
+            }
+        }
+        
+        // get periodes to array
+        $month = [];
+        for ($i = 0; $i <= count($periode); $i++) {
+            if ($i < count($periode)) {
+                $month[$i] = $periode[$i]->periode;
+            }
+            else {
+                $nextMonth = date('Y-m', strtotime("+1 month", strtotime(date($periode[$i-1]->periode))));
+                $month[$i] = $nextMonth;
+            }
+        }
+        
+        // result
+        $exponentialSmoothing = $this->exponentialSmoothing($periode, $dataset);
+
+        $forecast = $exponentialSmoothing['result'];
+        $last = $exponentialSmoothing['last'];
+        $mape = round($exponentialSmoothing['mape']);
+
+        // year
+        $yearsQuery = DB::table('detail_produk')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+            ->orderBy('created_at','asc')
+            ->get();
+
+        $years = [];
+        
+        foreach ($yearsQuery as $data) {
+            $years[] = $data->tahun;
+        }
+        
+        $yearURL = $tahun;
+        $years = array_unique($years);
+        rsort(($years));
+
+        return view('kedai.kedaiPrediksiPasar', compact('totalSales','years', 'yearURL', 'month','dataset','forecast','last','mape'));
+    }    
+
+    // Forecase Stok Produksi
+    public function indexForecastBijiKopiProduksi($tahun) {
+        // total sales orders grouped by month
+        if($tahun=="Keseluruhan"){
+            $stok_kopi = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+    
+            // all periode of sales
+            $periode = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"))
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+        } else{
+            $stok_kopi = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+                ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+
+            // all periode of sales
+            $periode = DB::table('detail_produk')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"))
+                ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+                ->orderBy('created_at','asc')
+                ->get();
+        }
+
+        // check if product have sales
+        $allStok = 0;
+        $monthStok = [];
+        foreach($stok_kopi as $data) {
+            $allStok += $data->total;
+            $monthStok[] = $data->periode;
+        }
+        if($allStok <= 0) {
+            return back()->with('error', 'Produk masih belum pernah terjual!');
+        }
+        if(count($monthStok) <= 1) {
+            return back()->with('error', 'Produk minimal harus terjual dalam 2 bulan!');
+        }
+
+        // sales per month for dataset
+        $dataset = [];
+        for($i=0; $i<count($periode); $i++) {
+            for($j=0; $j<count($stok_kopi); $j++) {
+                if($periode[$i]->periode == $stok_kopi[$j]->periode){
+                    $dataset[$i] = intval($stok_kopi[$j]->total);
+                    break;
+                }else{
+                    $dataset[$i] = 0;
+                }
+            }
+        }
+        
+        // get periodes to array
+        $month = [];
+        for ($i = 0; $i <= count($periode); $i++) {
+            if ($i < count($periode)) {
+                $month[$i] = $periode[$i]->periode;
+            }
+            else {
+                $nextMonth = date('Y-m', strtotime("+1 month", strtotime(date($periode[$i-1]->periode))));
+                $month[$i] = $nextMonth;
+            }
+        }
+        
+        // result
+        $exponentialSmoothing = $this->exponentialSmoothing($periode, $dataset);
+
+        $forecast = $exponentialSmoothing['result'];
+        $last = $exponentialSmoothing['last'];
+        $mape = round($exponentialSmoothing['mape']);
+
+        // year
+        $yearsQuery = DB::table('detail_produk')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+            ->orderBy('created_at','asc')
+            ->get();
+
+        $years = [];
+        
+        foreach ($yearsQuery as $data) {
+            $years[] = $data->tahun;
+        }
+        
+        $yearURL = $tahun;
+        $years = array_unique($years);
+        rsort(($years));
+
+        return view('produksi.produksiPrediksiStok', compact('stok_kopi','years', 'yearURL', 'month','dataset','forecast','last','mape'));
+    }
 }

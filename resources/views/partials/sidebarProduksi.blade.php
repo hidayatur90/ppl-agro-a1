@@ -27,7 +27,7 @@
                         <div class="sb-nav-link-icon"><i class="fa fa-cubes"></i></i></div>
                         Bahan Baku
                     </a>
-                    <a class="nav-link" href="/prediksiPasar">
+                    <a class="nav-link" href="/produksiPrediksiStok/Keseluruhan">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Prediksi
                     </a>

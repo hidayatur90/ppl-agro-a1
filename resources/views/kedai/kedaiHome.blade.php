@@ -14,7 +14,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-area me-1"></i>
-                            Prediksi Pasar
+                            Total Pembelian 5 Bulan Terakhir
                         </div>
                         <div class="card-body">
                             <canvas id="myAreaChart" width="100%" height="30"></canvas>

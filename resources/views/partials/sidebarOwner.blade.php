@@ -41,14 +41,25 @@
                         <div class="sb-nav-link-icon"><i class="fa fa-cubes"></i></i></div>
                         Bahan Baku
                     </a>
-                    <a class="nav-link" href="/rekapitulasi">
+                    <a class="nav-link" href="/ownerRekapitulasi">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Keuangan
                     </a>
-                    <a class="nav-link" href="/ownerPrediksi/{{ date("Y") }}">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Prediksi
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
+                    <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                            <a class="nav-link" href="/ownerPrediksiPasar/Keseluruhan">
+                                Pasar
+                            </a>
+                            <a class="nav-link" href="/ownerPrediksiStok/Keseluruhan">
+                                Stok Kopi
+                            </a>
+                        </nav>
+                    </div>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
