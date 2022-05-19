@@ -44,11 +44,11 @@
 
                                 @if($p->kategori=='Biji Kopi')
                                     @foreach ($last_price_biji as $lp)
-                                        <td>{{ $lp }}</td>
+                                        <td>Rp. {{ number_format($lp,2,',','.') }}</td>
                                     @endforeach
                                 @else
                                     @foreach ($last_price_bubuk as $lp)
-                                        <td>{{ $lp }}</td>
+                                        <td>Rp. {{ number_format($lp,2,',','.') }}</td>
                                     @endforeach
                                 @endif
 

@@ -50,18 +50,18 @@
                             <td>{{ $data->kuantitas }}</td>
                             @if($data->kategori == "Biji Kopi")
                                 @foreach ($data_harga_biji as $biji)
-                                    <td>{{ $biji->hargaBiji }}</td>
+                                    <td>Rp. {{ number_format($biji->hargaBiji,2,',','.') }}</td>
                                     @php $harga_total = $data->kuantitas * $biji->hargaBiji /100;@endphp
                                     @break
                                 @endforeach
                             @else
                                 @foreach ($data_harga_bubuk as $bubuk)
-                                    <td>{{ $bubuk->hargaBubuk }}</td>
+                                    <td>Rp. {{ number_format($bubuk->hargaBubuk,2,',','.') }}</td>
                                     @php $harga_total = $data->kuantitas * $bubuk->hargaBubuk /100;@endphp
                                     @break
                                 @endforeach
                             @endif
-                            <td>{{ $harga_total }}</td>
+                            <td>Rp. {{ number_format($harga_total,2,',','.') }}</td>
                             <td class="text-center">
                                 <a href="/penjualan/edit/{{ $data->idPenjualan }}" class="btn btn-warning">Edit</a>
                             </td>

@@ -37,7 +37,7 @@
                             @else
                                 <td style="color: red">{{ $bahan->total_stok_bahan }} (Hampir Habis)</td>
                             @endif
-                            <td>{{ $bahan->hargaSatuan }}</td>
+                            <td>Rp. {{ number_format($bahan->hargaSatuan,2,',','.') }}</td>
                             <td>{{ $bahan->created_at }}</td>
                             <td>{{ $bahan->last_updated }}</td>
                             <td class="text-center">

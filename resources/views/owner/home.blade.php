@@ -63,7 +63,7 @@
                             <i class="fas fa-chart-bar me-1"></i>
                             Prediksi Jumlah Stock Kopi
                         </div>
-                        <div class="card-body"><canvas id="myAreaChart2" width="100%" height="40"></canvas></div>
+                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                     </div>
                 </div>
             </div> 
@@ -165,7 +165,7 @@
     }
     });
 
-    var ctx = document.getElementById("myAreaChart2");
+    var ctx = document.getElementById("myBarChart");
     var myLineChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -206,48 +206,6 @@
             },
             gridLines: {
             color: "rgba(0, 0, 0, .125)",
-            }
-        }],
-        },
-        legend: {
-        display: false
-        }
-    }
-    });
-
-    // Bar Chart Example
-    var ctx = document.getElementById("myBarChart");
-    var myLineChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: @json($mounth),
-        datasets: [{
-        label: "Stok Kopi ",
-        backgroundColor: "rgba(2,117,216,1)",
-        borderColor: "rgba(2,117,216,1)",
-        data: @json($stok),
-        }],
-    },
-    options: {
-        scales: {
-        xAxes: [{
-            time: {
-            unit: 'month'
-            },
-            gridLines: {
-            display: false
-            },
-            ticks: {
-            maxTicksLimit: 6
-            }
-        }],
-        yAxes: [{
-            ticks: {
-            min: 0,
-            maxTicksLimit: 5
-            },
-            gridLines: {
-            display: true
             }
         }],
         },

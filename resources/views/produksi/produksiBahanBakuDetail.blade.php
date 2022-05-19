@@ -42,7 +42,7 @@
                             @else
                                 <td style="color: black">{{ $bahan->kuantitas }}</td>
                             @endif
-                            <td>{{ $bahan->hargaSatuan }}</td>
+                            <td>Rp. {{ number_format($bahan->hargaSatuan,2,',','.') }}</td>
                             <td style="width: 300px;">{{ $bahan->keterangan }}</td>
                         </tr>
                         @endforeach
