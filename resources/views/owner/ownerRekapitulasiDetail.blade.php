@@ -73,15 +73,12 @@
         var ctx = document.getElementById("myPieChart");
         var debit = @json($debit_this_mounth);
         var kredit = @json($kredit_this_mounth);
-        var total = debit+kredit;
-        var persentase_debit = (debit/total)*100;
-        var persentase_kredit = (kredit/total)*100;
         var myPieChart = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: ["Debit", "Kredit"],
             datasets: [{
-            data: [persentase_debit, persentase_kredit],
+            data: [debit, kredit],
             backgroundColor: ['#007bff', '#dc3545'],
             }],
         },

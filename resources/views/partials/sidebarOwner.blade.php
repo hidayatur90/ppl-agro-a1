@@ -10,7 +10,7 @@
                 <div class="nav">
                     <a class="nav-link" href="/home">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Dashboardd
+                        Dashboard
                     </a>
                     <div class="sb-sidenav-menu-heading">Data Akun</div>
                     <a class="nav-link" href="/ownerMitra">
@@ -53,10 +53,10 @@
                     <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                             <a class="nav-link" href="/ownerPrediksiPasar/Keseluruhan">
-                                Pasar
+                                Permintaan Pasar
                             </a>
                             <a class="nav-link" href="/ownerPrediksiStok/Keseluruhan">
-                                Stok Kopi
+                                Jumlah Stok
                             </a>
                         </nav>
                     </div>

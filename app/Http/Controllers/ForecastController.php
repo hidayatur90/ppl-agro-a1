@@ -198,8 +198,8 @@ class ForecastController extends Controller
     public function indexForecastPasar($tahun) {
         // total sales orders grouped by month
         if($tahun=="Keseluruhan"){
-            $totalSales = DB::table('detail_produk')
-                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok)*10000 as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            $totalSales = DB::table('detail_penjualan')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas)*(hargaPer100Gram/100) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
                 ->orderBy('created_at','asc')
                 ->get();
@@ -211,8 +211,8 @@ class ForecastController extends Controller
                 ->orderBy('created_at','asc')
                 ->get();
         } else{
-            $totalSales = DB::table('detail_produk')
-                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok*10000) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            $totalSales = DB::table('detail_penjualan')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas)*(hargaPer100Gram/100) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
                 ->orderBy('created_at','asc')
@@ -297,8 +297,8 @@ class ForecastController extends Controller
     public function indexForecastPasarKedai($tahun) {
         // total sales orders grouped by month
         if($tahun=="Keseluruhan"){
-            $totalSales = DB::table('detail_produk')
-                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok)*10000 as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            $totalSales = DB::table('detail_penjualan')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas)*(hargaPer100Gram/100) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
                 ->orderBy('created_at','asc')
                 ->get();
@@ -310,8 +310,8 @@ class ForecastController extends Controller
                 ->orderBy('created_at','asc')
                 ->get();
         } else{
-            $totalSales = DB::table('detail_produk')
-                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok*10000) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            $totalSales = DB::table('detail_penjualan')
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas)*(hargaPer100Gram/100) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
                 ->orderBy('created_at','asc')
