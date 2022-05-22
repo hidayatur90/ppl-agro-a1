@@ -77,7 +77,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Total Stok Kopi'
+                    text: 'Total Stok Biji Kopi'
                 }
             },
             tooltip: {

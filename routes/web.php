@@ -119,8 +119,8 @@ Route::get('/kedai/home', [DetailProdukController::class, 'indexKedaiStockKopiDa
 Route::get('/produksi/home', [DetailBahanBakuController::class, 'indexProduksiBahanBakuDashboard'])->name('produksi.home');
 
 // Forcast
+Route::get('/ownerPrediksiPasar/{produk}/{tahun}', [ForecastController::class, 'indexForecastPasar']);
 Route::get('/ownerPrediksiStok/{tahun}', [ForecastController::class, 'indexForecastBijiKopi']);
-Route::get('/ownerPrediksiPasar/{tahun}', [ForecastController::class, 'indexForecastPasar']);
 Route::get('/kedaiPrediksiPasar/{tahun}', [ForecastController::class, 'indexForecastPasarKedai']);
 Route::get('/produksiPrediksiStok/{tahun}', [ForecastController::class, 'indexForecastBijiKopiProduksi']);
 

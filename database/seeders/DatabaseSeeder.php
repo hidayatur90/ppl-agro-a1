@@ -109,21 +109,21 @@ class DatabaseSeeder extends Seeder
 
 
         // Produk
-        // Produk::create([
-        //     'namaProduk'=>'Espresso'
-        // ]);
-        // Produk::create([
-        //     'namaProduk'=>'Long Black'
-        // ]);
-        // Produk::create([
-        //     'namaProduk'=>'Americano'
-        // ]);
-        // Produk::create([
-        //     'namaProduk'=>'Cappuchino'
-        // ]);
-        // Produk::create([
-        //     'namaProduk'=>'Latte'
-        // ]);
+        Produk::create([
+            'namaProduk'=>'Espresso'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Long Black'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Americano'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Cappuchino'
+        ]);
+        Produk::create([
+            'namaProduk'=>'Latte'
+        ]);
 
         // Kategori
         Kategori::create([

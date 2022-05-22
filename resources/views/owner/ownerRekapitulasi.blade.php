@@ -10,9 +10,6 @@
     </style>
     <main>
     <div class="container-fluid px-4">
-        @php
-            var_dump($all_debit)
-        @endphp
         <div class="card mt-3">
             <div class="card-header text-start">
                 <strong>Data Rekapitulasi Keuangan</strong> 

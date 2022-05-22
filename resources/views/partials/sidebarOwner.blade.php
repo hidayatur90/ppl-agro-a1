@@ -15,7 +15,7 @@
                     <div class="sb-sidenav-menu-heading">Data Akun</div>
                     <a class="nav-link" href="/ownerMitra">
                         <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
-                        Akun
+                        Profil  
                     </a>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
@@ -52,11 +52,11 @@
                     </a>
                     <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                            <a class="nav-link" href="/ownerPrediksiPasar/Keseluruhan">
+                            <a class="nav-link" href="/ownerPrediksiPasar/Americano/Keseluruhan">
                                 Permintaan Pasar
                             </a>
                             <a class="nav-link" href="/ownerPrediksiStok/Keseluruhan">
-                                Jumlah Stok
+                                Stok Biji Kopi 
                             </a>
                         </nav>
                     </div>

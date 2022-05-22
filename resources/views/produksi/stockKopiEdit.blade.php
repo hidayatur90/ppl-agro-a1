@@ -119,7 +119,7 @@
         var stokLama = $(this).attr('stokLama');
         var stokBaru = jumlahStok.value - stokLama;
 
-        if (jumlahStok.value.length == 0 || jumlahStok.value < 0){
+        if (jumlahStok.value.length == 0 || jumlahStok.value <= 0){
             Swal.fire({
                 title: 'Maaf',
                 text: "Stok tidak boleh kosong.",
@@ -133,7 +133,7 @@
                     window.location = "/stockKopi/edit/"+namaProduk.value+"/"+kategori.value;
                 }
             })
-        } else if (hargaPer100Gram.value.length == 0 || hargaPer100Gram.value < 0){
+        } else if (hargaPer100Gram.value.length == 0 || hargaPer100Gram.value <= 0){
             Swal.fire({
                 title: 'Maaf',
                 text: "Data harga tidak boleh kosong.",
@@ -148,8 +148,8 @@
                 }
             })
         } else{
-            if (stokBaru > 500 && stokBaru <= 99999){
-                if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3){
+            if (stokBaru > 0 && stokBaru <= 99999){
+                if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3 || hargaPer100Gram.value%500 != 0){
                     Swal.fire({
                         title: 'Maaf',
                         text: "Cek kembali harga yang anda inputkan dan inputan minimal 500",
@@ -179,11 +179,11 @@
                         }
                     })
                 }
-            } else if (stokBaru < 500 && stokBaru <= 99999) {
-                if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3){
+            } else if (stokBaru < 0 && stokBaru <= 99999) {
+                if (hargaPer100Gram.value.length >= 11 || hargaPer100Gram.value.length < 3 || hargaPer100Gram.value%500 != 0){
                     Swal.fire({
                         title: 'Maaf',
-                        text: "Cek kembali harga yang anda inputkan dan inputan minimal 500",
+                        text: "Cek kembali harga yang anda inputkan dan inputan minimal Rp.500",
                         icon: 'warning',
                         showConfirmButton: false,
                         showCancelButton: true,
