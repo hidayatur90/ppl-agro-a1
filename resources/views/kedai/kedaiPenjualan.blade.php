@@ -40,9 +40,9 @@
                         @endphp
                         @foreach($data_penjualan as $data)
                         <tr>
-                            @if ($i == $id)
+                            {{-- @if ($i == $id)
                                 @break
-                            @endif
+                            @endif --}}
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->created_at }}</td>
                             <td>{{ $data->namaProduk }}</td>

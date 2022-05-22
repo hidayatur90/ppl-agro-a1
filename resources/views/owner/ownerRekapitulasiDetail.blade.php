@@ -15,7 +15,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-chart-pie me-1"></i>
-                        Data Rekapitulasi <?= $last_periode[0] ?>
+                        Data Rekapitulasi <?= $this_periode ?>
                     </div>
                     <div class="card-body"><canvas id="myPieChart" width="100%" height="75"></canvas></div>
                     {{-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> --}}
@@ -37,8 +37,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><h6 class="text-sm-start">Rp. <?= number_format($debit_this_mounth[0],2,',','.') ?></h6></td>
-                                    <td><h6 class="text-sm-start">Rp. <?= number_format($kredit_this_mounth[0],2,',','.') ?></h6></td>
+                                    <td><h6 class="text-sm-start">Rp. <?= number_format($debit_this_mounth,2,',','.') ?></h6></td>
+                                    <td><h6 class="text-sm-start">Rp. <?= number_format($kredit_this_mounth,2,',','.') ?></h6></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -47,7 +47,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Top 5 Produk Paling Laku <?= $last_periode[0] ?>
+                        Top 5 Produk Paling Laku <?= $this_periode ?>
                     </div>
                     <div class="card-body">
                         <canvas id="myBarChart" height="125"></canvas>

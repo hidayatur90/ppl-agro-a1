@@ -15,7 +15,7 @@
                     <div class="sb-sidenav-menu-heading">Data Akun</div>
                     <a class="nav-link" href="/profilKaryawanKedai">
                         <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
-                        Akun
+                        Profil
                     </a>
 
                     <div class="sb-sidenav-menu-heading">Data Kopi</div>
