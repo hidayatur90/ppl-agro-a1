@@ -208,15 +208,15 @@ class ForecastController extends Controller
         // total sales orders grouped by month
         $bijiStr = "Biji Kopi";
         if($tahun=="Keseluruhan"){
-<<<<<<< HEAD
+
             $totalSales = DB::table('detail_produk')
                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok)*10000 as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
-=======
+                
             $biji_kopi = DB::table('detail_bahan_baku')
                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas)*1000 as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->join('bahan_baku', 'detail_bahan_baku.idBahan', '=', 'bahan_baku.id')
                 ->where('bahan_baku.namaBahan', 'like', '%'.$bijiStr.'%')
->>>>>>> 4072a5a6d91881e0c9d976b860525d263564ea78
+
                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
                 ->orderBy('created_at','asc')
                 ->get();
@@ -228,11 +228,11 @@ class ForecastController extends Controller
                 ->orderBy('created_at','asc')
                 ->get();
         } else{
-<<<<<<< HEAD
+
             $totalSales = DB::table('detail_produk')
                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(jumlahStok*10000) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun)
-=======
+
             $biji_kopi = DB::table('detail_bahan_baku')
                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas)*1000 as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->join('bahan_baku', 'detail_bahan_baku.idBahan', '=', 'bahan_baku.id')
@@ -240,7 +240,7 @@ class ForecastController extends Controller
                     ['bahan_baku.namaBahan', 'like', '%'.$bijiStr.'%'],
                     [DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun]
                 ])
->>>>>>> 4072a5a6d91881e0c9d976b860525d263564ea78
+
                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
                 ->orderBy('created_at','asc')
                 ->get();

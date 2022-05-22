@@ -52,19 +52,16 @@
                     </a>
                     <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-<<<<<<< HEAD
                             <a class="nav-link" href="/ownerPrediksiPasar/Keseluruhan">
                                 Pasar
                             </a>
                             <a class="nav-link" href="/ownerPrediksiStok/Keseluruhan">
                                 Stok Kopi
-=======
                             <a class="nav-link" href="/ownerPrediksiPasar/Americano/Keseluruhan">
                                 Permintaan Pasar
                             </a>
                             <a class="nav-link" href="/ownerPrediksiStok/Keseluruhan">
                                 Stok Biji Kopi 
->>>>>>> 4072a5a6d91881e0c9d976b860525d263564ea78
                             </a>
                         </nav>
                     </div>
