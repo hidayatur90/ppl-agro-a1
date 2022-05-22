@@ -20,42 +20,24 @@ class DetailPenjualanController extends Controller
     public function indexOwnerRekap()
     {
         $data_debit = DB::table('detail_penjualan')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(kuantitas*hargaPer100Gram) as total_debit'))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(kuantitas)*hargaPer100Gram as total_debit'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();
 
         $data_kredit = DB::table('detail_bahan_baku')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(kuantitas*hargaSatuan) as total_kredit'))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(kuantitas)*hargaSatuan as total_kredit'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();
 
-        $data_top_five = DB::table('detail_bahan_baku')
-            ->select('bahan_baku.namaBahan as namaBahan',DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(kuantitas*hargaSatuan) as total_kredit'))
-            ->join('bahan_baku', 'detail_bahan_baku.idBahan', '=', 'bahan_baku.id')
-            ->groupBy('bahan_baku.namaBahan',DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
-            ->orderBy('total_kredit','asc')
-            ->get();
-
-        $debit_this_mounth = [];
-        $kredit_this_mounth = [];
-        $last_periode = [];
-        $top_five_produk = [];
-        $top_five_harga = [];
-
         $all_debit = [];
         
         foreach($data_debit as $debit){
-            $debit_this_mounth[] = $debit->total_debit;
             $last_periode[] = $debit->periode;
+            $all_debit[] = $debit->total_debit;
         }
         
-        $debit_this_mounth = array_slice($debit_this_mounth, -1);
-        $kredit_this_mounth = array_slice($kredit_this_mounth, -1);
-        $last_periode = array_slice($last_periode, -1);
-        return view('owner.ownerRekapitulasi', compact('data_debit','data_kredit','debit_this_mounth' ,'kredit_this_mounth', 'last_periode'));
-
         return view('owner.ownerRekapitulasi', compact('all_debit','data_debit','data_kredit'));
     }
 
@@ -73,10 +55,10 @@ class DetailPenjualanController extends Controller
             ->orderBy('created_at','asc')
             ->get();
 
-        $data_top_five = DB::table('detail_bahan_baku')
-            ->select('bahan_baku.namaBahan as namaBahan',DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(kuantitas*hargaSatuan) as total_kredit'))
-            ->join('bahan_baku', 'detail_bahan_baku.idBahan', '=', 'bahan_baku.id')
-            ->groupBy('bahan_baku.namaBahan',DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
+        $data_top_five = DB::table('detail_penjualan')
+            ->select('produk.namaProduk as namaBahan',DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(kuantitas*hargaPer100Gram) as total_kredit'))
+            ->join('produk', 'detail_penjualan.idProduk', '=', 'produk.id')
+            ->groupBy('produk.namaProduk',DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('total_kredit','asc')
             ->get();
 

@@ -11,10 +11,10 @@
         </style>
     <main>
         <div class="container-fluid px-4">
-        {{-- <a href="#" onclick="showStuff('tambah', this); return false;" id="btn1" class="btn btn-secondary w-100 mt-3"><i class="bi bi-arrow-bar-down"></i> Tambah</a>
+        <a href="#" onclick="showStuff('tambah', this); return false;" id="btn1" class="btn btn-secondary w-100 mt-3"><i class="bi bi-arrow-bar-down"></i> Tambah</a>
             <span id="tambah" style="display: none;">
             @include('kedai.kedaiPenjualanTambah')
-        </span> --}}
+        </span>
             <div class="card mt-3">
                 <div class="card-header text-start">
                     <strong>Data Penjualan Kopi</strong> 
