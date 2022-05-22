@@ -121,7 +121,7 @@ Route::get('/produksi/home', [DetailBahanBakuController::class, 'indexProduksiBa
 // Forcast
 Route::get('/ownerPrediksiPasar/{produk}/{tahun}', [ForecastController::class, 'indexForecastPasar']);
 Route::get('/ownerPrediksiStok/{tahun}', [ForecastController::class, 'indexForecastBijiKopi']);
-Route::get('/kedaiPrediksiPasar/{tahun}', [ForecastController::class, 'indexForecastPasarKedai']);
+Route::get('/kedaiPrediksiPasar/{produk}/{tahun}', [ForecastController::class, 'indexForecastPasarKedai']);
 Route::get('/produksiPrediksiStok/{tahun}', [ForecastController::class, 'indexForecastBijiKopiProduksi']);
 
 // Rekap Keuangan

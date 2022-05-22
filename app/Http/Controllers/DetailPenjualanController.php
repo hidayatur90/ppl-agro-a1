@@ -116,8 +116,8 @@ class DetailPenjualanController extends Controller
             ->join('produk', 'idProduk', '=', 'produk.id')
             ->join('detail_produk', 'produk.id', '=', 'detail_produk.idProduk')
             ->join('kategori', 'detail_penjualan.idKategori', '=', 'kategori.id')
-            ->select('detail_penjualan.id as idPenjualan','detail_penjualan.*','produk.namaProduk as namaProduk', 'kategori.kategori as kategori', 'detail_produk.hargaPer100Gram as harga')
-            ->orderBy('id', 'desc')
+            ->select('detail_penjualan.id as idPenjualan','detail_penjualan.created_at as tanggal','detail_penjualan.*','produk.namaProduk as namaProduk', 'kategori.kategori as kategori', 'detail_produk.hargaPer100Gram as harga')
+            // ->orderBy('detail_penjualan.created_at', 'desc')
             ->get();
         
         $data_harga_biji = DB::table('detail_penjualan')
@@ -131,6 +131,16 @@ class DetailPenjualanController extends Controller
             ->select('detail_penjualan.hargaPer100Gram as hargaBubuk')
             ->where('kategori.kategori' , "=" , "Kopi Bubuk")
             ->get();
+
+        $harga_biji = [];
+        $harga_bubuk = [];
+
+        foreach($data_harga_biji as $data){
+            $harga_biji[] = $data->hargaBiji;
+        }
+        foreach($data_harga_bubuk as $data){
+            $harga_bubuk[] = $data->hargaBubuk;
+        }
 
         $nama_produk = DB::select('SELECT DISTINCT(namaProduk) as nama FROM produk');
         $nama_kategori = DB::select('SELECT DISTINCT(kategori) as kategori FROM kategori');
@@ -147,7 +157,7 @@ class DetailPenjualanController extends Controller
             $id += $mi->total_id;
         }
 
-        return view('kedai.kedaiPenjualan', compact('data_penjualan', 'nama_produk', 'nama_kategori', 'data_produk', 'id', 'data_harga_biji', 'data_harga_bubuk'));
+        return view('kedai.kedaiPenjualan', compact('data_penjualan', 'nama_produk', 'nama_kategori', 'data_produk', 'id', 'data_harga_biji', 'data_harga_bubuk', 'harga_biji', 'harga_bubuk'));
     }
 
     /**

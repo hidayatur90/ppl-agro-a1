@@ -21,17 +21,29 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-area me-1"></i>
-                            Prediksi Pasar
+                            Prediksi Pasar 
                         </div>
                         <div class="card-body">
-                            <div class="form-group mb-2">
-                                <select id="year" class="form-select" style="width: 150px">
-                                    <option selected hidden>{{ $yearURL }}</option>
-                                    <option value="Keseluruhan">Keseluruhan</option>
-                                    @foreach ($years as $year)
-                                        <option value="{{ $year }}">{{ $year }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="select" style="display: flex">
+                                <div class="form-group mb-2">
+                                    <label for="produk">Produk : </label>
+                                    <select id="produk" class="form-select" style="width: 150px">
+                                        <option selected hidden>{{ $produkURL }}</option>
+                                        @foreach ($produk as $p)
+                                        <option value="{{ $p->namaProduk }}">{{ $p->namaProduk }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group mb-2 ms-2">
+                                    <label for="year">Tahun : </label>
+                                    <select id="year" class="form-select" style="width: 150px">
+                                        <option selected hidden>{{ $yearURL }}</option>
+                                        <option value="Keseluruhan">Keseluruhan</option>
+                                        @foreach ($years as $year)
+                                            <option value="{{ $year }}">{{ $year }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                             <div class="card-header">
                                 <div id="chartContainer">
@@ -47,11 +59,12 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script>
 
+        var produk = document.getElementById('produk');
         var sortYear = document.getElementById('year');
         var akurasi = 100-@json($mape);
         sortYear.addEventListener("input", function(){
             var strUser = this.value;
-            var nextURL = 'http://127.0.0.1:8000/kedaiPrediksiPasar/'+ strUser;
+            var nextURL = 'http://127.0.0.1:8000/kedaiPrediksiPasar/'+ produk.value +'/'+ strUser;
             window.location.replace(nextURL);
         });
 
@@ -60,7 +73,7 @@
                 type: 'areaspline'
             },
             title: {
-                text: 'Prediksi Permintaan Pasar (Akurasi = ' + akurasi + '%)'
+                text: 'Prediksi Permintaan Pasar ' + produk.value  + ' (Akurasi = ' + akurasi + '%)'
             },
             legend: {
                 layout: 'horizontal',
@@ -77,12 +90,12 @@
             },
             yAxis: {
                 title: {
-                    text: 'Total Hasil Penjualan'
+                    text: 'Total Produk Terjual (gram)'
                 }
             },
             tooltip: {
                 shared: true,
-                valuePrefix: 'Rp. '
+                valueSuffix: ' gram'
             },
             credits: {
                 enabled: false
@@ -93,7 +106,7 @@
                 }
             },
             series: [{
-                name: 'Hasil Penjualan',
+                name: 'Terjual ',
                 data: @json($dataset)
             }, {
                 name: 'Peramalan',

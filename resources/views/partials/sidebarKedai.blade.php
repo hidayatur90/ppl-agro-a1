@@ -27,7 +27,7 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Penjualan
                     </a>
-                    <a class="nav-link" href="/kedaiPrediksiPasar/Keseluruhan">
+                    <a class="nav-link" href="/kedaiPrediksiPasar/Americano/Keseluruhan">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Prediksi
                     </a>
