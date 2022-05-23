@@ -133,24 +133,5 @@ class DatabaseSeeder extends Seeder
             'Kategori'=>'Kopi Bubuk'
         ]);
 
-        // Bahan Baku
-        BahanBaku::create([
-            'namaBahan'=>'Gula Pasir'
-        ]);
-        BahanBaku::create([
-            'namaBahan'=>'Es batu'
-        ]);
-        BahanBaku::create([
-            'namaBahan'=>'Susu'
-        ]);
-        BahanBaku::create([
-            'namaBahan'=>'Cream'
-        ]);
-        BahanBaku::create([
-            'namaBahan'=>'Air Galon'
-        ]);
-        BahanBaku::create([
-            'namaBahan'=>'Sirup Caramel'
-        ]);
     }
 }

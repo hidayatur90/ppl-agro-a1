@@ -37,8 +37,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><h6 class="text-sm-start">Rp. <?= number_format($debit_this_mounth,2,',','.') ?></h6></td>
-                                    <td><h6 class="text-sm-start">Rp. <?= number_format($kredit_this_mounth,2,',','.') ?></h6></td>
+                                    <td><h6 class="text-sm-start">Rp. <?= number_format($debit_this_mounth[0],2,',','.') ?></h6></td>
+                                    <td><h6 class="text-sm-start">Rp. <?= number_format($kredit_this_mounth[0],2,',','.') ?></h6></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -108,7 +108,7 @@ Route::get('/bahanBaku/edit/{namaBahan}', [DetailBahanBakuController::class, 'ed
 Route::get('/bahanBaku/update/{namaBahan}/{kuantitas}/{hargaSatuan}/{keterangan}', [DetailBahanBakuController::class, 'updateBahanBaku']);
 
 // Penjualan
-Route::get('/kedaiPenjualan', [DetailPenjualanController::class, 'createPenjualan']);
+Route::get('/kedaiPenjualan/{month}', [DetailPenjualanController::class, 'createPenjualan']);
 Route::patch('/penjualan/store', [DetailPenjualanController::class, 'storePenjualan']);
 Route::get('/penjualan/edit/{idPenjualan}', [DetailPenjualanController::class, 'editPenjualan']);
 Route::get('/penjualan/update/{idPenjualan}', [DetailPenjualanController::class, 'updatePenjualan']);

@@ -20,6 +20,14 @@
                     <strong>Data Penjualan Kopi</strong> 
                 </div>
                 <div class="card-body">
+                    <div class="form-group mb-2">
+                        <select id="month" class="form-select" style="width: 150px">
+                            <option selected hidden>{{ $periodeURL }}</option>
+                            @foreach ($periodes as $periode)
+                                <option value="{{ $periode }}">{{ $periode }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
@@ -77,6 +85,13 @@
     </main>
 
     <script>
+
+        var sortMonth = document.getElementById('month');
+        sortMonth.addEventListener("input", function(){
+            var strUser = this.value;
+            var nextURL = 'http://127.0.0.1:8000/kedaiPenjualan/'+ strUser;
+            window.location.replace(nextURL);
+        });
 
         function showStuff(tambah, btn1) {
             document.getElementById(tambah).style.display = 'block';
