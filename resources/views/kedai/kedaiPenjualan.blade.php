@@ -42,39 +42,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $i = 0;
-                            @endphp
                             @foreach($data_penjualan as $data)
                             <tr>
-                                @if ($i == $id)
-                                    @break
-                                @endif
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->tanggal }}</td>
                                 <td>{{ $data->namaProduk }}</td>
                                 <td>{{ $data->kategori }}</td>
                                 <td>{{ $data->kuantitas }}</td>
-                                {{-- <td>{{ $data->hargaPer100Gram }}</td> --}}
-                                {{-- @if($data->kategori == "Biji Kopi")
-                                    @while ($i <= $id)
-                                        <td>Rp. {{ number_format($harga_biji[$i],2,',','.') }}</td>
-                                        @php $harga_total = $data->kuantitas * $harga_biji[$i] /100;@endphp
-                                    @endwhile
-                                @else
-                                    @while ($i <= $id)
-                                        <td>Rp. {{ number_format($harga_bubuk[$i],2,',','.') }}</td>
-                                        @endwhile
-                                        @endif --}}
-                                <td>Rp. {{ number_format($data->harga,2,',','.') }}</td>
-                                @php $harga_total = $data->kuantitas * $data->harga/100;@endphp
+                                <td>Rp. {{ number_format($data->hargaPer100Gram,2,',','.') }}</td>
+                                @php 
+                                if ($data->kategori=='Biji Kopi') {
+                                    $harga_total = $data->kuantitas * $data->hargaPer100Gram/100;
+                                } else{
+                                    $harga_total = $data->kuantitas * $data->hargaPer100Gram/100;
+                                }
+                                @endphp
                                 <td>Rp. {{ number_format($harga_total,2,',','.') }}</td>
                                 <td class="text-center">
                                     <a href="/penjualan/edit/{{ $data->idPenjualan }}" class="btn btn-warning">Edit</a>
                                 </td>
-                                @php
-                                    $i += 1;
-                                @endphp
                             </tr>
                             @endforeach
                         </tbody>
@@ -97,12 +83,6 @@
             document.getElementById(tambah).style.display = 'block';
             btn1.style.display = 'none';
         }
-
-        // function hideStuff(tambah, btn1) {
-        //     document.getElementById(tambah).style.display = 'none';
-        //     btn1.style.display;
-        //     showStuff();
-        // }
 
         var nama = document.getElementById('namaProduk');
         var kategory = document.getElementById('kategori');

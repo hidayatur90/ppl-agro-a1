@@ -11,12 +11,11 @@
                 {{-- Nama Produk --}}
                 <div class="mb-3 col-xl-6 col-md-12">
                     <label for="namaProduk" class="form-label">Nama Produk</label>
-                    <input type="text" id="namaProduk" list="listNama" class="form-control" name="namaProduk" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
-                    <datalist id="listNama" >
+                    <select id="namaProduk" name="namaProduk" class="form-select" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')">
                         @foreach ($nama_produk as $np)
                             <option>{{ $np->nama }}</option>
                         @endforeach
-                    </datalist>
+                    </select>
                     @if($errors->has('namaProduk'))
                     <div class="text-danger">
                         {{ $errors->first('namaProduk')}}
@@ -27,12 +26,11 @@
                 {{-- Kategori --}}
                 <div class="mb-3 col-xl-6 col-md-12">
                     <label for="kategori" class="form-label">Kategori</label>
-                    <input type="text" id="kategori" list="listKategori" class="form-control" name="kategori" placeholder="Kategori" autocomplete="off" required oninvalid="this.setCustomValidity('Kategori tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
-                    <datalist id="listKategori" >
+                    <select id="kategori" name="kategori" class="form-select" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Kategori tidak boleh Kosong')" oninput="this.setCustomValidity('')">
                         @foreach ($nama_kategori as $nk)
                             <option>{{ $nk->kategori }}</option>
                         @endforeach
-                    </datalist>
+                    </select>
                     @if($errors->has('kategori'))
                     <div class="text-danger">
                         {{ $errors->first('kategori')}}
@@ -43,7 +41,7 @@
                 {{-- Kuantitas --}}
                 <div class="mb-3 col-xl-6 col-md-12">
                     <label for="kuantitas" class="form-label">Kuantitas (gr)</label>
-                    <input name="kuantitas" type="number" min="0" step="10" class="form-control" id="kuantitas" placeholder="Jumlah Kuantitas (gr)"/>
+                    <input name="kuantitas" type="number" min="0" step="10" class="form-control" id="kuantitas" placeholder="Jumlah Kuantitas (gr)" required oninvalid="this.setCustomValidity('Kuantitas tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
                 </div>
 
                 {{-- Harga Total --}}

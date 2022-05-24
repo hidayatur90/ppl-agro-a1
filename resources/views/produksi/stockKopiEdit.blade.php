@@ -109,7 +109,7 @@
     crossorigin="anonymous">
 </script>
 <script>
-    var jumlahStok = document.getElementById("jumlahStok");
+
     var namaProduk = document.getElementById("namaProduk");
     var kategori = document.getElementById("kategori");
     var jumlahStok = document.getElementById("jumlahStok");

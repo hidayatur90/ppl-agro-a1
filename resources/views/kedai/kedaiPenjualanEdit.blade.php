@@ -20,6 +20,7 @@
                     {{-- {{ csrf_field() }}
                     {{ method_field('PATCH') }} --}}
 
+                    <input id="idPenjualan" type="number" hidden value="{{$p->idPenjualan }}">
                     {{-- Nama Produk --}}
                     <div class="row mb-3">
                         <label for="namaProduk" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nama Produk</strong></label>
@@ -50,7 +51,7 @@
                     <div class="row mb-3">
                         <label for="kuantitas" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kuantitas (gr)</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" max="99999" step="10" name="kuantitas" id="kuantitas" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->kuantitas }}"/>
+                            <input type="number" class="form-control" min="0" max="100000" step="10" name="kuantitas" id="kuantitas" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->kuantitas }}"/>
                             @if($errors->has('kuantitas'))
                             <div class="text-danger">
                                 {{ $errors->first('kuantitas')}}
@@ -87,6 +88,7 @@
                     
                     <div class="row mb-3 justify-content-end mx-3 my-4">
                         <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
+                            {{-- <a type="submit" id="edit" class="btn btn-success mx-3" stokLama="{{ $p->kuantitas }}">{{ __('Simpan') }}</a> --}}
                             <button class="btn btn-success mx-3">Simpan</button>
                             <a type="button" class="btn btn-secondary border" href="/kedaiPenjualan/Keseluruhan">
                                 Batal
@@ -107,8 +109,8 @@
             </div>
         </div>
     </main>
-    @break
     @endforeach
+
 <script 
     src="https://code.jquery.com/jquery-3.6.0.slim.js"  integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
     crossorigin="anonymous">
@@ -116,10 +118,11 @@
 <script>
     var hargaSatuan = document.getElementById('harga').value;
     var kuantitas = document.getElementById('kuantitas').value;
+    var idPenjualan = document.getElementById('idPenjualan').value;
 
     document.getElementById("kuantitas").addEventListener("input", function(){
         document.getElementById("hargaTotal").value = this.value*hargaSatuan/100;
     });
-    
+
 </script>
 @endsection 
