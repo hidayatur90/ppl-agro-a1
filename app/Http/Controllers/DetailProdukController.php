@@ -217,16 +217,16 @@ class DetailProdukController extends Controller
         foreach ($produk as $p){
             DetailProduk::create([
                 'idProduk' => $p->jumlah_id + 1,
-                'idKategori' => 1,
-                'jumlahStok' => $request->jumlahStokBiji,
-                'hargaPer100Gram' => $request->hargaPer100GramBiji
+                'idKategori' => $request->kategori,
+                'jumlahStok' => $request->jumlahStok,
+                'hargaPer100Gram' => $request->hargaPer100Gram
             ]);
-            DetailProduk::create([
-                'idProduk' => $p->jumlah_id + 1,
-                'idKategori' => 2,
-                'jumlahStok' => $request->jumlahStokBubuk,
-                'hargaPer100Gram' => $request->hargaPer100GramBubuk
-            ]);
+            // DetailProduk::create([
+            //     'idProduk' => $p->jumlah_id + 1,
+            //     'idKategori' => 2,
+            //     'jumlahStok' => $request->jumlahStokBubuk,
+            //     'hargaPer100Gram' => $request->hargaPer100GramBubuk
+            // ]);
         }
 
         Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
