@@ -40,9 +40,9 @@
                     <div class="row mb-3">
                         <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kategori</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <select name="kategori" class="form-control" >
-                                <option value="1">Biji kopi</option>
-                                <option value="2">Kopi bubuk</option>
+                            <select name="kategori" class="form-select" >
+                                <option value="1">Biji Kopi</option>
+                                <option value="2">Kopi Bubuk</option>
                             </select>
                                 @if($errors->has('idKategori'))
                                     <div class="text-danger">
@@ -77,42 +77,6 @@
                         @endif
                         </div>
                     </div>
-                    {{-- <hr style="width:100%">
-                    Kategori
-                    <div class="row mb-3">
-                        <label for="kategori" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kategori</strong></label>
-                        <div class="col-sm-8 col-md-9 col-xl-10">
-                            <select name="kategori" class="form-control">
-                                <option>Kopi Bubuk</option>
-                            </select>
-                        </div>
-                    </div> --}}
-
-                    {{-- Stok --}}
-                    {{-- <div class="row mb-3">
-                        <label for="stok" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Stok (gr)</strong></label>
-                        <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" max="99999" name="jumlahStokBubuk" id="jumlahStokBubuk" placeholder="Stok Kopi Bubuk" autocomplete="off" required oninvalid="this.setCustomValidity('Cek kembali jumlah stok')" oninput="this.setCustomValidity('')"/>
-                            @if($errors->has('jumlahStokBubuk'))
-                            <div class="text-danger">
-                                {{ $errors->first('jumlahStokBubuk')}}
-                            </div>
-                        @endif
-                        </div>
-                    </div> --}}
-
-                    {{-- Harga Per100Gram --}}
-                    {{-- <div class="row mb-3">
-                        <label for="hargaPer100GramBubuk" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga 100gr (Rp)</strong></label>
-                        <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" max="9999999999" step="500" name="hargaPer100GramBubuk" id="hargaPer100GramBubuk" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Cek kembali harga')" oninput="this.setCustomValidity('')"/>
-                            @if($errors->has('hargaPer100GramBubuk'))
-                            <div class="text-danger">
-                                {{ $errors->first('hargaPer100GramBubuk')}}
-                            </div>
-                        @endif
-                        </div>
-                    </div> --}}
 
                     <div class="row mb-3 justify-content-end mx-3 my-4">
                         <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">

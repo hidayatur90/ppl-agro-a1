@@ -207,7 +207,7 @@ class DetailPenjualanController extends Controller
         $kuantitasLama = 0;
 
         foreach($produk as $p){
-            $kuantitasLama += $p->stokLama;
+            $kuantitasLama = $p->stokLama;
         }
 
         if(($kuantitasLama-$request->kuantitas)<0){
@@ -274,7 +274,7 @@ class DetailPenjualanController extends Controller
      */
     public function updatePenjualan(Request $request, $idPenjualan)
     {
-        $produk = DB::table('detail_penjualan')
+        $data_produk = DB::table('detail_penjualan')
             ->join('produk', 'idProduk', '=', 'produk.id')
             ->join('kategori', 'detail_penjualan.idKategori', '=', 'kategori.id')
             ->select('detail_penjualan.kuantitas as kuantitasLama')
@@ -316,21 +316,21 @@ class DetailPenjualanController extends Controller
         
         $kuantitasLama = 0;
 
-        foreach($produk as $p){
+        foreach($data_produk as $p){
             $kuantitasLama += $p->kuantitasLama;
         }
 
         if($request->kuantitas >= $kuantitasLama){
             DetailProduk::create([
                 'idProduk' => $idProduk+1 ,
-                'jumlahStok' => 0 - $request->kuantitas,
+                'jumlahStok' => $request->kuantitas - $kuantitasLama,
                 'idKategori' => $idKategori+1,
                 'hargaPer100Gram' => $request->harga
             ]);
         } else if($request->kuantitas < $kuantitasLama){
             DetailProduk::create([
                 'idProduk' => $idProduk+1 ,
-                'jumlahStok' => 0 + $request->kuantitas,
+                'jumlahStok' => $kuantitasLama - $request->kuantitas,
                 'idKategori' => $idKategori+1,
                 'hargaPer100Gram' => $request->harga
             ]);

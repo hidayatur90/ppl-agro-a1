@@ -36,7 +36,7 @@
                     <h6>{{ $karyawan->alamat }}</h6>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="/karyawanKedai" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> kembali</a>
+                    <a href="/karyawanKedai" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Kembali</a>
                 </div>
             </div>
         </main>

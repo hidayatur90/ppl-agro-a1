@@ -12,24 +12,62 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ForecastController extends Controller
 {
     public function indexOwnerBijiKopiDashboard() {
-        $produk = DB::table('detail_bahan_baku')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as bulan"), DB::raw('SUM(kuantitas) as total_stok'))
+
+        $total_penjualan = DB::table('detail_penjualan')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            ->join('produk', 'detail_penjualan.idProduk', '=', 'produk.id')
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+            ->orderBy('created_at','asc')
+            ->get();
+
+        $biji_kopi = DB::table('detail_bahan_baku')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas)*1000 as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            ->join('bahan_baku', 'detail_bahan_baku.idBahan', '=', 'bahan_baku.id')
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
+            ->orderBy('created_at','asc')
+            ->get();
+
+        $mounth_sales = [];
+        $stok_sales = [];
+
+        foreach ($total_penjualan as $penjualan) {
+            $mounth_sales[] = $penjualan->periode;
+            $stok_sales[] = $penjualan->total;
+        }
+
+        $mounth_sales_in_dashboard = array_slice($mounth_sales, -5);
+        $stok_sales_in_dashboard = array_slice($stok_sales, -5);
+
+        $mounth_coffee = [];
+        $stok_coffee = [];
+
+        foreach ($biji_kopi as $biji) {
+            $mounth_coffee[] = $biji->periode;
+            $stok_coffee[] = $biji->total;
+        }
+
+        $mounth_coffee_in_dashboard = array_slice($mounth_coffee, -5);
+        $stok_coffee_in_dashboard = array_slice($stok_coffee, -5);
+
+        $data_debit = DB::table('detail_penjualan')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('kuantitas*hargaPer100Gram as total_debit'))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
+            ->orderBy('created_at','asc')
+            ->get();
+        
+        $data_kredit = DB::table('detail_bahan_baku')
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('kuantitas*hargaSatuan as total_kredit'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();
 
-        $mounth = [];
-        $stok = [];
-
-        foreach ($produk as $p) {
-            $mounth[] = $p->bulan;
-            $stok[] = $p->total_stok;
+        $all_debit = [];
+        
+        foreach($data_debit as $debit){
+            $all_debit[] = $debit->total_debit;
         }
-
-        $mounth_in_dashboard = array_slice($mounth, -5);
-        $stok_in_dashboard = array_slice($stok, -5);
-
-        return view('owner.home', compact('mounth_in_dashboard', 'stok_in_dashboard', 'mounth', 'stok'));
+        
+        return view('owner.home', compact('mounth_sales_in_dashboard', 'stok_sales_in_dashboard', 'mounth_coffee_in_dashboard', 'stok_coffee_in_dashboard','all_debit','data_debit','data_kredit'));
     }
 
     public function exponentialSmoothing($periode, $dataset)

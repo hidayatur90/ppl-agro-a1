@@ -17,7 +17,7 @@
         </span>
             <div class="card mt-3">
                 <div class="card-header text-start">
-                    <strong>Data Penjualan Kopi</strong> 
+                    <i class="bi bi-table"></i> <strong>Data Penjualan Kopi</strong> 
                 </div>
                 <div class="card-body">
                     <div class="form-group mb-2">

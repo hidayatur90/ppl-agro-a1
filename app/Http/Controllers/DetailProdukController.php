@@ -159,7 +159,7 @@ class DetailProdukController extends Controller
             ->get();
         
         $produk = DB::table('detail_produk')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as bulan"), DB::raw('SUM(jumlahStok) as total_stok'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as bulan"), DB::raw('SUM(jumlahStok) as total_stok'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();
@@ -215,18 +215,33 @@ class DetailProdukController extends Controller
         ]);
 
         foreach ($produk as $p){
-            DetailProduk::create([
-                'idProduk' => $p->jumlah_id + 1,
-                'idKategori' => $request->kategori,
-                'jumlahStok' => $request->jumlahStok,
-                'hargaPer100Gram' => $request->hargaPer100Gram
-            ]);
-            // DetailProduk::create([
-            //     'idProduk' => $p->jumlah_id + 1,
-            //     'idKategori' => 2,
-            //     'jumlahStok' => $request->jumlahStokBubuk,
-            //     'hargaPer100Gram' => $request->hargaPer100GramBubuk
-            // ]);
+            if($request->kategori == 1){
+                DetailProduk::create([
+                    'idProduk' => $p->jumlah_id + 1,
+                    'idKategori' => $request->kategori,
+                    'jumlahStok' => $request->jumlahStok,
+                    'hargaPer100Gram' => $request->hargaPer100Gram
+                ]);
+                DetailProduk::create([
+                    'idProduk' => $p->jumlah_id + 1,
+                    'idKategori' => 2,
+                    'jumlahStok' => 0,
+                    'hargaPer100Gram' => 0
+                ]);
+            } else if ($request->kategori == 2){
+                DetailProduk::create([
+                    'idProduk' => $p->jumlah_id + 1,
+                    'idKategori' => $request->kategori,
+                    'jumlahStok' => $request->jumlahStok,
+                    'hargaPer100Gram' => $request->hargaPer100Gram
+                ]);
+                DetailProduk::create([
+                    'idProduk' => $p->jumlah_id + 1,
+                    'idKategori' => 1,
+                    'jumlahStok' => 0,
+                    'hargaPer100Gram' => 0
+                ]);
+            }
         }
 
         Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');

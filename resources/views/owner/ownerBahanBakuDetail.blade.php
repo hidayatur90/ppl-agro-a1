@@ -10,10 +10,10 @@
     </style>
     <main>
     <div class="container-fluid px-4">
-        <div class="card mt-3">
+        <div class="card mt-3 mb-3">
             @foreach($bahan_baku as $bahan)
             <div class="card-header text-start">
-                <strong>Riwayat Pengguanaan {{ $bahan->namaBahan }}</strong> 
+                <i class="bi bi-table"></i> <strong>Riwayat Pengguanaan {{ $bahan->namaBahan }}</strong> 
             </div>
             @php break; @endphp
             @endforeach
@@ -48,16 +48,10 @@
                         @endforeach
                     </tbody>
                 </table>
-
-                <div class="row mb-3 justify-content-end mx-3 my-4">
-                    <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
-                        <a type="button" class="btn btn-secondary border" href="/ownerBahanBaku">
-                            Kembali
-                        </a>
-                    </div>
-                </div>
-
             </div>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a href="/ownerBahanBaku" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Kembali</a>
         </div>
     </div>
 @endsection

@@ -24,7 +24,7 @@
                         Stock Kopi
                     </a>
                     <a class="nav-link" href="/kedaiPenjualan/Keseluruhan">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        <div class="sb-nav-link-icon"><i class="bi bi-cart-plus-fill"></i></div>
                         Penjualan
                     </a>
                     <a class="nav-link" href="/kedaiPrediksiPasar/Americano/Keseluruhan">

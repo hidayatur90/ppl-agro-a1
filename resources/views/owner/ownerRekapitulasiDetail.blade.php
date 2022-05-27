@@ -55,12 +55,8 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-3 justify-content-end mx-3 my-4">
-            <div class="col-sm-8 col-md-9 col-xl-10" style="text-align:end;">
-                <a type="button" class="btn btn-secondary border" href="/ownerRekapitulasi">
-                    Kembali
-                </a>
-            </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="/ownerRekapitulasi" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Kembali</a>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

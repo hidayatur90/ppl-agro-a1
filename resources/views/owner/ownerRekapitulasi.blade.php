@@ -12,7 +12,7 @@
     <div class="container-fluid px-4">
         <div class="card mt-3">
             <div class="card-header text-start">
-                <strong>Data Rekapitulasi Keuangan</strong> 
+                <i class="bi bi-table"></i> <strong>Data Rekapitulasi Keuangan</strong> 
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">

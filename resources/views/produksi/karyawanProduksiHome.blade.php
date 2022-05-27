@@ -12,7 +12,7 @@
     <div class="container-fluid px-4">
         <div class="card mt-5">
             <div class="card-header text-start">
-                <strong>Data Karyawan Produksi Kopi</strong> 
+                <i class="bi bi-table"></i> <strong>Data Karyawan Produksi Kopi</strong> 
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">

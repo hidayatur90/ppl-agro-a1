@@ -59,11 +59,8 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div style="text-align:end;">
-                        <a type="button" class="btn btn-dark border" href="/produksiStockKopi">
-                            Kembali
-                        </a>
-
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                        <a href="/produksiStockKopi" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Kembali</a>
                     </div>
                 </div>
             </div>

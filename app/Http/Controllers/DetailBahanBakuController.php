@@ -77,7 +77,7 @@ class DetailBahanBakuController extends Controller
             ->get();
         
         $produk = DB::table('detail_bahan_baku')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as bulan"), DB::raw('SUM(kuantitas) as total_stok'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as bulan"), DB::raw('SUM(kuantitas) as total_stok'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();

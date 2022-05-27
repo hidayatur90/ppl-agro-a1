@@ -50,7 +50,7 @@
                     <div class="row mb-3">
                         <label for="hargaSatuan" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Harga Satuan</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" step="500" max="999999999" namename="hargaSatuan" id="hargaSatuan" placeholder="Harga Satuan" autocomplete="off" required oninvalid="this.setCustomValidity('Cek kembali harga')" oninput="this.setCustomValidity('')" value="{{ $p->hargaSatuan }}"/>
+                            <input type="number" class="form-control" min="0" step="500" max="999999999" name="hargaSatuan" id="hargaSatuan" placeholder="Harga Satuan" autocomplete="off" required oninvalid="this.setCustomValidity('Cek kembali harga')" oninput="this.setCustomValidity('')" value="{{ $p->hargaSatuan }}"/>
                             @if($errors->has('hargaSatuan'))
                             <div class="text-danger">
                                 {{ $errors->first('hargaSatuan')}}

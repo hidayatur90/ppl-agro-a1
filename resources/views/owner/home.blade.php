@@ -9,50 +9,12 @@
              <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Hello, {{ Auth::user()->name }}</li>
             </ol>
-            {{--<div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Pasar</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/prediksiPasar">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">Rekapitulasi</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/rekapitulasi">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Bahan Baku</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/bahanBaku">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Stock Kopi</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/stockKopi">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>--}}
             <div class="row">
                 <div class="col-xl-6">
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-area me-1"></i>
-                            Prediksi Pasar
+                            Data Penjualan
                         </div>
                         <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                     </div>
@@ -61,7 +23,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-bar me-1"></i>
-                            Prediksi Jumlah Stock Kopi
+                            Data Stock Kopi
                         </div>
                         <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                     </div>
@@ -69,40 +31,37 @@
             </div> 
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
+                    <i class="bi bi-table"></i>
                     Data Rekapitusi Keuangan
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>#</th>
+                                <th>Periode</th>
+                                <th>Total Debit</th>
+                                <th>Total Kredit</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
+                            @php
+                                $i = 0;
+                            @endphp
+                            @foreach($data_kredit as $kredit)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $kredit->periode }}</td>
+                                @while ($i < count($all_debit))
+                                    <td style="color: green">Rp. {{ number_format($all_debit[$i],2,',','.') }}</td>
+                                    @break
+                                @endwhile
+                                <td style="color: red">Rp. {{ number_format($kredit->total_kredit,2,',','.') }}</td>
                             </tr>
+                            @php
+                                $i += 1;
+                            @endphp
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -120,9 +79,9 @@
     var myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: @json($mounth_in_dashboard),
+        labels: @json($mounth_sales_in_dashboard),
         datasets: [{
-        label: "Stok Kopi ",
+        label: "Penjualan ",
         lineTension: 0.3,
         backgroundColor: "rgba(2,117,216,0.2)",
         borderColor: "rgba(2,117,216,1)",
@@ -133,7 +92,7 @@
         pointHoverBackgroundColor: "rgba(2,117,216,1)",
         pointHitRadius: 50,
         pointBorderWidth: 2,
-        data: @json($stok_in_dashboard),
+        data: @json($stok_sales_in_dashboard),
         }],
     },
     options: {
@@ -169,7 +128,7 @@
     var myLineChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: @json($mounth_in_dashboard),
+        labels: @json($mounth_coffee_in_dashboard),
         datasets: [{
         label: "Stok Kopi ",
         lineTension: 0.3,
@@ -182,7 +141,7 @@
         pointHoverBackgroundColor: "rgba(2,117,216,1)",
         pointHitRadius: 50,
         pointBorderWidth: 2,
-        data: @json($stok_in_dashboard),
+        data: @json($stok_coffee_in_dashboard),
         }],
     },
     options: {

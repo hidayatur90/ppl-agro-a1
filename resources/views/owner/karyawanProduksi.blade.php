@@ -12,10 +12,10 @@
     <div class="container-fluid px-4">
         <div class="card mt-5">
             <div class="card-header text-start">
-                <strong>Data Karyawan Produksi Kopi</strong> 
+                <i class="bi bi-table"></i> <strong>Data Karyawan Produksi Kopi</strong> 
             </div>
             <div class="card-body">
-                <a href="/karyawanProduksi/tambah" class="btn btn-success mb-3">Input Karyawan Baru</a>
+                <a href="/karyawanProduksi/tambah" class="btn btn-success mb-3"><i class="bi bi-plus-circle"></i> Input Karyawan Baru</a>
                 <table id="datatablesSimple">
                     <thead>
                         <tr>

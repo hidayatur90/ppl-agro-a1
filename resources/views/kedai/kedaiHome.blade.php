@@ -24,7 +24,7 @@
             </div>
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
+                    <i class="bi bi-table"></i>
                     Data Table Stock Kopi
                 </div>
                 <div class="card-body">
@@ -70,7 +70,7 @@
         data: {
             labels: @json($mounth_in_dashboard),
             datasets: [{
-            label: "Stok Kopi ",
+            label: "Penjualan ",
             lineTension: 0.3,
             backgroundColor: "rgba(2,117,216,0.2)",
             borderColor: "rgba(2,117,216,1)",
