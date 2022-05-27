@@ -122,7 +122,7 @@
         if (jumlahStok.value.length == 0 || jumlahStok.value <= 0){
             Swal.fire({
                 title: 'Maaf',
-                text: "Stok tidak boleh kosong.",
+                text: "Stok dan harga tidak boleh kosong.",
                 icon: 'warning',
                 showConfirmButton: false,
                 showCancelButton: true,
@@ -136,7 +136,7 @@
         } else if (hargaPer100Gram.value.length == 0 || hargaPer100Gram.value <= 0){
             Swal.fire({
                 title: 'Maaf',
-                text: "Data harga tidak boleh kosong.",
+                text: "Stok dan harga tidak boleh kosong.",
                 icon: 'warning',
                 showConfirmButton: false,
                 showCancelButton: true,

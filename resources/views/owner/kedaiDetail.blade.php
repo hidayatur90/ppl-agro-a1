@@ -31,9 +31,12 @@
                     <h4><strong>Tanggal Mulai Kerja</strong></h4>
                     <strong><h6>{{ $karyawan->created_at }}</h6></strong>
                 </div>
-                <div class="address py-3 px-3 mb-5" style="background-color: rgb(231, 240, 245); border-radius:10px;">
+                <div class="address py-3 px-3 mb-3" style="background-color: rgb(231, 240, 245); border-radius:10px;">
                     <h4><strong>Alamat</strong></h4>
                     <h6>{{ $karyawan->alamat }}</h6>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="/karyawanKedai" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> kembali</a>
                 </div>
             </div>
         </main>

@@ -51,7 +51,7 @@
                     <div class="row mb-3">
                         <label for="kuantitas" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Kuantitas (gr)</strong></label>
                         <div class="col-sm-8 col-md-9 col-xl-10">
-                            <input type="number" class="form-control" min="0" max="100000" step="10" name="kuantitas" id="kuantitas" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->kuantitas }}"/>
+                            <input type="number" class="form-control" min="5" max="100000" name="kuantitas" id="kuantitas" placeholder="Stok Kopi" autocomplete="off" required oninvalid="this.setCustomValidity('Stok harus angka')" oninput="this.setCustomValidity('')" value="{{ $p->kuantitas }}"/>
                             @if($errors->has('kuantitas'))
                             <div class="text-danger">
                                 {{ $errors->first('kuantitas')}}

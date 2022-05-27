@@ -41,7 +41,7 @@
                 {{-- Kuantitas --}}
                 <div class="mb-3 col-xl-6 col-md-12">
                     <label for="kuantitas" class="form-label">Kuantitas (gr)</label>
-                    <input name="kuantitas" type="number" min="0" step="10" class="form-control" id="kuantitas" placeholder="Jumlah Kuantitas (gr)" required oninvalid="this.setCustomValidity('Kuantitas tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
+                    <input name="kuantitas" type="number" min="5" class="form-control" id="kuantitas" placeholder="Jumlah Kuantitas (gr)" required oninvalid="this.setCustomValidity('Kuantitas tidak boleh Kosong')" oninput="this.setCustomValidity('')"/>
                 </div>
 
                 {{-- Harga Total --}}
