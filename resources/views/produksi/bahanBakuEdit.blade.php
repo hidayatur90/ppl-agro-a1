@@ -133,7 +133,7 @@
             })          
         } else{
             if (stokBaru > 0 && stokBaru <= 99999 ){
-                if (hargaSatuan.value.length >= 11 || hargaSatuan.value.length < 3 || hargaPer100Gram.value%500 != 0){
+                if (hargaSatuan.value.length >= 11 || hargaSatuan.value.length < 3 || hargaSatuan.value%500 != 0){
                     Swal.fire({
                         title: 'Maaf',
                         text: "Cek kembali harga yang anda inputkan dan inputan minimal 500",
