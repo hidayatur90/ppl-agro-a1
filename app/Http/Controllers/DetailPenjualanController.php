@@ -195,23 +195,27 @@ class DetailPenjualanController extends Controller
         $idProduk = array_search($request->namaProduk, $produk);
         $idKategori = array_search($request->kategori, $category);
         
-        $produk = DB::table('detail_produk')
-            ->join('produk', 'idProduk', '=', 'produk.id')
+        $data_produk = DB::table('detail_produk')
+            ->join('produk', 'detail_produk.idProduk', '=', 'produk.id')
             ->join('kategori', 'detail_produk.idKategori', '=', 'kategori.id')
             ->select(DB::raw('SUM(detail_produk.jumlahStok) as stokLama'))
             ->where([
                 ['detail_produk.idProduk', '=',  ['idProduk' => $idProduk+1]],
+                ['detail_produk.idKategori', '=',  ['idKategori' => $idKategori+1]]
             ])
             ->get();
         
         $kuantitasLama = 0;
 
-        foreach($produk as $p){
-            $kuantitasLama = $p->stokLama;
+        foreach($data_produk as $data){
+            $kuantitasLama += $data->stokLama;
         }
-
-        if(($kuantitasLama-$request->kuantitas)<0){
-            Alert::warning('Gagal!', 'Stok kopi habis')->showConfirmButton($btnText = 'OK', $btnColor = '#f0ad4e');
+        
+        if(($kuantitasLama == 0)){
+            Alert::warning('Gagal!', 'Stok kopi habis.')->showConfirmButton($btnText = 'OK', $btnColor = '#f0ad4e');
+            return redirect('/kedaiPenjualan/Keseluruhan');
+        } else if ($kuantitasLama < $request->kuantitas){
+            Alert::warning('Gagal!', 'Stok kopi yang tersedia kurang.')->showConfirmButton($btnText = 'OK', $btnColor = '#f0ad4e');
             return redirect('/kedaiPenjualan/Keseluruhan');
         } else{
             DetailPenjualan::create([

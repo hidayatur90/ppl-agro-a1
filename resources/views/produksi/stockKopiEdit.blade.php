@@ -53,11 +53,11 @@
 
                             @if($p->kategori=='Biji Kopi')
                                 @foreach ($last_price_biji as $lp)
-                                    <input type="number" class="form-control" min="0" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                    <input type="number" class="form-control" min="500" max="100000000" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
                                 @endforeach
                             @else
                                 @foreach ($last_price_bubuk as $lp)    
-                                    <input type="number" class="form-control" min="0" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
+                                    <input type="number" class="form-control" min="500" max="100000000" step="500" name="hargaPer100Gram" id="hargaPer100Gram" placeholder="Harga Per 100 Gram" autocomplete="off" required oninvalid="this.setCustomValidity('Inputan Min 1000')" oninput="this.setCustomValidity('')" value="{{ $lp }}"/>
                                 @endforeach
                             @endif
 
@@ -122,7 +122,7 @@
         if (jumlahStok.value.length == 0 || jumlahStok.value <= 0){
             Swal.fire({
                 title: 'Maaf',
-                text: "Stok dan harga tidak boleh kosong.",
+                text: "Stok atau harga tidak boleh kosong.",
                 icon: 'warning',
                 showConfirmButton: false,
                 showCancelButton: true,
@@ -136,7 +136,7 @@
         } else if (hargaPer100Gram.value.length == 0 || hargaPer100Gram.value <= 0){
             Swal.fire({
                 title: 'Maaf',
-                text: "Stok dan harga tidak boleh kosong.",
+                text: "Stok atau harga tidak boleh kosong.",
                 icon: 'warning',
                 showConfirmButton: false,
                 showCancelButton: true,
