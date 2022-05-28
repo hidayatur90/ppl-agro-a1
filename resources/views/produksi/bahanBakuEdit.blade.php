@@ -172,7 +172,7 @@
                 if (hargaSatuan.value.length >= 11 || hargaSatuan.value.length < 3 || hargaSatuan.value%500 != 0){
                     Swal.fire({
                         title: 'Maaf',
-                        text: "Cek kembali harga yang anda inputkan dan inputan minimal 500.",
+                        text: "Cek kembali harga yang anda inputkan dan inputan minimal 500",
                         icon: 'warning',
                         showConfirmButton: false,
                         showCancelButton: true,
