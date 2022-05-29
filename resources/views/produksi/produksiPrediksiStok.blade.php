@@ -21,10 +21,11 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-area me-1"></i>
-                            Prediksi Stok Kopi
+                            Prediksi Stok Biji Kopi
                         </div>
                         <div class="card-body">
                             <div class="form-group mb-2">
+                                <label for="year">Pilih Tahun : </label>
                                 <select id="year" class="form-select" style="width: 150px">
                                     <option selected hidden>{{ $yearURL }}</option>
                                     <option value="Keseluruhan">Keseluruhan</option>

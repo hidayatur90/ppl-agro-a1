@@ -21,6 +21,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group mb-2">
+                        <label for="month">Pilih Bulan : </label>
                         <select id="month" class="form-select" style="width: 150px">
                             <option selected hidden>{{ $periodeURL }}</option>
                             @foreach ($periodes as $periode)

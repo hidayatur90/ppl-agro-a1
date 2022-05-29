@@ -122,14 +122,6 @@ class DetailPenjualanController extends Controller
             ->orderBy('created_at','asc')
             ->get();
 
-        // $nama_produk = DB::table('detail_produk')
-        //     ->join('produk', 'detail_produk.idProduk', '=', 'produk.id')
-        //     ->join('kategori', 'detail_produk.idKategori', '=', 'kategori.id')
-        //     ->select(DB::raw("DISTINCT(produk.namaProduk) as nama"))
-        //     ->groupBy('produk.namaProduk')
-        //     ->having(DB::raw("SUM(detail_produk.jumlahStok)"), '>=', 0)
-        //     ->get();
-
         $nama_produk = DB::select("SELECT DISTINCT(namaProduk) as nama FROM produk");
         $nama_kategori = DB::select('SELECT DISTINCT(kategori) as kategori FROM kategori');
 
@@ -265,7 +257,7 @@ class DetailPenjualanController extends Controller
                 ['detail_penjualan.id', '=',  ['id' => $idPenjualan]],
             ])
             ->get();
-
+        
         return view('kedai.kedaiPenjualanEdit', ['produk' => $produk]);
     }
 
@@ -277,8 +269,8 @@ class DetailPenjualanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function updatePenjualan(Request $request, $idPenjualan)
-    {
-        $data_produk = DB::table('detail_penjualan')
+    {   
+        $data_penjualan = DB::table('detail_penjualan')
             ->join('produk', 'idProduk', '=', 'produk.id')
             ->join('kategori', 'detail_penjualan.idKategori', '=', 'kategori.id')
             ->select('detail_penjualan.kuantitas as kuantitasLama')
@@ -298,7 +290,7 @@ class DetailPenjualanController extends Controller
 
         $produk = [];
         $category = [];
-        
+
         foreach ($nama_produk as $np) {
             $produk[] = $np->nama;
         }
@@ -309,40 +301,54 @@ class DetailPenjualanController extends Controller
 
         $idProduk = array_search($request->namaProduk, $produk);
         $idKategori = array_search($request->kategori, $category);
+
+        $data_produk = DB::table('detail_produk')
+            ->join('produk', 'detail_produk.idProduk', '=', 'produk.id')
+            ->join('kategori', 'detail_produk.idKategori', '=', 'kategori.id')
+            ->select(DB::raw('SUM(detail_produk.jumlahStok) as stokLama'))
+            ->where([
+                ['detail_produk.idProduk', '=',  ['idProduk' => $idProduk+1]],
+                ['detail_produk.idKategori', '=',  ['idKategori' => $idKategori+1]]
+            ])
+            ->get();
         
-        DetailPenjualan::where('id', $idPenjualan)
-        ->update([
-            'idProduk' => $idProduk+1,
-            'idKategori' => $idKategori+1,
-            'kuantitas' => $request->kuantitas,
-            'hargaPer100Gram' => $request->harga
-        ]);
-        
-        $kuantitasLama = 0;
+        $stokLama = 0;
 
         foreach($data_produk as $p){
-            $kuantitasLama += $p->kuantitasLama;
+            $stokLama += $p->stokLama;
         }
 
-        if($request->kuantitas >= $kuantitasLama){
-            DetailProduk::create([
-                'idProduk' => $idProduk+1 ,
-                'jumlahStok' => $request->kuantitas - $kuantitasLama,
-                'idKategori' => $idKategori+1,
-                'hargaPer100Gram' => $request->harga
-            ]);
-        } else if($request->kuantitas < $kuantitasLama){
-            DetailProduk::create([
-                'idProduk' => $idProduk+1 ,
-                'jumlahStok' => $kuantitasLama - $request->kuantitas,
-                'idKategori' => $idKategori+1,
-                'hargaPer100Gram' => $request->harga
-            ]);
+        $kuantitasLama = 0;
+
+        foreach($data_penjualan as $pen){
+            $kuantitasLama += $pen->kuantitasLama;
         }
 
+        if(($stokLama == 0)){
+            Alert::warning('Gagal!', 'Stok kopi habis.')->showConfirmButton($btnText = 'OK', $btnColor = '#f0ad4e');
+            return redirect('/penjualan/edit/' . $idPenjualan);
+        } else if ($request->kuantitas > $stokLama){
+            Alert::warning('Gagal!', 'Stok kopi yang tersedia kurang.')->showConfirmButton($btnText = 'OK', $btnColor = '#f0ad4e');
+            return redirect('/penjualan/edit/' . $idPenjualan);
+        } else{
+            DetailPenjualan::where('id', $idPenjualan)
+            ->update([
+                'idProduk' => $idProduk+1,
+                'idKategori' => $idKategori+1,
+                'kuantitas' => $request->kuantitas,
+                'hargaPer100Gram' => $request->harga
+            ]);
 
-        Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
-        return redirect('/kedaiPenjualan/Keseluruhan');
+            DetailProduk::create([
+                'idProduk' => $idProduk+1,
+                'jumlahStok' => 0 + ($kuantitasLama - $request->kuantitas),
+                'idKategori' => $idKategori+1,
+                'hargaPer100Gram' => ($request->harga/$request->kuantitas)*100
+            ]);
+    
+            Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
+            return redirect('/kedaiPenjualan/Keseluruhan');
+        }
     }
 
 }

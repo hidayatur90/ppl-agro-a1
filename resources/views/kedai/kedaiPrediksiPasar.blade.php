@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <div class="select" style="display: flex">
                                 <div class="form-group mb-2">
-                                    <label for="produk">Produk : </label>
+                                    <label for="produk">Pilih Produk : </label>
                                     <select id="produk" class="form-select" style="width: 150px">
                                         <option selected hidden>{{ $produkURL }}</option>
                                         @foreach ($produk as $p)
@@ -35,7 +35,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group mb-2 ms-2">
-                                    <label for="year">Tahun : </label>
+                                    <label for="year">Pilih Tahun : </label>
                                     <select id="year" class="form-select" style="width: 150px">
                                         <option selected hidden>{{ $yearURL }}</option>
                                         <option value="Keseluruhan">Keseluruhan</option>
