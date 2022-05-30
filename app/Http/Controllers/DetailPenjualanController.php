@@ -324,10 +324,7 @@ class DetailPenjualanController extends Controller
             $kuantitasLama += $pen->kuantitasLama;
         }
 
-        if(($stokLama == 0)){
-            Alert::warning('Gagal!', 'Stok kopi habis.')->showConfirmButton($btnText = 'OK', $btnColor = '#f0ad4e');
-            return redirect('/penjualan/edit/' . $idPenjualan);
-        } else if ($request->kuantitas > $stokLama){
+        if (($request->kuantitas - $kuantitasLama) > $stokLama){
             Alert::warning('Gagal!', 'Stok kopi yang tersedia kurang.')->showConfirmButton($btnText = 'OK', $btnColor = '#f0ad4e');
             return redirect('/penjualan/edit/' . $idPenjualan);
         } else{

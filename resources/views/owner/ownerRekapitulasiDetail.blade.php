@@ -46,7 +46,7 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
+                        <i class="fas fa-chart-bar me-1"></i>
                         Top 5 Produk Paling Laku <?= $this_periode ?>
                     </div>
                     <div class="card-body">
