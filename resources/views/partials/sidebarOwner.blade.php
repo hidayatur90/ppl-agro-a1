@@ -42,7 +42,7 @@
                         Bahan Baku
                     </a>
                     <a class="nav-link" href="/ownerRekapitulasi">
-                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        <div class="sb-nav-link-icon"><i class="bi bi-currency-dollar"></i></div>
                         Keuangan
                     </a>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">

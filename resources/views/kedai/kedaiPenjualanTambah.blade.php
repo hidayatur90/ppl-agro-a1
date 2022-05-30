@@ -12,6 +12,7 @@
                 <div class="mb-3 col-xl-6 col-md-12">
                     <label for="namaProduk" class="form-label">Nama Produk</label>
                     <select id="namaProduk" name="namaProduk" class="form-select" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Nama tidak boleh Kosong')" oninput="this.setCustomValidity('')">
+                        <option selected="selected">-</option>
                         @foreach ($nama_produk as $np)
                             <option>{{ $np->nama }}</option>
                         @endforeach
@@ -27,6 +28,7 @@
                 <div class="mb-3 col-xl-6 col-md-12">
                     <label for="kategori" class="form-label">Kategori</label>
                     <select id="kategori" name="kategori" class="form-select" placeholder="Nama Produk" autocomplete="off" required oninvalid="this.setCustomValidity('Kategori tidak boleh Kosong')" oninput="this.setCustomValidity('')">
+                        <option selected="selected">-</option>
                         @foreach ($nama_kategori as $nk)
                             <option>{{ $nk->kategori }}</option>
                         @endforeach
