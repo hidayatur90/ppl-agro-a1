@@ -167,8 +167,9 @@ class DetailPenjualanController extends Controller
         $this->validate($request,[
     		'namaProduk' => 'required',
     		'kategori' => 'required',
-    		'kuantitas' => 'integer',
-        ]);
+    		'kuantitas' => 'integer'],[
+                'required' => 'Form wajib diisi.',
+            ]);
 
         $nama_produk = DB::select('SELECT DISTINCT(namaProduk) as nama from produk order by id');
         $nama_kategori = DB::select('SELECT DISTINCT(kategori) as kategori from kategori order by id');

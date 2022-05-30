@@ -87,8 +87,19 @@
 
         var nama = document.getElementById('namaProduk');
         var kategory = document.getElementById('kategori');
+        document.getElementById("kategori").disabled = true;
+        document.getElementById("kuantitas").disabled = true;
+
+        nama.addEventListener("input", function(){
+            document.getElementById("kategori").disabled = false;
+        });
+
+        kategory.addEventListener("input", function(){
+            document.getElementById("kuantitas").disabled = false;
+        });
+
         function useValue() {
-            var list_price = new Array;;
+            var list_price = new Array;
             var nama2 = nama.value;
             var kategory2 = kategory.value;
             const data = @json($data_produk);
