@@ -119,9 +119,9 @@ Route::get('/kedai/home', [DetailProdukController::class, 'indexKedaiStockKopiDa
 Route::get('/produksi/home', [DetailBahanBakuController::class, 'indexProduksiBahanBakuDashboard'])->name('produksi.home');
 
 // Forcast
-Route::get('/ownerPrediksiPasar/{produk}/{tahun}', [ForecastController::class, 'indexForecastPasar']);
+Route::get('/ownerPrediksiPasar/{produk}/{kategori}/{tahun}', [ForecastController::class, 'indexForecastPasar']);
 Route::get('/ownerPrediksiStok/{tahun}', [ForecastController::class, 'indexForecastBijiKopi']);
-Route::get('/kedaiPrediksiPasar/{produk}/{tahun}', [ForecastController::class, 'indexForecastPasarKedai']);
+Route::get('/kedaiPrediksiPasar/{produk}/{kategori}/{tahun}', [ForecastController::class, 'indexForecastPasarKedai']);
 Route::get('/produksiPrediksiStok/{tahun}', [ForecastController::class, 'indexForecastBijiKopiProduksi']);
 
 // Rekap Keuangan

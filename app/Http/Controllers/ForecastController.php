@@ -134,15 +134,20 @@ class ForecastController extends Controller
         return $final;
     }
 
-    public function indexForecastPasar($pick_produk, $tahun) {
+    public function indexForecastPasar($pick_produk, $pick_kategori, $tahun) {
 
         $produk = DB::select('SELECT DISTINCT(namaProduk) from produk');
+        $kategori = DB::select('SELECT DISTINCT(kategori) from kategori');
         // total sales orders grouped by month
         if($tahun=="Keseluruhan"){
             $stok_kopi = DB::table('detail_penjualan')
                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->join('produk', 'detail_penjualan.idProduk', '=', 'produk.id')
-                ->where('produk.namaProduk', '=', $pick_produk)
+                ->join('kategori', 'detail_penjualan.idKategori', '=', 'kategori.id')
+                ->where([
+                    ['produk.namaProduk', '=', $pick_produk],
+                    ['kategori.kategori', '=', $pick_kategori]
+                ])
                 ->groupBy('produk.namaProduk',DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
                 ->orderBy('created_at','asc')
                 ->get();
@@ -157,8 +162,10 @@ class ForecastController extends Controller
             $stok_kopi = DB::table('detail_penjualan')
                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->join('produk', 'detail_penjualan.idProduk', '=', 'produk.id')
+                ->join('kategori', 'detail_penjualan.idKategori', '=', 'kategori.id')
                 ->where([
                     ['produk.namaProduk', '=', $pick_produk],
+                    ['kategori.kategori', '=', $pick_kategori],
                     [DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun]
                 ])
                 ->groupBy('produk.namaProduk',DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
@@ -234,11 +241,12 @@ class ForecastController extends Controller
         }
         
         $produkURL = $pick_produk;
+        $kategoriURL = $pick_kategori;
         $yearURL = $tahun;
         $years = array_unique($years);
         rsort(($years));
 
-        return view('owner.ownerPrediksiPasar', compact('produk','stok_kopi','years', 'yearURL','produkURL', 'month','dataset','forecast','last','mape'));
+        return view('owner.ownerPrediksiPasar', compact('produk','kategori','stok_kopi','years', 'yearURL','produkURL','kategoriURL','month','dataset','forecast','last','mape'));
     }
 
     // Forcast Pasar
@@ -348,14 +356,19 @@ class ForecastController extends Controller
     }  
     
     // Forcast Pasar Kedai
-    public function indexForecastPasarKedai($pick_produk, $tahun) {
+    public function indexForecastPasarKedai($pick_produk, $pick_kategori, $tahun) {
         $produk = DB::select('SELECT DISTINCT(namaProduk) from produk');
+        $kategori = DB::select('SELECT DISTINCT(kategori) from kategori');
         // total sales orders grouped by month
         if($tahun=="Keseluruhan"){
             $stok_kopi = DB::table('detail_penjualan')
                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->join('produk', 'detail_penjualan.idProduk', '=', 'produk.id')
-                ->where('produk.namaProduk', '=', $pick_produk)
+                ->join('kategori', 'detail_penjualan.idKategori', '=', 'kategori.id')
+                ->where([
+                    ['produk.namaProduk', '=', $pick_produk],
+                    ['kategori.kategori', '=', $pick_kategori]
+                    ])
                 ->groupBy('produk.namaProduk',DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
                 ->orderBy('created_at','asc')
                 ->get();
@@ -370,8 +383,10 @@ class ForecastController extends Controller
             $stok_kopi = DB::table('detail_penjualan')
                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as periode"), DB::raw('SUM(kuantitas) as total'), DB::raw("DATE_FORMAT(created_at, '%Y') as tahun"))
                 ->join('produk', 'detail_penjualan.idProduk', '=', 'produk.id')
+                ->join('kategori', 'detail_penjualan.idKategori', '=', 'kategori.id')
                 ->where([
                     ['produk.namaProduk', '=', $pick_produk],
+                    ['kategori.kategori', '=', $pick_kategori],
                     [DB::raw("DATE_FORMAT(created_at, '%Y')"), "=", $tahun]
                 ])
                 ->groupBy('produk.namaProduk',DB::raw("DATE_FORMAT(created_at, '%m'), DATE_FORMAT(created_at, '%Y')"))
@@ -447,11 +462,12 @@ class ForecastController extends Controller
         }
         
         $produkURL = $pick_produk;
+        $kategoriURL = $pick_kategori;
         $yearURL = $tahun;
         $years = array_unique($years);
         rsort(($years));
 
-        return view('kedai.kedaiPrediksiPasar', compact('produk','stok_kopi','years', 'yearURL','produkURL', 'month','dataset','forecast','last','mape'));
+        return view('kedai.kedaiPrediksiPasar', compact('produk','kategori','stok_kopi','years', 'yearURL','produkURL','kategoriURL', 'month','dataset','forecast','last','mape'));
     }    
 
     // Forecast Stok Produksi

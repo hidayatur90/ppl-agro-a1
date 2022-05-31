@@ -35,6 +35,15 @@
                                     </select>
                                 </div>
                                 <div class="form-group mb-2 ms-2">
+                                    <label for="kategori">Pilih Kategori : </label>
+                                    <select id="kategori" class="form-select" style="width: 150px">
+                                        <option selected hidden>{{ $kategoriURL }}</option>
+                                        @foreach ($kategori as $k)
+                                        <option value="{{ $k->kategori }}">{{ $k->kategori }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group mb-2 ms-2">
                                     <label for="year">Pilih Tahun : </label>
                                     <select id="year" class="form-select" style="width: 150px">
                                         <option selected hidden>{{ $yearURL }}</option>
@@ -60,11 +69,12 @@
     <script>
 
         var produk = document.getElementById('produk');
+        var kategori = document.getElementById('kategori');
         var sortYear = document.getElementById('year');
         var akurasi = 100-@json($mape);
         sortYear.addEventListener("input", function(){
             var strUser = this.value;
-            var nextURL = 'http://127.0.0.1:8000/kedaiPrediksiPasar/'+ produk.value +'/'+ strUser;
+            var nextURL = 'http://127.0.0.1:8000/kedaiPrediksiPasar/'+ produk.value + '/' + kategori.value + '/' + strUser;
             window.location.replace(nextURL);
         });
 
@@ -73,7 +83,10 @@
                 type: 'areaspline'
             },
             title: {
-                text: 'Prediksi Permintaan Pasar ' + produk.value  + ' (Akurasi = ' + akurasi + '%)'
+                text: 'Prediksi Permintaan Pasar ' + produk.value  + ' ' + kategori.value
+            },
+            subtitle: {
+                text: '(Akurasi = ' + akurasi + '%)'
             },
             legend: {
                 layout: 'horizontal',
@@ -81,7 +94,7 @@
                 verticalAlign: 'top',
                 x: 20,
                 floating: true,
-                borderWidth: 1,
+                borderWidth: 0.5,
                 backgroundColor:
                     Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
             },

@@ -52,7 +52,7 @@
                     </a>
                     <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                            <a class="nav-link" href="/ownerPrediksiPasar/Americano/Keseluruhan">
+                            <a class="nav-link" href="/ownerPrediksiPasar/Americano/Biji Kopi/Keseluruhan">
                                 Permintaan Pasar
                             </a>
                             <a class="nav-link" href="/ownerPrediksiStok/Keseluruhan">
