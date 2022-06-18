@@ -61,7 +61,10 @@
                 type: 'areaspline'
             },
             title: {
-                text: 'Prediksi Stok Biji Kopi (Akurasi = ' + akurasi + '%)'
+                text: 'Prediksi Stok Biji Kopi ' + sortYear.value
+            },
+            subtitle: {
+                text: '(Akurasi = ' + akurasi + '%)'
             },
             legend: {
                 layout: 'horizontal',
