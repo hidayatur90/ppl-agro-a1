@@ -36,7 +36,7 @@
                         <div class="row mb-3">
                             <label for="phone" class="col-form-label col-sm-4 col-md-3 col-xl-2"><strong>Nomor Handphone</strong></label>
                             <div class="col-sm-8 col-md-9 col-xl-10">
-                                <input type="text" pattern="[0-9]{10,13}" class="form-control" name="noTelepon" id="noTelepon" placeholder="08xxxxxxxxxx" required value="{{$owner->noTelepon}}" oninvalid="this.setCustomValidity('Mohon diisi dengan angka, minimal 10 digit, maksimal 13 digit')" oninput="this.setCustomValidity('')"/>
+                                <input type="text" pattern="[0-9]{10,13}" class="form-control" name="noTelepon" id="noTelepon" placeholder="08xxxxxxxxxx" required value="{{$owner->noTelepon}}" oninvalid="this.setCustomValidity('Mohon diisi dengan angka, minimal 10 digit, maksimal 13 digit')" oninput="this.setCustomValidity('')" onkeypress='validate(event)'/>
                                 @if($errors->has('noTelepon'))
                                 <div class="text-danger">
                                     {{ $errors->first('noTelepon')}}
@@ -88,9 +88,27 @@
                                 </ul>
                             </div>
                         @endif
-
                     </form>
                 </div>
             </div>
         </main>
+    <script>
+        function validate(evt) {
+        var theEvent = evt || window.event;
+
+        // Handle paste
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+        // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault) theEvent.preventDefault();
+        }
+        }
+    </script>
 @endsection

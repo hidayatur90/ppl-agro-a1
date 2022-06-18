@@ -20,44 +20,61 @@ class DetailPenjualanController extends Controller
     public function indexOwnerRekap()
     {
         $data_debit = DB::table('detail_penjualan')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('kuantitas*hargaPer100Gram as total_debit'))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(kuantitas*hargaPer100Gram)/100 as total_debit'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();
         
         $data_kredit = DB::table('detail_bahan_baku')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('kuantitas*hargaSatuan as total_kredit'))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(ABS(kuantitas)*hargaSatuan)/100 as total_kredit'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();
-
-        $all_debit = [];
         
+            
+        $all_debit = [];
+        $all_kredit = [];
+        $periode = [];
+
         foreach($data_debit as $debit){
             $all_debit[] = $debit->total_debit;
+            $periode[] = $debit->periode;
         }
         
-        return view('owner.ownerRekapitulasi', compact('all_debit','data_debit','data_kredit'));
+        foreach($data_kredit as $kredit){
+            $all_kredit[] = $kredit->total_kredit;
+            $periode[] = $kredit->periode;
+        }
+            
+        if(count($all_debit) < count($all_kredit)){
+            $all_debit[] = 0;
+        } 
+        
+        if (count($all_debit) > count($all_kredit)){
+            $all_kredit[] = 0;
+        }
+        $periode = array_unique($periode);
+        return view('owner.ownerRekapitulasi', compact('all_debit','periode', 'all_kredit'));
     }
 
     public function indexOwnerRekapDetail($periode)
     {
         $data_debit = DB::table('detail_penjualan')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('kuantitas*hargaPer100Gram as total_debit'))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(kuantitas*hargaPer100Gram)/100 as total_debit'))
             ->where(DB::raw("DATE_FORMAT(created_at, '%M - %Y')"), '=', $periode)
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();
 
         $data_kredit = DB::table('detail_bahan_baku')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('kuantitas*hargaSatuan as total_kredit'))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(ABS(kuantitas)*hargaSatuan)/100 as total_kredit'))
             ->where(DB::raw("DATE_FORMAT(created_at, '%M - %Y')"), '=', $periode)
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();
 
         $data_top_five = DB::table('detail_penjualan')
-            ->select('produk.namaProduk as namaBahan',DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"),DB::raw('kuantitas*hargaPer100Gram as total_debit'))
+            ->select('produk.namaProduk as namaBahan',DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"),DB::raw('SUM(kuantitas*hargaPer100Gram)/100 as total_debit'))
             ->join('produk', 'detail_penjualan.idProduk', '=', 'produk.id')
             ->groupBy('produk.namaProduk',DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('total_debit','asc')
@@ -67,13 +84,21 @@ class DetailPenjualanController extends Controller
         $kredit_this_mounth = [];
         $top_five_produk = [];
         $top_five_harga = [];
-
-        foreach($data_debit as $debit){
-            $debit_this_mounth[] = $debit->total_debit;
+        
+        if(count($data_debit) == 0){
+            $debit_this_mounth[] = 0;
+        } else {
+            foreach($data_debit as $debit){
+                $debit_this_mounth[] = $debit->total_debit;
+            }
         }
 
-        foreach($data_kredit as $kredit){
-            $kredit_this_mounth[] = $kredit->total_kredit;
+        if(count($data_kredit) == 0){
+            $kredit_this_mounth[] = 0;
+        } else {
+            foreach($data_kredit as $kredit){
+                $kredit_this_mounth[] = $kredit->total_kredit;
+            }
         }
         
         $this_periode = $periode;
