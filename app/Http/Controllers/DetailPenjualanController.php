@@ -382,7 +382,7 @@ class DetailPenjualanController extends Controller
                     'idProduk' => $idProduk+1,
                     'jumlahStok' => 0 + ($kuantitasLama - $request->kuantitas),
                     'idKategori' => $idKategori+1,
-                    'hargaPer100Gram' => ($request->harga/$request->kuantitas)*100
+                    'hargaPer100Gram' => $request->harga
                 ]);
             }
     
