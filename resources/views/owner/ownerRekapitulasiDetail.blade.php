@@ -67,8 +67,8 @@
 
         // Pie Chart Example
         var ctx = document.getElementById("myPieChart");
-        var debit = @json($debit_this_mounth);
-        var kredit = @json($kredit_this_mounth);
+        var debit = @json($debit_this_mounth)/1;
+        var kredit = @json($kredit_this_mounth)/1;
         var myPieChart = new Chart(ctx, {
         type: 'pie',
         data: {

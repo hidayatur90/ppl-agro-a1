@@ -26,7 +26,7 @@ class DetailPenjualanController extends Controller
             ->get();
         
         $data_kredit = DB::table('detail_bahan_baku')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(ABS(kuantitas)*hargaSatuan)/100 as total_kredit'))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(ABS(kuantitas)*hargaSatuan)/10 as total_kredit'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
             ->get();
@@ -67,7 +67,7 @@ class DetailPenjualanController extends Controller
             ->get();
 
         $data_kredit = DB::table('detail_bahan_baku')
-            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(ABS(kuantitas)*hargaSatuan)/100 as total_kredit'))
+            ->select(DB::raw("DATE_FORMAT(created_at, '%M - %Y') as periode"), DB::raw('SUM(ABS(kuantitas)*hargaSatuan)/10 as total_kredit'))
             ->where(DB::raw("DATE_FORMAT(created_at, '%M - %Y')"), '=', $periode)
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M'), DATE_FORMAT(created_at, '%Y')"))
             ->orderBy('created_at','asc')
@@ -354,20 +354,37 @@ class DetailPenjualanController extends Controller
             Alert::warning('Gagal!', 'Stok kopi yang tersedia kurang.')->showConfirmButton($btnText = 'OK', $btnColor = '#f0ad4e');
             return redirect('/penjualan/edit/' . $idPenjualan);
         } else{
-            DetailPenjualan::where('id', $idPenjualan)
-            ->update([
-                'idProduk' => $idProduk+1,
-                'idKategori' => $idKategori+1,
-                'kuantitas' => $request->kuantitas,
-                'hargaPer100Gram' => $request->harga
-            ]);
-
-            DetailProduk::create([
-                'idProduk' => $idProduk+1,
-                'jumlahStok' => 0 + ($kuantitasLama - $request->kuantitas),
-                'idKategori' => $idKategori+1,
-                'hargaPer100Gram' => ($request->harga/$request->kuantitas)*100
-            ]);
+            if($request->kuantitas == 0){
+                DetailPenjualan::where('id', $idPenjualan)
+                ->update([
+                    'idProduk' => $idProduk+1,
+                    'idKategori' => $idKategori+1,
+                    'kuantitas' => $request->kuantitas,
+                    'hargaPer100Gram' => $request->harga
+                ]);
+    
+                DetailProduk::create([
+                    'idProduk' => $idProduk+1,
+                    'jumlahStok' => 0 + ($kuantitasLama - $request->kuantitas),
+                    'idKategori' => $idKategori+1,
+                    'hargaPer100Gram' => 0
+                ]);
+            } else {
+                DetailPenjualan::where('id', $idPenjualan)
+                ->update([
+                    'idProduk' => $idProduk+1,
+                    'idKategori' => $idKategori+1,
+                    'kuantitas' => $request->kuantitas,
+                    'hargaPer100Gram' => $request->harga
+                ]);
+    
+                DetailProduk::create([
+                    'idProduk' => $idProduk+1,
+                    'jumlahStok' => 0 + ($kuantitasLama - $request->kuantitas),
+                    'idKategori' => $idKategori+1,
+                    'hargaPer100Gram' => ($request->harga/$request->kuantitas)*100
+                ]);
+            }
     
             Alert::success('Sukses!', 'Data berhasil disimpan')->showConfirmButton($btnText = 'OK', $btnColor = '#4CAF50');
             return redirect('/kedaiPenjualan/Keseluruhan');

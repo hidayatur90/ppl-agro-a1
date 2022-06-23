@@ -13,7 +13,7 @@
         <div class="card mt-3">
             @foreach($bahan_baku as $bahan)
             <div class="card-header text-start">
-                <i class="bi bi-table"></i> <strong>Riwayat Pengguanaan {{ $bahan->namaBahan }}</strong> 
+                <i class="bi bi-table"></i> <strong>Riwayat Penggunaan {{ $bahan->namaBahan }}</strong> 
             </div>
             @php break; @endphp
             @endforeach
